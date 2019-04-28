@@ -1,8 +1,10 @@
+
 import React, {Component} from 'react';
 import {Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
 
-class Employee_Update_Delete extends Component {
+class STO_Admin
+ extends Component {
     constructor() {
         super();
         this.state = {
@@ -16,9 +18,10 @@ class Employee_Update_Delete extends Component {
 
         return(
             <div>
-                Employee_Update_Delete
+                STO_Admin
+                
             </div>
         )
     }
 }
-export default Employee_Update_Delete
+export default STO_Admin

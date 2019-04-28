@@ -15,8 +15,12 @@ class Home extends Component {
     render() {
 
         return(
-            <div>
-                Home
+            <div className="Home">
+                SCHEDULED TIME OFF
+            
+            <p className="current_month">CURRENT MONTH</p>
+            <p className="next_month">NEXT MONTH</p>
+            <p className="two_months_out">TWO MONTHS OUT</p>
             </div>
         )
     }
