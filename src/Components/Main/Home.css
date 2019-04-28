@@ -68,11 +68,12 @@ body {
     border: none;
     border-radius: 12px;
     color: white;
-    padding: 15px 32px;
+    padding: 3vh 3vw;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 1vw;
+    font-size: 2vw;
+    margin-bottom: 2vh;
   }
 
   .adminButton {
@@ -80,16 +81,16 @@ body {
     border: none;
     border-radius: 12px;
     color: white;
-    padding: 15px 32px;
+    padding: 3vh 3vw;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 1vw;
+    font-size: 2vw;
   }
 
 .restrictedNotice {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 2vw;
+    font-size: 3vw;
     text-align: center;
     padding-top: 20vh;
     font-style: italic;

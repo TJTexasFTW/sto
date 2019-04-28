@@ -27,7 +27,6 @@ class STO_Adds extends Component {
             <div>
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
                 <h2 className = 'subHeading'>Add / Update STO</h2>
-                {/* <h3 className = 'userMsg'>Your STO entry has been added/updated</h3> */}
 
             <p className='inputLabel'>For:  <input className='inputBox' placeholder = "User Name"/></p>
             <p className='inputLabel'>Start Date:  <input className='inputBox' placeholder = "Start Date" type="date"/></p>

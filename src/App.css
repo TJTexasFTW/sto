@@ -3,6 +3,59 @@
     font-family: Arial, Helvetica, sans-serif;
     /* margin-left: 30vw; */
     text-align: right;
+    margin-left: 30vw;
+}
+
+.inputCheckbox {
+    text-align: left;
+    padding-left: 0;
+    display: flex;
+}
+
+.labelAdminCheck {
+    font-size: 1vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    text-align: left; 
+    color: black;
+    margin-left: 40vw;
+    padding-left: 0;
+    margin-left: 15vw;
+    padding-left: 33vw; 
+}
+
+.adminCheckbox {
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left; 
+    margin-left: 33vw;
+    padding-right: 0;
+    /* width: 5vw; */
+} 
+
+.deactiveCheckbox {
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left; 
+    margin-left: 32vw;
+    padding-right: 0;
+    /* width: 5vw; */
+}
+
+#adminChk {
+    font-size: 42vw;
+    /* width: 6vw;
+    height: 6vh; */
+    color: red;
+    text-align: left;
+}
+
+#deactiveChk {
+    font-size: 42vw;
+    /* width: 6vw;
+    height: 6vh; */
+    color: red;
+    text-align: left;
 }
 
 .inputBox {
@@ -15,13 +68,12 @@
     margin-right: 30vw;
     justify-content: left;
     border: darkgreen;
-
 }
 
 .subHeading {
     margin-top: 12vh;
     margin-bottom: 5vh;     
-    font-size: 4vw;
+    font-size: 3vw;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 
@@ -29,7 +81,7 @@
 
 .appHeading {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 5vw;
+    font-size: 4vw;
     color: white;
     /* font-size: 4vw; */
     text-align: center;
