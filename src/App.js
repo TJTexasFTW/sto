@@ -12,7 +12,7 @@ function App() {
   <HashRouter> 
     <div className="App">
       {routes}
-      <Home />
+      {/* <Home /> */}
       {/* <AdminMenu /> */}
       {/* <Login /> */}
     </div>
