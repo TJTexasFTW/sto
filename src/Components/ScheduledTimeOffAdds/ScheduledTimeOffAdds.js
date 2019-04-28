@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Link, Redirect} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom';
+
 // import axios from 'axios';
 
 class STO_Adds extends Component {
@@ -30,7 +31,7 @@ class STO_Adds extends Component {
 
             <p className='inputLabel'>For:  <input className='inputBox' placeholder = "User Name"/></p>
             <p className='inputLabel'>Start Date:  <input className='inputBox' placeholder = "Start Date" type="date"/></p>
-            <p className='inputLabel'>End Date:  <input className='inputBox' placeholder = "Start Date" type="date"/></p>
+            <p className='inputLabel'>End Date:  <input className='inputBox' placeholder = "End Date" type="date"/></p>
             <p className='inputLabel'>Note:  <input className='inputBox' placeholder = "Note"/></p>
 
             <div className="button_choices">

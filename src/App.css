@@ -19,11 +19,12 @@
 }
 
 .subHeading {
-    margin-top: 18vh;
+    margin-top: 12vh;
+    margin-bottom: 5vh;     
     font-size: 4vw;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    margin-bottom: 5vh; 
+
 }
 
 .appHeading {
@@ -41,4 +42,54 @@
     padding-top: 10vh;
     display: flex; 
     justify-content: space-evenly;
+
 }
+
+.bigButton button {
+    margin-top: 3vh;
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-content: center;
+    background-color: black; 
+    border: none;
+    border-radius: 12px;
+    color: white;
+    width: 40vw; 
+    height: 5vh;
+    padding-left: 3vw;
+    margin-left: 30vw;
+    text-decoration: none; 
+}
+
+.big:active {
+    border-color: green;
+    background: green;
+    text-decoration: none;
+}
+
+.big:hover {
+    color:green;
+    /* border-color: yellow; */
+    background-color: white;
+    text-decoration: none;
+}
+
+/* .big::-moz-focus-inner {
+    border: none;
+  } */
+
+  .big {
+    /* ... */
+    /* all browsers: remove the default outline since
+        we are rolling our own focus styles */
+    outline: none;
+    text-decoration: none;
+  }
+
+  a {
+    color: none;
+    text-decoration: none;
+  }
