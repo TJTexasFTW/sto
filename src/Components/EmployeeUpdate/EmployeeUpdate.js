@@ -22,10 +22,7 @@ class Employee_Update_Delete extends Component {
             <p className='inputLabel'>Name:  <input className='inputBox' placeholder = "FLast"/></p>
             <p className='inputLabel'>Initials:  <input className='inputBox' placeholder = "Initials"/></p>
             <p className='inputLabel'>Password:  <input className='inputBox' placeholder = "Password" type="password"/></p>
-            {/* <div>
-                <label for="ckbx" className='adminCheckbox'>Administrator: </label> 
-                <input name='ckbx' className='inputCheckbox' placeholder = "Password" type="checkbox"> 
-            </div> */}
+ 
             <div class="Administrative">
                 <label className = 'adminCheckbox' for="adminChk">Administrator: </label>
                 <input className = 'adminChkClass' type="checkbox" id="adminChk"/>
