@@ -1,6 +1,12 @@
-const bcrypt = require('bcryptjs');
+// const bcrypt = require('bcryptjs');
 module.exports = {
-  }
-        //check to make sure the passwords match
-        //put them on the session
-        //send response
+
+  getDatesCurrentMonth: async (req, res) => {        
+    const getDates = await req.app.get('db').dates_zero_months_out().catch( error => alert(error));
+    console.log("We are in getDatesCurrentMonth of the controller");
+    console.log(getDates);
+    
+    return res.status(200).send(getDatesCurrentMonth);
+  }   
+
+}
