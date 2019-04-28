@@ -6,7 +6,7 @@ module.exports = {
     console.log("We are in getDatesCurrentMonth of the controller");
     console.log(getDates);
     
-    return res.status(200).send(getDatesCurrentMonth).catch( error => alert(error));
+    return res.status(200).send(getDates).catch( error => alert(error));
   }   
 
 }

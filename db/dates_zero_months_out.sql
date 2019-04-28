@@ -14,3 +14,5 @@ UNION ALL
 SELECT 'EVENT' as from_table, EVENT_DATE AS START, EVENT_DATE, ID, COMMENT FROM EVENT
 WHERE (extract(month from event_date) = extract(month from CURRENT_DATE))
 AND EVENT_DATE >= CURRENT_DATE
+
+ORDER BY START_DATE; 

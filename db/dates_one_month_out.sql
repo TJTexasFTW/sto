@@ -14,3 +14,6 @@ UNION ALL
 SELECT 'EVENT' as from_table, EVENT_DATE AS START, EVENT_DATE, ID, COMMENT FROM EVENT
 WHERE  extract(month from event_date) = extract(month from CURRENT_DATE) + 1
   AND extract(year from event_date) = extract(year from (CURRENT_DATE + 30))
+
+
+ORDER BY START_DATE 
