@@ -3,7 +3,7 @@ body {
     /* opacity: 0.2; */
     /* background-color: ; */
     background-repeat: no-repeat;
-  background-size: cover;
+    background-size: cover;
    }
 
    img {
@@ -12,31 +12,87 @@ body {
   }
 
   .Home {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 8vw;
+
+      
   }
 
   .months {
+    font-family: Arial, Helvetica, sans-serif;
       font-size: 2vw;
       font-weight: bolder;
       display: flex;
       justify-content: space-around;
-      padding: none;
-      margin-top: none;
+      padding-left: 5vw;
+      padding-right: 5vw;
+      padding-bottom: 0;
+      margin-top: 13vh;
+      border-bottom: blue;
+      margin-bottom: 0;
   }
-
-.appHeading {
-    font-size: 4vw;
-    text-align: center;
-}  
 
 .current_month {
     /* text-decoration-line: underline; */
-    /* border-bottom: 1px; */
 }
 
-.current_month_list {
+.next_month {
+    /* text-decoration-line: underline; */
+    /* border-bottom-style:dashed; */
+}
+
+.two_months_out {
+    /* text-decoration: underline; */
+}
+
+.dateinfo{
+    /* text-decoration: none; */
+    /* padding-top: none;
+    font-size: 1vw;
+    margin-top: 0;
+    font-weight: normal; */
+}
+
+.data {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: none;
+    font-size: 2vw;
+    margin-top: 0;
+    font-weight: normal;
+}
+/* .current_month_list {
     text-decoration-line: none;
     text-decoration: none;
+} */
+
+.addButton {
+    background-color: black; /* Green */
+    border: none;
+    border-radius: 12px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1vw;
+  }
+
+  .adminButton {
+    background-color: black; /* Green */
+    border: none;
+    border-radius: 12px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1vw;
+  }
+
+.restrictedNotice {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+    text-align: center;
+    padding-top: 20vh;
+    font-style: italic;
+    padding-bottom: 3vh;
 }
 

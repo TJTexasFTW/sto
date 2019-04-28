@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './reset.css';
 import { HashRouter } from 'react-router-dom'
 import routes from './routes';
 // import Login from './Components/Login/Login';

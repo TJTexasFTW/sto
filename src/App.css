@@ -1,0 +1,44 @@
+.inputLabel{
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+    /* margin-left: 30vw; */
+    text-align: right;
+}
+
+.inputBox {
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+    /* width: 20vw; */
+    align-content: left;
+    margin-bottom: 2vh;
+    margin-left: 3vw;
+    margin-right: 30vw;
+    justify-content: left;
+    border: darkgreen;
+
+}
+
+.subHeading {
+    margin-top: 18vh;
+    font-size: 4vw;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-bottom: 5vh; 
+}
+
+.appHeading {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 5vw;
+    color: white;
+    /* font-size: 4vw; */
+    text-align: center;
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+    background-color: black;
+}  
+
+.button_choices {
+    padding-top: 10vh;
+    display: flex; 
+    justify-content: space-evenly;
+}
