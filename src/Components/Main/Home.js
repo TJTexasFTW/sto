@@ -22,18 +22,18 @@ class Home extends Component {
       }).catch( error => alert(error))
       }
 
-
+    //   componentDidUpdate(prevProps) {
+    //     if (prevProps !== this.props) {
+    //       this.setState({ thisMonth: {} });
+    //     }
+    //   }
+    
 
     render() {
 
         const thisMonthList = this.state.thisMonth.map((thisMonth, i) => ( 
             <div>
-                <p>thisMonth.</p>
-                {/* <h3>NAME: { houses.name } </h3>
-                <p>{houses.address}</p> 
-                <p>{houses.city} </p>
-                <p>{houses.state}</p> 
-                <p>{houses.zipcode}</p> */}
+                <p>Start: {thisMonth.start_date}</p>
             </div>   
       ));
 
@@ -45,7 +45,8 @@ class Home extends Component {
             <div className="months">
                 <div className="current_month">CURRENT MONTH
                     <ul>
-                        <li className="current_month_list">JW 5/1</li> 
+                        {/* <li className="current_month_list">JW 5/1</li>  */}
+                        {thisMonthList}
                     </ul> 
                 </div>
                 <div className="next_month">NEXT MONTH</div>
