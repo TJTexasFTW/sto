@@ -42,7 +42,6 @@ class Home extends Component {
 let info = this.state.thisMonth;
 console.log("This should be info from database: ", info);
 let dateEntry = [];
-
         
         for (let i = 0; i < info.length; i++) {
 
