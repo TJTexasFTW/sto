@@ -64,22 +64,26 @@ addNewEmployee: (req, res) => {
   console.log("addNewEmployee req.body", req.body);
   //check to make sure the username isnt taken
   const db = req.app.get('db');
-  db.verify_employee(name).then(employeeList => {
+  db.verify_employee(name, initials).then(employeeList => {
+      console.log("Username or initials already exist: ", employeeList)
       if(employeeList.length > 0) {
           res.status(403).json({
-              error: 'USERNAME_OR_PASSWORD_ALREADY_TAKEN'
+              error: 'USERNAME_OR_INITIALS_ALREADY_TAKEN'
           })
+          windows.alert("Username or Initials Already Exist . . .");
       } else {            
         console.log("bcrypt: ", password);
           bcrypt.hash(password, 12).then(newPassword => {
 
               db.employee_add(name, initials, newPassword, admin).then((returned) => {
-                  req.session.user = {
-                      name,
-                      initials,
-                      id: returned[0].id
-                  }
-                  console.log("After add processed: ", req.session.user);
+                // Commented out - we do NOT want the added employee 
+                // to be the session user  
+                // req.session.user = {
+                  //     name,
+                  //     initials,
+                  //     id: returned[0].id
+                  // }
+                  // console.log("After add processed: ", req.session.user);
                   res.status(200).json(req.session.user);
               }).catch(err => console.log(err))
           }).catch(err => console.log(err))
