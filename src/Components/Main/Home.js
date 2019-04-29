@@ -47,7 +47,16 @@ let dateEntry = [];
                     <p>{info[i].start_date.substring(5,10)} RESTRICTED</p>);
                     console.log("***We are in the makeList switch statement***");
                     break;
-                case 'STO'
+                case 'STO': 
+                    dateEntry.push(  
+                    <p>{info[i].start_date.substring(5,10)} {info[i].initials}</p>);
+                    console.log("***We are in the makeList switch statement***");
+                    break;
+                case 'EVENT':
+                    dateEntry.push(  
+                    <p>{info[i].start_date.substring(5,10)} {info[i].initials}</p>);
+                    console.log("***We are in the makeList switch statement***");
+                    break;
                 default: 
                   console.log("Home Component - issue in render area");
                 }
