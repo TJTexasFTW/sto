@@ -28,11 +28,9 @@ app.use(session({
     }
 }))
 
-// app.get("/api/houses", controller.getHouses);
-// app.post('/api/register', authController.registerUser)
-// app.post('/api/login', authController.loginUser)
 app.get("/api/currentMonth", authController.getDatesCurrentMonth);
 app.get("/api/nextMonth", authController.getDatesNextMonth);
 app.get("/api/twoMonthsOut", authController.getTwoMonthsOut);
+// app.post("/api/STO", authController.addNewSTO);
 
 app.listen(3060, () => console.log('Listening on Port 3060'))

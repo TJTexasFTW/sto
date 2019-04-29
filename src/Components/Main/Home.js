@@ -28,7 +28,7 @@ class Home extends Component {
         axios.get('/api/nextMonth')
         .then(results => {this.setState({ nextMonth: results.data });
       }).catch( error => alert(error));
-        console.log("processed compDidMount nextMonth:", this.state.nextMonth);
+        // console.log("processed compDidMount nextMonth:", this.state.nextMonth);
 
         axios.get('/api/twoMonthsOut')
         .then(results => {this.setState({ twoMonthsOut: results.data });
@@ -54,7 +54,7 @@ let dateEntry = [];
                 case 'BLOCKED': 
                 if (String(info[i].start_date.substring(5,5)) == 0) {
                     var start = info[i].start_date.substring(6,10);
-                    console.log("Trying to get rid of leading zero");
+                    // console.log("Trying to get rid of leading zero");
                 } else {
                     start = info[i].start_date.substring(5,10)
                 }
@@ -66,14 +66,14 @@ let dateEntry = [];
 
                     if (String(info[i].start_date.substring(5,5)) == 0) {
                         var start = info[i].start_date.substring(6,10);
-                        console.log("Trying to get rid of leading zero");
+                        // console.log("Trying to get rid of leading zero");
                     } else {
                         start = info[i].start_date.substring(5,10)
                     }
 
                     if (String(info[i].end_date.substring(5,5)) == 0) {
                         var end = info[i].end_date.substring(6,10);
-                        console.log("Trying to get rid of leading zero");
+                        // console.log("Trying to get rid of leading zero");
                     } else {
                         end = info[i].end_date.substring(5,10)
                     }
@@ -86,20 +86,20 @@ let dateEntry = [];
                         dateEntry.push(  
                             <p>{start} thru {end} {info[i].initials}</p>);
                     }
-                    console.log("***We are in the makeList switch statement***");
+                    // console.log("***We are in the makeList switch statement***");
                     break;
                 case 'EVENT':
 
                 if (String(info[i].start_date.substring(5,5)) == 0) {
                     var start = info[i].start_date.substring(6,10);
-                    console.log("Trying to get rid of leading zero");
+                    // console.log("Trying to get rid of leading zero");
                 } else {
                     start = info[i].start_date.substring(5,10)
                 }
 
                 dateEntry.push(  
                     <p>{start} {info[i].initials}</p>);
-                    console.log("***We are in the makeList switch statement***");
+                    // console.log("***We are in the makeList switch statement***");
                     break;
                 default: 
                   console.log("Home Component - issue in render area");
@@ -116,7 +116,7 @@ let dateEntry = [];
                         case 'BLOCKED': 
                         if (String(infoNext[i].start_date.substring(5,5)) == 0) {
                             var start = infoNext[i].start_date.substring(6,10);
-                            console.log("Trying to get rid of leading zero");
+                            // console.log("Trying to get rid of leading zero");
                         } else {
                             start = infoNext[i].start_date.substring(5,10)
                         }
@@ -128,14 +128,14 @@ let dateEntry = [];
         
                             if (String(infoNext[i].start_date.substring(5,5)) == 0) {
                                 var start = infoNext[i].start_date.substring(6,10);
-                                console.log("Trying to get rid of leading zero");
+                                // console.log("Trying to get rid of leading zero");
                             } else {
                                 start = infoNext[i].start_date.substring(5,10)
                             }
         
                             if (String(infoNext[i].end_date.substring(5,5)) == 0) {
                                 var end = infoNext[i].end_date.substring(6,10);
-                                console.log("Trying to get rid of leading zero");
+                                // console.log("Trying to get rid of leading zero");
                             } else {
                                 end = infoNext[i].end_date.substring(5,10)
                             }
@@ -153,17 +153,17 @@ let dateEntry = [];
         
                         if (String(infoNext[i].start_date.substring(5,5)) == 0) {
                             var start = infoNext[i].start_date.substring(6,10);
-                            console.log("Trying to get rid of leading zero");
+                            // console.log("Trying to get rid of leading zero");
                         } else {
                             start = infoNext[i].start_date.substring(5,10)
                         }
         
                         dateEntryNext.push(  
                             <p>{start} {infoNext[i].initials}</p>);
-                            console.log("***We are in the makeList switch statement***");
+                            // console.log("***We are in the makeList switch statement***");
                             break;
                         default: 
-                          console.log("Home Component - issue in render area");
+                        //   console.log("Home Component - issue in render area");
                         }
                 }
 
@@ -177,7 +177,7 @@ let dateEntry = [];
                         case 'BLOCKED': 
                         if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) == 0) {
                             var start = infoTwoMonthsOut[i].start_date.substring(6,10);
-                            console.log("Trying to get rid of leading zero");
+                            // console.log("Trying to get rid of leading zero");
                         } else {
                             start = infoTwoMonthsOut[i].start_date.substring(5,10)
                         }
@@ -189,14 +189,14 @@ let dateEntry = [];
         
                             if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) == 0) {
                                 var start = infoTwoMonthsOut[i].start_date.substring(6,10);
-                                console.log("Trying to get rid of leading zero");
+                                // console.log("Trying to get rid of leading zero");
                             } else {
                                 start = infoTwoMonthsOut[i].start_date.substring(5,10)
                             }
         
                             if (String(infoTwoMonthsOut[i].end_date.substring(5,5)) == 0) {
                                 var end = infoTwoMonthsOut[i].end_date.substring(6,10);
-                                console.log("Trying to get rid of leading zero");
+                                // console.log("Trying to get rid of leading zero");
                             } else {
                                 end = infoTwoMonthsOut[i].end_date.substring(5,10)
                             }
@@ -214,7 +214,7 @@ let dateEntry = [];
         
                         if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) == 0) {
                             var start = infoTwoMonthsOut[i].start_date.substring(6,10);
-                            console.log("Trying to get rid of leading zero");
+                            // console.log("Trying to get rid of leading zero");
                         } else {
                             start = infoTwoMonthsOut[i].start_date.substring(5,10)
                         }

@@ -21,7 +21,12 @@ module.exports = {
   getTwoMonthsOut: async (req, res) => {        
     const getTwoMonthsOutDates = await req.app.get('db').dates_two_months_out().catch( error => alert(error));
     return res.status(200).send(getTwoMonthsOutDates)
-  }   
+  },
+  
+  // addNewSTO: async (req, res) => {        
+  //   const addNewSTOData = await req.app.get('db').insert_new_STO().catch( error => alert(error));
+  //   return res.status(200).send(addNewSTOData)
+  // }
 
 
 }
