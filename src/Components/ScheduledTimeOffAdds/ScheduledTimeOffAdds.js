@@ -36,6 +36,7 @@ class STO_Adds extends Component {
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
                     <Link to='/'><button className = "adminButton">LOG OFF</button></Link>
+                    <Link to='/'><button className = "adminButton">DELETE</button></Link>                    
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
                 </div>

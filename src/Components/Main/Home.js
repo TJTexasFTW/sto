@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
 import './Home.css';
+import {connect} from 'react-redux';
 
 class Home extends Component {
     constructor() {
@@ -11,8 +12,12 @@ class Home extends Component {
             password: '',
             redirect: false,
             thisMonth: [{}],
+            nextMonth: [{}],
+            nextPlusOneMonth: [{}],
             list: ''
         }
+
+
     }
 
     componentDidMount() {
@@ -31,21 +36,24 @@ class Home extends Component {
     render() {
 
 let info = this.state.thisMonth;
+console.log("This should be info from database: ", info);
+let dateEntry = [];
 
-    function makeList(info) {
         
         for (let i = 0; i < info.length; i++) {
-            switch(info.from_table) {
+            switch(info[i].from_table) {
                 case 'BLOCKED': 
-                    info = info +  
-                    <p>{info.start_date} RESTRICTED</p>;
+                    dateEntry.push(  
+                    <p>{info[i].start_date.substring(5,10)} RESTRICTED</p>);
                     console.log("***We are in the makeList switch statement***");
                     break;
+                case 'STO'
                 default: 
-                  this.setState({list: "no data"})
+                  console.log("Home Component - issue in render area");
                 }
-            } 
         }
+    
+        // makeList(info);
 
         return(
             <div className="Home">
@@ -53,7 +61,7 @@ let info = this.state.thisMonth;
                 <div className="months">
                     <div className="current_month"><u>CURRENT MONTH</u>
                         <ul>
-                            {this.state.list}
+                            {dateEntry}
                         </ul> 
                     </div>
                     <div className="next_month"><u>NEXT MONTH</u>
@@ -74,4 +82,10 @@ let info = this.state.thisMonth;
         )
     }
 }
-export default Home
+const mapStateToProps = state => {
+    return {
+        username: state.username
+    }
+}
+
+export default connect(mapStateToProps)(Home);
