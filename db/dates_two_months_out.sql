@@ -1,7 +1,8 @@
 SELECT 'STO' as from_table, START_DATE, END_DATE, EMPLOYEE_ID, INITIALS 
 FROM STO
 LEFT JOIN EMPLOYEE ON STO.EMPLOYEE_ID = EMPLOYEE.ID
-WHERE  extract(month from start_date) = extract(month from CURRENT_DATE) + 2
+WHERE  (extract(month from start_date) = extract(month from CURRENT_DATE) + 2
+  OR extract(month from end_date) = extract(month from CURRENT_DATE) + 2)
   AND extract(year from start_date) = extract(year from (CURRENT_DATE + 60))
 
 UNION ALL

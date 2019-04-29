@@ -1,7 +1,8 @@
 SELECT 'STO' as from_table, START_DATE, END_DATE, EMPLOYEE_ID, INITIALS 
 FROM STO
 LEFT JOIN EMPLOYEE ON STO.EMPLOYEE_ID = EMPLOYEE.ID
-WHERE (extract(month from start_date) = extract(month from CURRENT_DATE))
+WHERE (extract(month from start_date) = extract(month from CURRENT_DATE)
+  OR extract(month from end_date) = extract(month from CURRENT_DATE))
   AND START_DATE >= CURRENT_DATE
 
 UNION ALL
@@ -16,3 +17,4 @@ WHERE (extract(month from event_date) = extract(month from CURRENT_DATE))
 AND EVENT_DATE >= CURRENT_DATE
 
 ORDER BY START_DATE; 
+
