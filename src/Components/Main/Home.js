@@ -17,14 +17,18 @@ class Home extends Component {
             list: ''
         }
 
-
     }
 
     componentDidMount() {
         axios.get('/api/currentMonth')
         .then(results => {this.setState({ thisMonth: results.data });
       }).catch( error => alert(error));
-        console.log("processed compDidMount:", this.state.thisMonth)  
+        console.log("processed compDidMount:", this.state.thisMonth); 
+
+        axios.get('/api/nextMonth')
+        .then(results => {this.setState({ nextMonth: results.data });
+      }).catch( error => alert(error));
+        console.log("processed compDidMount nextMonth:", this.state.nextMonth);
     }
 
     //   componentDidUpdate(prevProps) {
@@ -41,20 +45,56 @@ let dateEntry = [];
 
         
         for (let i = 0; i < info.length; i++) {
+
             switch(info[i].from_table) {
                 case 'BLOCKED': 
-                    dateEntry.push(  
-                    <p>{info[i].start_date.substring(5,10)} RESTRICTED</p>);
-                    console.log("***We are in the makeList switch statement***");
+                if (String(info[i].start_date.substring(5,5)) == 0) {
+                    var start = info[i].start_date.substring(6,10);
+                    console.log("Trying to get rid of leading zero");
+                } else {
+                    start = info[i].start_date.substring(5,10)
+                }
+                dateEntry.push(  
+                    <p>{start} RESTRICTED</p>);
+                    // console.log("***We are in the makeList switch statement***");
                     break;
                 case 'STO': 
+
+                    if (String(info[i].start_date.substring(5,5)) == 0) {
+                        var start = info[i].start_date.substring(6,10);
+                        console.log("Trying to get rid of leading zero");
+                    } else {
+                        start = info[i].start_date.substring(5,10)
+                    }
+
+                    if (String(info[i].end_date.substring(5,5)) == 0) {
+                        var end = info[i].end_date.substring(6,10);
+                        console.log("Trying to get rid of leading zero");
+                    } else {
+                        end = info[i].end_date.substring(5,10)
+                    }
+                    //check if start and end date match
+                    if (info[i].start_date === info[i].end_date) {
                     dateEntry.push(  
-                    <p>{info[i].start_date.substring(5,10)} {info[i].initials}</p>);
+                    <p>{start} {info[i].initials}</p>);
+                    } else {
+                        //end date is different - concantenate start & end
+                        dateEntry.push(  
+                            <p>{start} thru {end} {info[i].initials}</p>);
+                    }
                     console.log("***We are in the makeList switch statement***");
                     break;
                 case 'EVENT':
-                    dateEntry.push(  
-                    <p>{info[i].start_date.substring(5,10)} {info[i].initials}</p>);
+
+                if (String(info[i].start_date.substring(5,5)) == 0) {
+                    var start = info[i].start_date.substring(6,10);
+                    console.log("Trying to get rid of leading zero");
+                } else {
+                    start = info[i].start_date.substring(5,10)
+                }
+
+                dateEntry.push(  
+                    <p>{start} {info[i].initials}</p>);
                     console.log("***We are in the makeList switch statement***");
                     break;
                 default: 
@@ -69,13 +109,12 @@ let dateEntry = [];
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
                 <div className="months">
                     <div className="current_month"><u>CURRENT MONTH</u>
-                        <ul>
+                        <ul className='sto_listing'>
                             {dateEntry}
                         </ul> 
                     </div>
                     <div className="next_month"><u>NEXT MONTH</u>
                        <div className='data'>
-                            <p className='date_info'>Dummy Data</p>
                        </div> 
                     </div>
                     

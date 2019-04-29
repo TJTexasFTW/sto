@@ -8,6 +8,11 @@ module.exports = {
     
     // return res.status(200).send(getDates).catch( error => alert(error));
     return res.status(200).send(getDates)
+  },   
+
+  getDatesNextMonth: async (req, res) => {        
+    const getNextMonthDates = await req.app.get('db').dates_one_month_out().catch( error => alert(error));
+    return res.status(200).send(getNextMonthDates)
   }   
   
 }

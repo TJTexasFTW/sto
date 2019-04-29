@@ -92,8 +92,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 3vw;
     text-align: center;
-    padding-top: 20vh;
+    padding-top: 8vh;
     font-style: italic;
     padding-bottom: 3vh;
 }
 
+.sto_listing {
+    font-weight:lighter;
+}

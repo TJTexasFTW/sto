@@ -33,6 +33,6 @@ app.use(session({
 // app.post('/api/register', authController.registerUser)
 // app.post('/api/login', authController.loginUser)
 app.get("/api/currentMonth", authController.getDatesCurrentMonth)
-
+app.get("/api/nextMonth", authController.getDatesNextMonth)
 
 app.listen(3060, () => console.log('Listening on Port 3060'))
