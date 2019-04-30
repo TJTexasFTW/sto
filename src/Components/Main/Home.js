@@ -245,7 +245,7 @@ let dateEntry = [];
                         </ul> 
                     </div>
                     
-                    <div className="two_months_out"><u>IN 3 MONTHS</u>
+                    <div className="two_months_out"><u>TWO MONTHS OUT</u>
                     <ul className='sto_listing'>
                             {dateEntryTwoMonthsOut}
                         </ul>                     
