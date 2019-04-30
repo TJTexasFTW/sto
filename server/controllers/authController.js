@@ -46,10 +46,13 @@ module.exports = {
 
     if (isAuthenticated) {
       req.session.user = {
-        username: req.body.username
+        name: user.name,
+        initials: user.initials,
+        id: user.id,
+        admin: user.admin
       };
+      console.log("req.session.user: ", req.session.user);
     }
-  
     res.sendStatus(200);
   },
 

@@ -4,6 +4,7 @@ LEFT JOIN EMPLOYEE ON STO.EMPLOYEE_ID = EMPLOYEE.ID
 WHERE (extract(month from start_date) = extract(month from CURRENT_DATE)
   OR extract(month from end_date) = extract(month from CURRENT_DATE))
   AND START_DATE >= CURRENT_DATE
+  AND EMPLOYEE.INACTIVE = false
 
 UNION ALL
 SELECT 'BLOCKED' as from_table, BLOCKED_DATE AS START, BLOCKED_DATE, ID, COMMENT 

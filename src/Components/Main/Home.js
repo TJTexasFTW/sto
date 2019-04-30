@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
 import './Home.css';
 import {connect} from 'react-redux';
@@ -14,9 +14,12 @@ class Home extends Component {
             thisMonth: [{}],
             nextMonth: [{}],
             twoMonthsOut: [{}],
-            list: ''
+            list: '',
+            menuRequest: ''
         }
 
+        // this.handleAdminClick = this.handleAdminClick.bind( this ); 
+        // this.handleSTOClick = this.handleSTOClick.bind( this ); 
     }
 
     componentDidMount() {
@@ -33,6 +36,8 @@ class Home extends Component {
         axios.get('/api/twoMonthsOut')
         .then(results => {this.setState({ twoMonthsOut: results.data });
       }).catch( error => alert(error));
+
+      
         // console.log("processed compDidMount twoMonthsOut:", this.state.twoMonthsOut);
     }
 
@@ -42,6 +47,28 @@ class Home extends Component {
     //     }
     //   }
     
+// handleAdminClick() {
+//     if (req.session.admin) {
+//         return <Redirect to='/admin_menu' />
+//     } else {
+//         if (req.session.username.length > 0) {
+//             alert("You are not authorized as an admin");
+//             return <Redirect to='/scheduled_time_off_adds' />
+//         } else {
+//             this.setState({ menuRequest: 'admin'})
+//             this.setState({redirect: true})
+//             return <Redirect to='/login' />
+//         //    <Redirect to="/login" />
+//         // window.location.href('/login');
+
+//         }
+//     }
+// }
+
+handleSTOClick() {
+
+}
+
     render() {
 
 let info = this.state.thisMonth;

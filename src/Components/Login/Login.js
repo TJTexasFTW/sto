@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 class Login extends Component {
     constructor() {
@@ -57,4 +58,15 @@ class Login extends Component {
         )
     }
 }
-export default Login
+
+function mapStateToProps(state) {
+    return {
+      username: state.name,
+      initials: state.initials,
+      admin: state.admin,
+      id: state.id
+    }
+  }
+  
+// export default connect(mapStateToProps, { requestUserData })(Login);
+export default connect(mapStateToProps, { })(Login);
