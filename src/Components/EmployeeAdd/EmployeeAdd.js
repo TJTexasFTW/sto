@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import axios from 'axios';
 // import clearInputFields from '../Functions/clearInputBoxes';
 
@@ -50,6 +50,7 @@ class Employee_Add extends Component {
             //Provider
             // this.props.updateUser(user.data);
             this.setState({redirect: true})
+            //new employee added - display msg in addStatus and clear the fields
             document.getElementById('addStatus').innerHTML = `${this.state.name} was added`;
             document.getElementById("inputName").value = '';
             document.getElementById("inputInitials").value = '';

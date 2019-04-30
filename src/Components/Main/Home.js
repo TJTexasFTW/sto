@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import axios from 'axios';
 import './Home.css';
 import {connect} from 'react-redux';
@@ -45,14 +45,14 @@ class Home extends Component {
     render() {
 
 let info = this.state.thisMonth;
-console.log("This should be info from database: ", info);
+// console.log("This should be info from database: ", info);
 let dateEntry = [];
         
         for (let i = 0; i < info.length; i++) {
 
             switch(info[i].from_table) {
                 case 'BLOCKED': 
-                if (String(info[i].start_date.substring(5,5)) == 0) {
+                if (String(info[i].start_date.substring(5,5)) === 0) {
                     var start = info[i].start_date.substring(6,10);
                     // console.log("Trying to get rid of leading zero");
                 } else {
@@ -64,14 +64,14 @@ let dateEntry = [];
                     break;
                 case 'STO': 
 
-                    if (String(info[i].start_date.substring(5,5)) == 0) {
-                        var start = info[i].start_date.substring(6,10);
+                    if (String(info[i].start_date.substring(5,5)) === 0) {
+                        start = info[i].start_date.substring(6,10);
                         // console.log("Trying to get rid of leading zero");
                     } else {
                         start = info[i].start_date.substring(5,10)
                     }
 
-                    if (String(info[i].end_date.substring(5,5)) == 0) {
+                    if (String(info[i].end_date.substring(5,5)) === 0) {
                         var end = info[i].end_date.substring(6,10);
                         // console.log("Trying to get rid of leading zero");
                     } else {
@@ -90,8 +90,8 @@ let dateEntry = [];
                     break;
                 case 'EVENT':
 
-                if (String(info[i].start_date.substring(5,5)) == 0) {
-                    var start = info[i].start_date.substring(6,10);
+                if (String(info[i].start_date.substring(5,5)) === 0) {
+                    start = info[i].start_date.substring(6,10);
                     // console.log("Trying to get rid of leading zero");
                 } else {
                     start = info[i].start_date.substring(5,10)
@@ -114,8 +114,8 @@ let dateEntry = [];
         
                     switch(infoNext[i].from_table) {
                         case 'BLOCKED': 
-                        if (String(infoNext[i].start_date.substring(5,5)) == 0) {
-                            var start = infoNext[i].start_date.substring(6,10);
+                        if (String(infoNext[i].start_date.substring(5,5)) === 0) {
+                            start = infoNext[i].start_date.substring(6,10);
                             // console.log("Trying to get rid of leading zero");
                         } else {
                             start = infoNext[i].start_date.substring(5,10)
@@ -126,15 +126,15 @@ let dateEntry = [];
                             break;
                         case 'STO': 
         
-                            if (String(infoNext[i].start_date.substring(5,5)) == 0) {
-                                var start = infoNext[i].start_date.substring(6,10);
+                            if (String(infoNext[i].start_date.substring(5,5)) === 0) {
+                                start = infoNext[i].start_date.substring(6,10);
                                 // console.log("Trying to get rid of leading zero");
                             } else {
                                 start = infoNext[i].start_date.substring(5,10)
                             }
         
-                            if (String(infoNext[i].end_date.substring(5,5)) == 0) {
-                                var end = infoNext[i].end_date.substring(6,10);
+                            if (String(infoNext[i].end_date.substring(5,5)) === 0) {
+                                end = infoNext[i].end_date.substring(6,10);
                                 // console.log("Trying to get rid of leading zero");
                             } else {
                                 end = infoNext[i].end_date.substring(5,10)
@@ -151,8 +151,8 @@ let dateEntry = [];
                             break;
                         case 'EVENT':
         
-                        if (String(infoNext[i].start_date.substring(5,5)) == 0) {
-                            var start = infoNext[i].start_date.substring(6,10);
+                        if (String(infoNext[i].start_date.substring(5,5)) === 0) {
+                            start = infoNext[i].start_date.substring(6,10);
                             // console.log("Trying to get rid of leading zero");
                         } else {
                             start = infoNext[i].start_date.substring(5,10)
@@ -175,8 +175,8 @@ let dateEntry = [];
         
                     switch(infoTwoMonthsOut[i].from_table) {
                         case 'BLOCKED': 
-                        if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) == 0) {
-                            var start = infoTwoMonthsOut[i].start_date.substring(6,10);
+                        if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) === 0) {
+                            start = infoTwoMonthsOut[i].start_date.substring(6,10);
                             // console.log("Trying to get rid of leading zero");
                         } else {
                             start = infoTwoMonthsOut[i].start_date.substring(5,10)
@@ -187,15 +187,15 @@ let dateEntry = [];
                             break;
                         case 'STO': 
         
-                            if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) == 0) {
-                                var start = infoTwoMonthsOut[i].start_date.substring(6,10);
+                            if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) === 0) {
+                                start = infoTwoMonthsOut[i].start_date.substring(6,10);
                                 // console.log("Trying to get rid of leading zero");
                             } else {
                                 start = infoTwoMonthsOut[i].start_date.substring(5,10)
                             }
         
-                            if (String(infoTwoMonthsOut[i].end_date.substring(5,5)) == 0) {
-                                var end = infoTwoMonthsOut[i].end_date.substring(6,10);
+                            if (String(infoTwoMonthsOut[i].end_date.substring(5,5)) === 0) {
+                                end = infoTwoMonthsOut[i].end_date.substring(6,10);
                                 // console.log("Trying to get rid of leading zero");
                             } else {
                                 end = infoTwoMonthsOut[i].end_date.substring(5,10)
@@ -212,8 +212,8 @@ let dateEntry = [];
                             break;
                         case 'EVENT':
         
-                        if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) == 0) {
-                            var start = infoTwoMonthsOut[i].start_date.substring(6,10);
+                        if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) === 0) {
+                            start = infoTwoMonthsOut[i].start_date.substring(6,10);
                             // console.log("Trying to get rid of leading zero");
                         } else {
                             start = infoTwoMonthsOut[i].start_date.substring(5,10)

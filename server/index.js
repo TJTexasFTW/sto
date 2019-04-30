@@ -6,7 +6,7 @@ const authController = require('./controllers/authController');
 
 const app = express();
 app.use((req, res, next) => {
-    console.log('request');
+    // console.log('request');
     next();
 })
 app.use(express.json());
@@ -16,7 +16,7 @@ massive(process.env.CONNECTION_STRING)
     app.set('db', db);
     console.log('Database Connected');
 }).catch(err => {
-    console.log(err);
+    console.log("Catch statement of massive in index.js: ", err);
 })
 
 app.use(session({
@@ -32,7 +32,7 @@ app.post('/api/employee', authController.addNewEmployee);
 app.get("/api/currentMonth", authController.getDatesCurrentMonth);
 app.get("/api/nextMonth", authController.getDatesNextMonth);
 app.get("/api/twoMonthsOut", authController.getTwoMonthsOut);
-app.post('/api/login', authController.loginUser)
+app.post('/api/login', authController.loginUser);
 // app.post("/api/STO", authController.addNewSTO);
 
 app.listen(3060, () => console.log('Listening on Port 3060'))

@@ -1,0 +1,3 @@
+SELECT *
+FROM EMPLOYEE
+WHERE $1 = name;

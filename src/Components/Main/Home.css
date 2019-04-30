@@ -1,20 +1,11 @@
 body {
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYX6_jJxvMpDeinBiHBPM-AkU_79keJr6AC-a7UdeK5BCn9gXpKg");
+    /* background-image: 'beachchair.jpg'; */
     /* opacity: 0.2; */
     /* background-color: ; */
     background-repeat: no-repeat;
     background-size: cover;
    }
-
-   img {
-    opacity: 0.2;
-    /* filter: alpha(opacity=50); For IE8 and earlier */
-  }
-
-  .Home {
-
-      
-  }
 
   .months {
     font-family: Arial, Helvetica, sans-serif;
