@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
 
-
 module.exports = {
 
   getDatesCurrentMonth: async (req, res) => {        
@@ -53,7 +52,7 @@ module.exports = {
       };
       console.log("req.session.user: ", req.session.user);
     }
-    res.sendStatus(200);
+    res.status(200).json(req.session.user);
   },
 
 addNewEmployee: (req, res) => {

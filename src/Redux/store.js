@@ -7,10 +7,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 // import budgetReducer from './ducks/budgetReducer';
 // import userReducer from './ducks/userReducer';
+import loginUser from './reducer'  
 
 const rootReducer = combineReducers({
 //   budget: budgetReducer,
-//   user: userReducer
+     loginUser
 })
 
 export default createStore(rootReducer, applyMiddleware(promiseMiddleware));

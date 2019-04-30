@@ -23,6 +23,8 @@ class Home extends Component {
     }
 
     componentDidMount() {
+
+        console.log("Home props: ", this.props)
         axios.get('/api/currentMonth')
         .then(results => {this.setState({ thisMonth: results.data });
       }).catch( error => alert(error));
@@ -37,7 +39,7 @@ class Home extends Component {
         .then(results => {this.setState({ twoMonthsOut: results.data });
       }).catch( error => alert(error));
 
-      
+
         // console.log("processed compDidMount twoMonthsOut:", this.state.twoMonthsOut);
     }
 
@@ -289,9 +291,7 @@ let dateEntry = [];
     }
 }
 const mapStateToProps = state => {
-    return {
-        username: state.username
-    }
+    return state
 }
 
 export default connect(mapStateToProps)(Home);

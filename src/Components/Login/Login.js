@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
-import axios from 'axios';
+// import axios from 'axios';
 import {connect} from 'react-redux';
+import {loginUser} from '../../Redux/reducer';
 
 class Login extends Component {
     constructor() {
@@ -27,14 +28,16 @@ class Login extends Component {
 
     handleClick = e => {
         console.log("In Login module - log in button clicked", this.state.name, this.state.password);
-        axios.post('/api/login', {
-            name: this.state.name,
-            password: this.state.password
-        }).then(response => {
-            this.setState({redirect: true});
-        }).catch(err => {
-            console.log("handleClick function in Login has issue");
-        })
+        this.props.loginUser(this.state.name, this.state.password)
+        console.log("Login button pushed and reducer function ran");
+        // axios.post('/api/login', {
+        //     name: this.state.name,
+        //     password: this.state.password
+        // }).then(response => {
+        //     this.setState({redirect: true});
+        // }).catch(err => {
+        //     console.log("handleClick function in Login has issue");
+        // })
     }
 
     render() {
@@ -60,6 +63,7 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state)
     return {
       username: state.name,
       initials: state.initials,
@@ -69,4 +73,4 @@ function mapStateToProps(state) {
   }
   
 // export default connect(mapStateToProps, { requestUserData })(Login);
-export default connect(mapStateToProps, { })(Login);
+export default connect(mapStateToProps, { loginUser })(Login);

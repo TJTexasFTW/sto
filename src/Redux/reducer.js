@@ -1,41 +1,41 @@
+import axios from 'axios';
+
 const initialState = {
-    user: {}
-}
+    user: {},
+    redirect: false
+};
 
 //constants
 const UPDATE_USER = 'UPDATE_USER';
-const USER_DATA = 'USER_DATA';
-const REQUEST_USER_DATA = 'REQUEST_USER_DATA'
-
-
-//action creators
-export function updateUser(user) {
-    return {
-        type: UPDATE_USER,
-        payload: user
-    }
-}
-
-export const requestUserData = () => {
-    let data = axios.get('/auth/user-data').then(res => res.data)
-    return {
-        type: REQUEST_USER_DATA,
-        payload: data
-    }
-  }
+const LOGIN_USER = 'LOGIN_USER';
 
 export default function reducer(state=initialState, action) {
+    console.log(action)
     switch(action.type) {
         case UPDATE_USER:
             return {
                 ...state,
                 user: action.payload
             }
-        case REQUEST_USER_DATE:
+        case LOGIN_USER + '_FULFILLED':
+            console.log("LOGIN_USER step of reducer activated")
             return {
                 ...state,
                 user: action.payload
             }            
-        default: return state;
+        default: 
+            return state;
     }
 }
+
+export const loginUser = (name, password) => {
+    console.log("loginUser before return")
+
+    return {
+        type: LOGIN_USER,
+        payload: axios.post('/api/login', {
+            name, password
+        }).then(res => res.data)
+    }
+
+  }
