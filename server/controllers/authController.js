@@ -70,7 +70,7 @@ addNewEmployee: (req, res) => {
           res.status(403).json({
               error: 'USERNAME_OR_INITIALS_ALREADY_TAKEN'
           })
-          windows.alert("Username or Initials Already Exist . . .");
+          // windows.alert("Username or Initials Already Exist . . .");
       } else {            
         console.log("bcrypt: ", password);
           bcrypt.hash(password, 12).then(newPassword => {

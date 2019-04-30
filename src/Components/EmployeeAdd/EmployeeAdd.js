@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link, Redirect} from 'react-router-dom'
 import axios from 'axios';
+// import clearInputFields from '../Functions/clearInputBoxes';
 
 class Employee_Add extends Component {
     constructor() {
@@ -49,9 +50,11 @@ class Employee_Add extends Component {
             //Provider
             // this.props.updateUser(user.data);
             this.setState({redirect: true})
-            document.getElementsByTagName("input").value = '';
             document.getElementById('addStatus').innerHTML = `${this.state.name} was added`;
-            clearInputFields('inputBoxes')
+            document.getElementById("inputName").value = '';
+            document.getElementById("inputInitials").value = '';
+            document.getElementById("inputPassword").value = '';
+            document.getElementById("adminChk").checked = false;
         }).catch(function(error) {
             document.getElementById('addStatus').innerHTML = 'Employee was NOT added - the employee name or initials already exist.'});
     }
@@ -64,16 +67,16 @@ class Employee_Add extends Component {
                 <h2 className = 'subHeading'>Add New Employee</h2>
 
             <div className= 'inputBoxes'>
-            <p className='inputLabel'>Name:  <input onChange={this.handleName} className='inputBox' placeholder = "FLast"/></p>
-            <p className='inputLabel'>Initials:  <input onChange={this.handleInitials} className='inputBox' placeholder = "Initials"/></p>
-            <p className='inputLabel'>Password:  <input onChange={this.handlePassword} className='inputBox' placeholder = "Password" type="password"/></p>
+            <p className='inputLabel'>Name:  <input onChange={this.handleName} className='inputBox' placeholder = "FLast" id="inputName" autocomplete="off"/></p>
+            <p className='inputLabel'>Initials:  <input onChange={this.handleInitials} className='inputBox' placeholder = "Initials" id="inputInitials" autocomplete="off"/></p>
+            <p className='inputLabel'>Password:  <input  onChange={this.handlePassword} className='inputBox' placeholder = "Password" type="password" id="inputPassword" autocomplete="off"/></p>
             <div className="Administrative">
                 <label className = 'adminCheckbox'>Administrator: </label>
-                <input onChange={this.handleAdmin} className = 'adminChkClass' type="checkbox" id="adminChk"/>
+                <input onChange={this.handleAdmin} className = 'adminChkClass' type="checkbox" id="adminChk" />
             </div>
             </div>
             <p className='labelAdminCheck'>Check box for admin employee</p>
-            <center><alert id='addStatus'></alert></center> 
+            <center><p id='addStatus'></p></center> 
             <div className="button_choices">
                 <Link to='/'><button className = "adminButton">HOME</button></Link>
                 <Link to='/employee_maintenance'><button className = "adminButton">EMPLOYEE MAINT MENU</button></Link>

@@ -20,8 +20,10 @@
     color: black;
     margin-left: 40vw;
     padding-left: 0;
-    margin-left: 15vw;
-    padding-left: 33vw; 
+    margin-left: 15.5vw;
+    margin-top: 1vh;
+    padding-left: 33vw;
+    vertical-align: text-bottom; 
 }
 
 .adminCheckbox {
@@ -43,11 +45,20 @@
 }
 
 #adminChk {
-    font-size: 42vw;
+    /* font-size: 42vw; */
     /* width: 6vw;
     height: 6vh; */
-    color: red;
-    text-align: left;
+    /* color: red; */
+    /* text-align: right; */
+    vertical-align: text-top;
+    /* position: relative; */
+    /* top: -1px; */
+    /* overflow: hidden; */
+    margin-left: 3.2vw;
+    margin-top: 0vh;
+
+    transform: scale(2.5);
+    
 }
 
 #deactiveChk {
@@ -153,8 +164,8 @@
       animation-iteration-count: 10;    
       animation-duration: .8s;
       animation-delay: 2s;
-      margin-top: -50vh;
-      z-index: 100;  
+      /* margin-top: -50vh; */
+      /* z-index: 100;   */
   }
 
   @keyframes blinkingText{

@@ -6,7 +6,7 @@ function clearInputFields(divElement) {
 
 
     // IT WILL READ ALL THE ELEMENTS. <p>, <div>, <input> ETC.
-    for (i = 0; i < ele.childNodes.length; i++) {
+    for (let i = 0; i < ele.childNodes.length; i++) {
 
         // SINCE THE <input> FIELDS ARE INSIDE A <p> TAG, 
         // I'LL USE THE "firstChild" PROPERTY TO GET THE <input> TAG.
