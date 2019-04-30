@@ -31,15 +31,17 @@ module.exports = {
   // }
 
   loginUser: async (req, res) => {
-    const db = req.app.get("db");
+    let db = req.app.get("db");
   
-    const getUser = await db.employee_login_verify([req.body.name]);
-    const user = getUser[0];
+    console.log("In loginUser function: ", req.body);
+    let getUser = await db.employee_login_verify([req.body.name]);
+    let user = getUser[0];
+    console.log("User: ", user);
   
-    const isAuthenticated = bcrypt.compareSync(req.body.password, user.password);
+    let isAuthenticated = bcrypt.compareSync(req.body.password, user.password);
   
     console.log("Auth: ", isAuthenticated);
-    console.log("ReqBody; ", req.body);
+    console.log("ReqBody: ", req.body);
     console.log("User password: ", user.password);
 
     if (isAuthenticated) {
@@ -51,57 +53,14 @@ module.exports = {
     res.sendStatus(200);
   },
 
-//   loginUser: async (req, res) => {
-//     //get name and password off of req.body
-//     const {name, password} = req.body;
-//     //get the database
-//     const db = req.app.get('db');
-//     // console.log("In loginUser function of authController", req.body);
-//     //find the employee with that name
-//     db.employee_login_verify(name).then(user => {
-//         if(user.length > 0) {
-//             console.log('In if user.length of Login function', req.body);
-//             console.log(user[0].password);
-//             let doesMatch = bcrypt.compareSync(password, user[0].password);
-//             console.log("Does match", doesMatch);
-
-//             bcrypt.compare(password, user[0].password).then(doesMatch => {
-            
-//                 if(doesMatch) {
-//                     req.session.user = {
-//                         name: user[0].name,
-//                         initials: user[0].initials,
-//                         id: user[0].id,
-//                         admin: user[0].admin
-//                     }
-//                     console.log("Login info matched: ", req.session.user);
-//                     res.status(200).json(req.session.user);
-//                 } else {
-//                     console.log("Login info does NOT match: ")
-//                     res.status(403).json({
-//                         error: 'USERNAME_OR_PASSWORD_INCORRECT'
-//                     })
-//                 }
-//             }).catch(err => {
-//                 console.log("Bcrypt compare not working");
-//             })
-//         } else {
-//             res.status(404).json({
-//                 error: 'USER_DOES_NOT_EXIST'
-//             })
-//         }
-//     })
-
-// },
-
 addNewEmployee: (req, res) => {
   //get the employee info from the body
-  const {name, initials, password, admin} = req.body;
+  let {name, initials, password, admin} = req.body;
   console.log("addNewEmployee req.body", req.body);
   //check to make sure the username isnt taken
-  const db = req.app.get('db');
+  let db = req.app.get('db');
   db.employee_add_precheck(name, initials).then(employeeList => {
-      console.log("Username or initials already exist: ", employeeList)
+      // console.log("Username or initials already exist: ", employeeList)
       if(employeeList.length > 0) {
           res.status(403).json({
               error: 'USERNAME_OR_INITIALS_ALREADY_TAKEN'
@@ -110,7 +69,7 @@ addNewEmployee: (req, res) => {
       } else {            
         console.log("bcrypt: ", password);
           bcrypt.hash(password, 12).then(newPassword => {
-
+              console.log("newPassword after add:", newPassword, newPassword.length);
               db.employee_add(name, initials, newPassword, admin).then((returned) => {
                 // Commented out - we do NOT want the added employee 
                 // to be the session user  
