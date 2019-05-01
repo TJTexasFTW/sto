@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import axios from 'axios';
 import './Home.css';
 import {connect} from 'react-redux';
@@ -20,8 +20,9 @@ class Home extends Component {
             // name: this.props.loginUser.user.name
         }
 
-        // this.handleAdminClick = this.handleAdminClick.bind( this ); 
+        this.handleAdminClick = this.handleAdminClick.bind( this ); 
         this.handleSTOClick = this.handleSTOClick.bind( this ); 
+
     }
 
     componentDidMount() {
@@ -55,23 +56,21 @@ class Home extends Component {
     //     }
     //   }
     
-// handleAdminClick() {
-//     if (req.session.admin) {
-//         return <Redirect to='/admin_menu' />
-//     } else {
-//         if (req.session.username.length > 0) {
-//             alert("You are not authorized as an admin");
-//             return <Redirect to='/scheduled_time_off_adds' />
-//         } else {
-//             this.setState({ menuRequest: 'admin'})
-//             this.setState({redirect: true})
-//             return <Redirect to='/login' />
-//         //    <Redirect to="/login" />
-//         // window.location.href('/login');
-
-//         }
-//     }
-// }
+handleAdminClick() {
+    if (typeof this.props.loginUser.user.id === 'undefined') {
+        //no user logged in
+        this.props.history.push('/login')
+        this.setState({ menuRequest: 'admin'})
+        this.setState({redirect: true})
+    } else {
+        //check if user is an admin
+        if (this.props.loginUser.user.admin === false) {
+            alert("You are not authorized as an admin");
+        } else {
+            this.props.history.push('/admin_menu')
+        }
+    }
+}
 
 handleSTOClick() {
     if (typeof this.props.loginUser.user.id === 'undefined') {
@@ -89,6 +88,8 @@ handleSTOClick() {
     }
     // document.getElementById('userMsg').innerHTML = `Hello ${this.props.loginUser.user.name}`;
 }
+
+
 
     render() {
 
@@ -185,8 +186,11 @@ handleSTOClick() {
                 </div>
                 <p className = "restrictedNotice">Time off for RESTRICTED dates requires Senior Management Approval.</p>
                 <div className="button_choices">
-                    <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
-                    <button className="addButton" onClick = {this.handleSTOClick}>ADD/UPDATE STO</button>
+                    {/* <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link> */}
+                    <button id="logoff" className = "adminButton" >LOG OFF</button>
+                    <button className = "adminButton" id="admin" onClick = {this.handleAdminClick}>ADMIN MENU</button>
+                    <button className="addButton" id="STO" onClick = {this.handleSTOClick}>ADD/UPDATE STO</button>
+                    <button className = 'adminButton' id="login">LOG IN</button>
                     {/* <Link to='/login'><button className="addButton">ADD/UPDATE STO</button></Link> */}
                     
                 </div>

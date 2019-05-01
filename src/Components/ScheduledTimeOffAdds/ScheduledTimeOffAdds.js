@@ -58,6 +58,11 @@ class STO_Adds extends Component {
         this.setState({comment: e.target.value})
     }
 
+    handleLogoffClick() {
+        //user has requested logoff
+        //crap - need to connect to the store first
+    }
+
     render() {
 
         return(
@@ -72,7 +77,7 @@ class STO_Adds extends Component {
 
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
-                    <Link to='/'><button className = "adminButton">LOG OFF</button></Link>
+                    <button className = "adminButton" onClick={this.handleLogoffClick}>LOG OFF</button>
                     <Link to='/'><button className = "adminButton">DELETE</button></Link>                    
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
