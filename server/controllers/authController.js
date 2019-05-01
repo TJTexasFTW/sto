@@ -68,6 +68,10 @@ module.exports = {
     this.props.history.push('/')
   },
 
+addSTO: (req, res) => {
+  console.log("In authController addSTO function");
+},
+
 addNewEmployee: (req, res) => {
   //get the employee info from the body
   let {name, initials, password, admin} = req.body;

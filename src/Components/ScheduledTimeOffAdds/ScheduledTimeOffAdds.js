@@ -7,7 +7,7 @@ class STO_Adds extends Component {
     constructor() {
         super();
         this.state = {
-            username: '',
+            name: '',
             startDate: new Date(),
             endDate: new Date(),
             comment: ''
@@ -19,6 +19,7 @@ class STO_Adds extends Component {
     }
 
     componentDidMount() {
+        // console.log("STO Add this.props.username: ", this.props.username);
         // console.log("processed compDidMount:", this.state.thisMonth); 
 
     //     axios.get('/api/nextMonth')
@@ -34,16 +35,32 @@ class STO_Adds extends Component {
 
 
     handleSubmit() {
-    
-        // axios.post('/api/STO')
-        //     .then(results => {this.setState({ thisMonth: results.data });
-        // }).catch( error => alert(error));
-        console.log(this.state.username, this.state.startDate, this.state.endDate, this.state.comment); 
-        // alert("Your STO entry has been processed");
-    }   
+       let today = new Date();
+       console.log("Submit STO button clicked: ", this.state.startDate, this.state.endDate, this.state.comment, this.props.id, today);
+        axios.post('/api/addSTO', {
+            start_date: this.state.startDate,
+            end_date: this.state.endDate,
+            comment: this.state.comment,
+            employee_id: this.props.id,
+            added: today
+        }).then(user => {
+            //update redux state with the new user
+            //import the action creator
+            //mapStateToProps
+            //connect
+            //Provider
+            // this.props.updateUser(user.data);
+            // this.setState({redirect: true})
+            //new employee added - display msg in addStatus and clear the fields
+            document.getElementById('start_date').innerHTML = `${this.state.name} was added`;
+            document.getElementById("end_date").value = '';
+            document.getElementById("comment").value = '';
+       }).catch(function(error) {
+            document.getElementById('addStatus').innerHTML = 'STO was NOT added - there is a restriction for the requested timeframe. Will require senior mgmt approval and an admin to input the STO request'});
+    }
 
     handleEmployee = (e) => {
-        this.setState({username: e.target.value})
+        this.setState({name: e.target.value})
     }
 
     handleStartDate = (e) => {
@@ -69,15 +86,18 @@ class STO_Adds extends Component {
 
     render() {
 
+        console.log("in render of STOAdds - this.props.name: ", this.props.name);
+
         return(
             <div>
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
                 <h2 className = 'subHeading'>Add / Update STO</h2>
 
-            <p className='inputLabel'>For:  <input onChange={this.handleEmployee} className='inputBox' placeholder = "User Name"/></p>
-            <p className='inputLabel'>Start Date:  <input onChange={this.handleStartDate} className='inputBox' placeholder = "Start Date" type="date"/></p>
-            <p className='inputLabel'>End Date:  <input onChange={this.handleEndDate} className='inputBox' placeholder = "End Date" type="date"/></p>
-            <p className='inputLabel'>Note:  <input onChange={this.handleComment} className='inputBox' placeholder = "Note"/></p>
+            <p className='inputLabel'>For:  <input id='for' onChange={this.handleEmployee} className='inputBox' placeholder = {this.props.username}/></p>
+            {/* <p className='inputLabel' id="for_name">For: <input placeholder = {this.props.username}/></p> */}
+            <p className='inputLabel'>Start Date:  <input id='start_date' onChange={this.handleStartDate} className='inputBox' placeholder = "Start Date" type="date"/></p>
+            <p className='inputLabel'>End Date:  <input id='end_date' onChange={this.handleEndDate} className='inputBox' placeholder = "End Date" type="date"/></p>
+            <p className='inputLabel'>Note:  <input id='comment' onChange={this.handleComment} className='inputBox' placeholder = "Note"/></p>
 
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
@@ -86,14 +106,28 @@ class STO_Adds extends Component {
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
                 </div>
-                <p>Props: {this.props.loginUser.user.id}</p>
+                <p>Props: {this.props.id}</p>
+                {/* //this.props.admin === true */}
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return state
+// const mapStateToProps = state => {
+//     return 
+//         username: state.loginUser.user.name,
+//         initials: state.loginUser.user.initials,
+//         admin: state.loginUser.user.admin,
+//         id: state.loginUser.user.id
+// }
+function mapStateToProps(state) {
+    return {
+        username: state.loginUser.user.name,
+        initials: state.loginUser.user.initials,
+        admin: state.loginUser.user.admin,
+        id: state.loginUser.user.id
+    }
 }
 
+// export default connect(mapStateToProps, { loginUser })(Login);
 export default connect(mapStateToProps)(STO_Adds);

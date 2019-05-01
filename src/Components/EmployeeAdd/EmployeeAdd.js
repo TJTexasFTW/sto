@@ -36,7 +36,7 @@ class Employee_Add extends Component {
 
     handleSubmit = () => {
         this.setState({admin: document.getElementById("adminChk").checked});
-        console.log("Submit button clicked: ", this.state.name, this.state.initials, this.state.password, this.state.admin)
+        // console.log("Submit button clicked: ", this.state.name, this.state.initials, this.state.password, this.state.admin)
         axios.post('/api/employee', {
             name: this.state.name,
             initials: this.state.initials,
