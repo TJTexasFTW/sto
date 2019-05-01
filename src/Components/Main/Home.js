@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import axios from 'axios';
 import './Home.css';
 import {connect} from 'react-redux';
+// import {loginUser} from '../../Redux/reducer';  
 
 class Home extends Component {
     constructor() {
@@ -16,31 +17,36 @@ class Home extends Component {
             twoMonthsOut: [{}],
             list: '',
             menuRequest: ''
+            // name: this.props.loginUser.user.name
         }
 
         // this.handleAdminClick = this.handleAdminClick.bind( this ); 
-        // this.handleSTOClick = this.handleSTOClick.bind( this ); 
+        this.handleSTOClick = this.handleSTOClick.bind( this ); 
     }
 
     componentDidMount() {
 
-        console.log("Home props: ", this.props)
-        axios.get('/api/currentMonth')
+        // console.log("Home props: ", this.props);
+        // console.log("req.session.user: ", req.session.user)
+
+        // document.getElementById('userMsg').innerHTML = `Hello ${this.props.loginUser.user.username}`;
+
+    axios.get('/api/currentMonth')
         .then(results => {this.setState({ thisMonth: results.data });
       }).catch( error => alert(error));
-        // console.log("processed compDidMount:", this.state.thisMonth); 
 
         axios.get('/api/nextMonth')
         .then(results => {this.setState({ nextMonth: results.data });
       }).catch( error => alert(error));
-        // console.log("processed compDidMount nextMonth:", this.state.nextMonth);
 
         axios.get('/api/twoMonthsOut')
         .then(results => {this.setState({ twoMonthsOut: results.data });
       }).catch( error => alert(error));
 
+      if(!this.props.loginUser.user.id) {
+        this.setState({redirect: true});
+    }
 
-        // console.log("processed compDidMount twoMonthsOut:", this.state.twoMonthsOut);
     }
 
     //   componentDidUpdate(prevProps) {
@@ -68,196 +74,93 @@ class Home extends Component {
 // }
 
 handleSTOClick() {
-
+    if (typeof this.props.loginUser.user.id === 'undefined') {
+    // if (req.session.loginUser.length > 0) {
+    // if (this.name.length = '') {
+        //user is already logged in - send to STO add screen
+        console.log("handleSTOClicl first branch of if")
+        this.props.history.push('/login')
+        // return <Redirect to='/scheduled_time_off_adds'/>
+    } else {
+        //send to login screen
+        
+        this.props.history.push('/scheduled_time_off_adds')
+        // return <Redirect to='/login'/>
+    }
+    // document.getElementById('userMsg').innerHTML = `Hello ${this.props.loginUser.user.name}`;
 }
 
     render() {
 
-let info = this.state.thisMonth;
-// console.log("This should be info from database: ", info);
-let dateEntry = [];
-        
-        for (let i = 0; i < info.length; i++) {
+        console.log("Render what props:", this.props)
 
-            switch(info[i].from_table) {
-                case 'BLOCKED': 
-                if (String(info[i].start_date.substring(5,5)) === 0) {
-                    var start = info[i].start_date.substring(6,10);
-                    // console.log("Trying to get rid of leading zero");
-                } else {
-                    start = info[i].start_date.substring(5,10)
-                }
-                dateEntry.push(  
-                    <p>{start} RESTRICTED</p>);
-                    // console.log("***We are in the makeList switch statement***");
-                    break;
-                case 'STO': 
-
-                    if (String(info[i].start_date.substring(5,5)) === 0) {
-                        start = info[i].start_date.substring(6,10);
-                        // console.log("Trying to get rid of leading zero");
-                    } else {
-                        start = info[i].start_date.substring(5,10)
-                    }
-
-                    if (String(info[i].end_date.substring(5,5)) === 0) {
-                        var end = info[i].end_date.substring(6,10);
-                        // console.log("Trying to get rid of leading zero");
-                    } else {
-                        end = info[i].end_date.substring(5,10)
-                    }
-                    //check if start and end date match
-                    if (info[i].start_date === info[i].end_date) {
-                    dateEntry.push(  
-                    <p>{start} {info[i].initials}</p>);
-                    } else {
-                        //end date is different - concantenate start & end
-                        dateEntry.push(  
-                            <p>{start} thru {end} {info[i].initials}</p>);
-                    }
-                    // console.log("***We are in the makeList switch statement***");
-                    break;
-                case 'EVENT':
-
-                if (String(info[i].start_date.substring(5,5)) === 0) {
-                    start = info[i].start_date.substring(6,10);
-                    // console.log("Trying to get rid of leading zero");
-                } else {
-                    start = info[i].start_date.substring(5,10)
-                }
-
-                dateEntry.push(  
-                    <p>{start} {info[i].initials}</p>);
-                    // console.log("***We are in the makeList switch statement***");
-                    break;
-                default: 
-                  console.log("Home Component - issue in render area");
-                }
-        }
-    
-        let infoNext = this.state.nextMonth;
-        // console.log("This should be info from database: ", info);
-        let dateEntryNext = [];
-                
-                for (let i = 0; i < infoNext.length; i++) {
-        
-                    switch(infoNext[i].from_table) {
-                        case 'BLOCKED': 
-                        if (String(infoNext[i].start_date.substring(5,5)) === 0) {
-                            start = infoNext[i].start_date.substring(6,10);
-                            // console.log("Trying to get rid of leading zero");
-                        } else {
-                            start = infoNext[i].start_date.substring(5,10)
-                        }
-                        dateEntryNext.push(  
-                            <p>{start} RESTRICTED</p>);
-                            // console.log("***We are in the makeList switch statement***");
-                            break;
-                        case 'STO': 
-        
-                            if (String(infoNext[i].start_date.substring(5,5)) === 0) {
-                                start = infoNext[i].start_date.substring(6,10);
-                                // console.log("Trying to get rid of leading zero");
+        function prepareDateList(array) {
+            console.log(array);
+            // array is from state for date column being processed
+            // dateList will be the dates after processing
+            // for formatting depending on if STO, event or blocked
+            let info = [...array]; 
+            let dateList = [];
+            let start = '';
+            let end = '';
+                    
+            for (let i = 0; i < info.length; i++) {
+                // console.log("value of i: ", i)
+                switch(info[i].from_table) {
+                    case 'BLOCKED': 
+                        if (String(info[i].start_date.substring(5,5)) === 0) {
+                                start = info[i].start_date.substring(6,10);
                             } else {
-                                start = infoNext[i].start_date.substring(5,10)
+                                start = info[i].start_date.substring(5,10)
+                            }
+                                dateList.push(  
+                                    <p>{start} RESTRICTED</p>);
+                                    break;
+        
+                    case 'STO': 
+                        if (String(info[i].start_date.substring(5,5)) === 0) {
+                                start = info[i].start_date.substring(6,10);
+                            } else {
+                                start = info[i].start_date.substring(5,10)
                             }
         
-                            if (String(infoNext[i].end_date.substring(5,5)) === 0) {
-                                end = infoNext[i].end_date.substring(6,10);
-                                // console.log("Trying to get rid of leading zero");
+                        if (String(info[i].end_date.substring(5,5)) === 0) {
+                                end = info[i].end_date.substring(6,10);
                             } else {
-                                end = infoNext[i].end_date.substring(5,10)
+                                end = info[i].end_date.substring(5,10)
                             }
-                            //check if start and end date match
-                            if (infoNext[i].start_date === infoNext[i].end_date) {
-                            dateEntryNext.push(  
-                            <p>{start} {infoNext[i].initials}</p>);
+                            
+                        //check if start and end date match
+                        if (info[i].start_date === info[i].end_date) {
+                                dateList.push(  
+                                    <p>{start} {info[i].initials}</p>);
                             } else {
-                                //end date is different - concantenate start & end
-                                dateEntryNext.push(  
-                                    <p>{start} thru {end} {infoNext[i].initials}</p>);
+                              //end date is different - concantenate start & end
+                                dateList.push(  
+                                    <p>{start} thru {end} {info[i].initials}</p>);
                             }
-                            break;
-                        case 'EVENT':
+                                break;
         
-                        if (String(infoNext[i].start_date.substring(5,5)) === 0) {
-                            start = infoNext[i].start_date.substring(6,10);
-                            // console.log("Trying to get rid of leading zero");
-                        } else {
-                            start = infoNext[i].start_date.substring(5,10)
-                        }
-        
-                        dateEntryNext.push(  
-                            <p>{start} {infoNext[i].initials}</p>);
-                            // console.log("***We are in the makeList switch statement***");
-                            break;
+                    case 'EVENT':
+                        if (String(info[i].start_date.substring(5,5)) === 0) {
+                                start = info[i].start_date.substring(6,10);
+                            } else {
+                                start = info[i].start_date.substring(5,10)
+                            }
+                                dateList.push(  
+                                    <p>{start} {info[i].initials}</p>);
+                                    break;
                         default: 
-                        //   console.log("Home Component - issue in render area");
+                            console.log("There was an issue in the prepareDateList function.")
                         }
+                    
                 }
+                return dateList;
+            }
 
-        let infoTwoMonthsOut = this.state.twoMonthsOut;
-        // console.log("This should be info from database: ", info);
-        let dateEntryTwoMonthsOut = [];
-                
-                for (let i = 0; i < infoTwoMonthsOut.length; i++) {
-        
-                    switch(infoTwoMonthsOut[i].from_table) {
-                        case 'BLOCKED': 
-                        if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) === 0) {
-                            start = infoTwoMonthsOut[i].start_date.substring(6,10);
-                            // console.log("Trying to get rid of leading zero");
-                        } else {
-                            start = infoTwoMonthsOut[i].start_date.substring(5,10)
-                        }
-                        dateEntryTwoMonthsOut.push(  
-                            <p>{start} RESTRICTED</p>);
-                            // console.log("***We are in the makeList switch statement***");
-                            break;
-                        case 'STO': 
-        
-                            if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) === 0) {
-                                start = infoTwoMonthsOut[i].start_date.substring(6,10);
-                                // console.log("Trying to get rid of leading zero");
-                            } else {
-                                start = infoTwoMonthsOut[i].start_date.substring(5,10)
-                            }
-        
-                            if (String(infoTwoMonthsOut[i].end_date.substring(5,5)) === 0) {
-                                end = infoTwoMonthsOut[i].end_date.substring(6,10);
-                                // console.log("Trying to get rid of leading zero");
-                            } else {
-                                end = infoTwoMonthsOut[i].end_date.substring(5,10)
-                            }
-                            //check if start and end date match
-                            if (infoTwoMonthsOut[i].start_date === infoTwoMonthsOut[i].end_date) {
-                            dateEntryTwoMonthsOut.push(  
-                            <p>{start} {infoTwoMonthsOut[i].initials}</p>);
-                            } else {
-                                //end date is different - concantenate start & end
-                                dateEntryTwoMonthsOut.push(  
-                                    <p>{start} thru {end} {infoTwoMonthsOut[i].initials}</p>);
-                            }
-                            break;
-                        case 'EVENT':
-        
-                        if (String(infoTwoMonthsOut[i].start_date.substring(5,5)) === 0) {
-                            start = infoTwoMonthsOut[i].start_date.substring(6,10);
-                            // console.log("Trying to get rid of leading zero");
-                        } else {
-                            start = infoTwoMonthsOut[i].start_date.substring(5,10)
-                        }
-        
-                        dateEntryTwoMonthsOut.push(  
-                            <p>{start} {infoTwoMonthsOut[i].initials}</p>);
-                            // console.log("***We are in the makeList switch statement***");
-                            break;
-                        default: 
-                          console.log("Home Component - issue in render area");
-                        }
-                }
-
-        // makeList(info);
+            let dateList0 = prepareDateList(this.state.thisMonth);
+            let dateList1 = prepareDateList(this.state.nextMonth);
+            let dateList2 = prepareDateList(this.state.twoMonthsOut);
 
         return(
             <div className="Home">
@@ -265,27 +168,31 @@ let dateEntry = [];
                 <div className="months">
                     <div className="current_month"><u>CURRENT MONTH</u>
                         <ul className='sto_listing'>
-                            {dateEntry}
+                            {dateList0}
                         </ul> 
                     </div>
                     <div className="next_month"><u>NEXT MONTH</u>
                     <ul className='sto_listing'>
-                            {dateEntryNext}
+                            {dateList1}
                         </ul> 
                     </div>
                     
                     <div className="two_months_out"><u>TWO MONTHS OUT</u>
                     <ul className='sto_listing'>
-                            {dateEntryTwoMonthsOut}
+                            {dateList2}
                         </ul>                     
                     </div>
                 </div>
                 <p className = "restrictedNotice">Time off for RESTRICTED dates requires Senior Management Approval.</p>
                 <div className="button_choices">
                     <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
-                    <Link to='/login'><button className="addButton">ADD/UPDATE STO</button></Link>
+                    <button className="addButton" onClick = {this.handleSTOClick}>ADD/UPDATE STO</button>
+                    {/* <Link to='/login'><button className="addButton">ADD/UPDATE STO</button></Link> */}
                     
                 </div>
+                <p>User Msg Below This</p>
+                <p id="userMsg"></p>
+                <p>Props: {this.props.loginUser.user.id}</p>
             </div>
         )
     }

@@ -18,18 +18,18 @@ export default function reducer(state=initialState, action) {
                 user: action.payload
             }
         case LOGIN_USER + '_FULFILLED':
-            console.log("LOGIN_USER step of reducer activated")
+            console.log("LOGIN_USER step of reducer activated", action.payload)
             return {
                 ...state,
                 user: action.payload
             }            
         default: 
-            return state;
+            return state
     }
 }
 
 export const loginUser = (name, password) => {
-    console.log("loginUser before return")
+    console.log("loginUser before return", name, password)
 
     return {
         type: LOGIN_USER,

@@ -1,6 +1,13 @@
 const bcrypt = require('bcryptjs');
 
+
 module.exports = {
+
+  // setTimeZone: async (req, res) => {        
+  //   const theTimeZone = await req.app.get('db').set_time_zone().catch( error => alert(error));
+  //   // console.log("Next month:", getDatesNextMonth);
+  //   return res.status(200).send(theTimeZone)
+  // }, 
 
   getDatesCurrentMonth: async (req, res) => {        
     const getDates = await req.app.get('db').dates_zero_months_out().catch( error => alert(error));

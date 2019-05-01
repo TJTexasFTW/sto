@@ -9,8 +9,9 @@ import routes from './routes';
 
 function App() {
   return (
-    
-  <HashRouter> 
+  
+ 
+  <HashRouter>    
     <div className="App">
       {routes}
       {/* <Home /> */}
@@ -18,7 +19,7 @@ function App() {
       {/* <Login /> */}
     </div>
   </HashRouter> 
-
+  
   );
 }
 

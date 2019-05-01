@@ -57,11 +57,13 @@ body {
 } */
 
 .addButton {
-    background-color: black; /* Green */
+    background-color: darkturquoise; /* Green */
     border: none;
+    border: teal;
+    border-style: solid;
     border-radius: 12px;
     color: white;
-    padding: 2vh 3vw;
+    padding: 1vh 3vw;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -70,11 +72,12 @@ body {
   }
 
   .adminButton {
-    background-color: black; /* Green */
-    border: none;
+    background-color: darkturquoise; /* Green */
+    border: teal;
+    border-style: solid;
     border-radius: 12px;
     color: white;
-    padding: 2vh 3vw;
+    padding: 1vh 3vw;
     text-align: center;
     text-decoration: none;
     display: inline-block;

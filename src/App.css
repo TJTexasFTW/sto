@@ -122,8 +122,9 @@
     justify-content: space-evenly;
     flex-direction: column;
     align-content: center;
-    background-color: black; 
-    border: none;
+    background-color: darkturquoise; 
+    border: black;
+    border-bottom-style: solid;
     border-radius: 12px;
     color: white;
     width: 40vw; 
