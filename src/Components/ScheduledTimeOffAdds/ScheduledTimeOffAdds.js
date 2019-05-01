@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-// import axios from 'axios';
+import {connect} from 'react-redux';
+import axios from 'axios';
 
 class STO_Adds extends Component {
     constructor() {
@@ -9,12 +10,11 @@ class STO_Adds extends Component {
             username: '',
             startDate: new Date(),
             endDate: new Date(),
-            comment: '',
-            redirect: false,
-
+            comment: ''
         }
 
     this.handleSubmit = this.handleSubmit.bind( this );    
+    this.handleLogoffClick = this.handleLogoffClick.bind(this);
 
     }
 
@@ -60,7 +60,11 @@ class STO_Adds extends Component {
 
     handleLogoffClick() {
         //user has requested logoff
-        //crap - need to connect to the store first
+        //clear session and loginUser.user object
+        axios.get('/api/logoff')
+            .then(results => {this.setState({ username: '' });
+        }).catch( error => alert(error))
+        this.props.history.push('/')
     }
 
     render() {
@@ -82,9 +86,14 @@ class STO_Adds extends Component {
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
                 </div>
-
+                <p>Props: {this.props.loginUser.user.id}</p>
             </div>
         )
     }
 }
-export default STO_Adds
+
+const mapStateToProps = state => {
+    return state
+}
+
+export default connect(mapStateToProps)(STO_Adds);

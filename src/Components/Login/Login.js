@@ -26,10 +26,25 @@ class Login extends Component {
         this.setState({password: e.target.value})
     }
 
-    handleClick = e => {
+    handleClick = async e => {
         console.log("In Login module - log in button clicked", this.state.name, this.state.password);
-        this.props.loginUser(this.state.name, this.state.password)
+        await this.props.loginUser(this.state.name, this.state.password)
         console.log("Login button pushed and reducer function ran");
+              //redirect the user based on if admin or not
+        console.log("This.props: ", this.props)
+              if (this.props.admin === true) {
+                console.log("is an admin")
+                //send to admin menu
+                this.props.history.push('/admin_menu')
+            } else {
+                this.props.history.push('/scheduled_time_off_adds')
+            }
+    
+
+    // console.log("state.admin: ", this.state.admin);
+    // console.log("trying props", this.props.loginUser.user.admin)
+
+
         // axios.post('/api/login', {
         //     name: this.state.name,
         //     password: this.state.password
@@ -41,6 +56,10 @@ class Login extends Component {
     }
 
     render() {
+
+        // console.log("login render: ", this.props.admin)
+
+
 
         return(
             <div>
@@ -65,10 +84,10 @@ class Login extends Component {
 function mapStateToProps(state) {
     console.log(state)
     return {
-      username: state.name,
-      initials: state.initials,
-      admin: state.admin,
-      id: state.id
+      username: state.loginUser.user.name,
+      initials: state.loginUser.user.initials,
+      admin: state.loginUser.user.admin,
+      id: state.loginUser.user.id
     }
   }
   

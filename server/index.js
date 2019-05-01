@@ -33,6 +33,7 @@ app.get("/api/currentMonth", authController.getDatesCurrentMonth);
 app.get("/api/nextMonth", authController.getDatesNextMonth);
 app.get("/api/twoMonthsOut", authController.getTwoMonthsOut);
 app.post('/api/login', authController.loginUser);
+app.get('/api/logoff', authController.logoffUser);
 // app.get('/api/timezone', authController.setTimeZone);
 // app.post("/api/STO", authController.addNewSTO);
 

@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
 
-
 module.exports = {
 
   // setTimeZone: async (req, res) => {        
@@ -42,13 +41,13 @@ module.exports = {
     console.log("In loginUser function: ", req.body);
     let getUser = await db.employee_login_verify([req.body.name]);
     let user = getUser[0];
-    console.log("User: ", user);
+    // console.log("User: ", user);
   
     let isAuthenticated = bcrypt.compareSync(req.body.password, user.password);
   
     console.log("Auth: ", isAuthenticated);
-    console.log("ReqBody: ", req.body);
-    console.log("User password: ", user.password);
+    // console.log("ReqBody: ", req.body);
+    // console.log("User password: ", user.password);
 
     if (isAuthenticated) {
       req.session.user = {
@@ -57,9 +56,16 @@ module.exports = {
         id: user.id,
         admin: user.admin
       };
+
       console.log("req.session.user: ", req.session.user);
     }
     res.status(200).json(req.session.user);
+  },
+
+  logoffUser(req, res) {
+    console.log("You have reached the logoffUser function in the authController")
+    req.session.destroy();
+    this.props.history.push('/')
   },
 
 addNewEmployee: (req, res) => {

@@ -77,7 +77,7 @@ handleSTOClick() {
     // if (req.session.loginUser.length > 0) {
     // if (this.name.length = '') {
         //user is already logged in - send to STO add screen
-        console.log("handleSTOClicl first branch of if")
+        // console.log("handleSTOClicl first branch of if")
         this.props.history.push('/login')
         // return <Redirect to='/scheduled_time_off_adds'/>
     } else {

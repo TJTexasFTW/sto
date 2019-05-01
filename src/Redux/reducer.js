@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const initialState = {
     user: {},
-    redirect: false
+    redirect: false,
+    admin: false
 };
 
 //constants
@@ -18,9 +19,11 @@ export default function reducer(state=initialState, action) {
                 user: action.payload
             }
         case LOGIN_USER + '_FULFILLED':
-            console.log("LOGIN_USER step of reducer activated", action.payload)
+            // console.log("reducer:", action.payload);
+            // console.log('history: ', this.props.history)
+            
             return {
-                ...state,
+                ...state, admin: true,
                 user: action.payload
             }            
         default: 
