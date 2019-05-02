@@ -8,6 +8,7 @@ module.exports = {
   //   return res.status(200).send(theTimeZone)
   // }, 
 
+
   getDatesCurrentMonth: async (req, res) => {        
     const getDates = await req.app.get('db').dates_zero_months_out().catch( error => alert(error));
     // console.log("We are in getDatesCurrentMonth off the controller");
@@ -70,7 +71,22 @@ module.exports = {
 
 addSTO: (req, res) => {
   console.log("In authController addSTO function");
-},
+  let {start_date, end_date, comment, employee_id, added} = req.body;
+  console.log("new STO to add req.body", req.body)
+
+  //check if there are dates blocked for the timeframe of the STO
+  let db = req.app.get('db');
+  db.sto_add_check_against_blocked(start_date, end_date).then(blocked_date => {
+    if (blocked_date.length > 0) {
+      res.status(403).json({
+          error: 'There is a RESTRICTED DATE in the STO request timeframe.'
+      })
+} else {
+  db.sto_add(start_date, end_date, comment, employee_id, added).then((returned) => {
+    res.status(200).json(req.session.user);
+}).catch(err => console.log(err))
+}
+  })},
 
 addNewEmployee: (req, res) => {
   //get the employee info from the body
@@ -88,16 +104,8 @@ addNewEmployee: (req, res) => {
       } else {            
         console.log("bcrypt: ", password);
           bcrypt.hash(password, 12).then(newPassword => {
-              console.log("newPassword after add:", newPassword, newPassword.length);
-              db.employee_add(name, initials, newPassword, admin).then((returned) => {
-                // Commented out - we do NOT want the added employee 
-                // to be the session user  
-                // req.session.user = {
-                  //     name,
-                  //     initials,
-                  //     id: returned[0].id
-                  // }
-                  // console.log("After add processed: ", req.session.user);
+              // console.log("newPassword after add:", newPassword, newPassword.length);
+              db.employee_add(name, initials, newPassword, admin).then(() => {
                   res.status(200).json(req.session.user);
               }).catch(err => console.log(err))
           }).catch(err => console.log(err))

@@ -34,7 +34,7 @@ app.get("/api/nextMonth", authController.getDatesNextMonth);
 app.get("/api/twoMonthsOut", authController.getTwoMonthsOut);
 app.post('/api/login', authController.loginUser);
 app.get('/api/logoff', authController.logoffUser);
-app.post('/api/newSTO', authController.addSTO);
+app.post('/api/addSTO', authController.addSTO);
 // app.get('/api/timezone', authController.setTimeZone);
 // app.post("/api/STO", authController.addNewSTO);
 

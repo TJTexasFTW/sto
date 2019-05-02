@@ -111,7 +111,6 @@
     padding-top: 8vh;
     display: flex; 
     justify-content: space-evenly;
-
 }
 
 .bigButton button {
@@ -174,6 +173,21 @@
       /* margin-top: -50vh; */
       /* z-index: 100;   */
   }
+
+  #addSTOStatus{
+    /* margin-bottom: 3vh; */
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    color: red;
+    background-color: yellow;
+    animation-name: blinkingText;
+    animation-iteration-count: 10;    
+    animation-duration: .8s;
+    animation-delay: 2s;
+    /* margin-top: -50vh; */
+    /* z-index: 100;   */
+}  
 
   @keyframes blinkingText{
     0%{     color: #000;    }
