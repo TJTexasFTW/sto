@@ -39,14 +39,23 @@
     /* width: 5vw; */
 } 
 
-.deactiveCheckbox {
+#deactiveChk {
     font-size: 2vw;
     font-family: Arial, Helvetica, sans-serif;
     text-align: left; 
-    margin-left: 32vw;
+    margin-left: 3vw;
     padding-right: 0;
-    /* width: 5vw; */
+    transform: scale(2.5);
 }
+
+.deactiveCheckbox { 
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif; 
+    text-align: left; 
+    margin-left: 32vw;
+    padding-right: 0; 
+    /* width: 5vw; */
+} 
 
 #adminChk {
     /* font-size: 42vw; */
