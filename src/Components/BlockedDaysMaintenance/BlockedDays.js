@@ -53,7 +53,7 @@ class Blocked_Days extends Component {
             //new event added - display msg in addStatus and clear the fields
             document.getElementById('addBlockedStatus').innerHTML = `${this.state.blocked_date} was added`;
             document.getElementById("blocked_date").value = '';
-            document.getElementById("comment").value = '';
+            document.getElementById("blocked_comment").value = '';
         }).catch(function(error) {
             document.getElementById('addBlockedStatus').innerHTML = 'Houston we have problem - add denied.'});
     }
@@ -66,14 +66,14 @@ class Blocked_Days extends Component {
                 <h2 className = 'subHeading'>Blocked Dates Maintenance</h2>
 
             <p className='inputLabel'>Date:  <input onChange={this.handleBlockedDate} id='blocked_date' className='inputBox' placeholder = "Start Date" type="date"/></p>
-            <p className='inputLabel'>Note:  <input onChange={this.handleComment} id='comment' className='inputBox' placeholder = "Note"/></p>
+            <p className='inputLabel'>Note:  <input onChange={this.handleComment} id='blocked_comment' className='inputBox' placeholder = "Note"/></p>
             <center><p id='addBlockedStatus'></p></center>
 
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
                     <button onClick={this.handleLogoffClick} className = "adminButton">LOG OFF</button>
                     <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
-                    <button className = "adminButton">DELETE</button>
+                    {/* <button className = "adminButton">DELETE</button> */}
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
             </div>
 
