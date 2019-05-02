@@ -119,6 +119,58 @@ addNewEmployee: (req, res) => {
   //put in database
   //add user to session
   //send the user
-} 
+},
+
+updateEmployeePassword: (req, res) => {
+  console.log("In authController updateEmployeePassword function");
+  let {name, password} = req.body;
+  console.log("update password req.body", req.body)
+  let db = req.app.get('db');
+
+db.employee_password_precheck(name).then(employeeList => {
+  // should be only ONE match
+  if(employeeList.length !== 1) {
+      res.status(403).json({
+          error: 'EMPLOYEE NAME DOES NOT EXIST'
+      })
+  } else {            
+      bcrypt.hash(password, 12).then(newPassword => {
+          // console.log("newPassword after add:", newPassword, newPassword.length);
+          db.employee_update_password(newPassword, name).then(() => {
+              res.status(200).json(name);
+          }).catch(err => console.log(err))
+      }).catch(err => console.log(err))
+  }
+}).catch(err => console.log(err));
+
+}
+
+// updateEmployee: (req, res) => {
+  // console.log("In authController updateEmployee function");
+//   let {name, initials, password, admin, inactive, id} = req.body;
+//   console.log("Update employee req.body", req.body)
+  
+//   db.employee_update_verify(name, initials, id).then(employeeList => {
+//     // console.log("Username or initials already exist: ", employeeList)
+//     if(employeeList.length > 0) {
+//         res.status(403).json({
+//             error: 'USERNAME_OR_INITIALS_ALREADY_TAKEN'
+//         })
+//     } else {            
+//       console.log("bcrypt: ", password);
+//         bcrypt.hash(password, 12).then(newPassword => {
+//             // console.log("newPassword after add:", newPassword, newPassword.length);
+//             db.employee_update(name, initials, newPassword, admin, inactive).then(() => {
+//                 res.status(200).json(req.session.user);
+//             }).catch(err => console.log(err))
+//         }).catch(err => console.log(err))
+//     }
+  
+//   //OK to update employee
+//   let db = req.app.get('db');
+//   db.employee_update(name, initials, password, admin, inactive, id).then(() => {
+//     res.status(200).json(name);
+// }).catch(err => console.log(err))
+// }
 
 }

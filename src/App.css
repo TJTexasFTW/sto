@@ -87,7 +87,7 @@
 
 .subHeading {
     margin-top: 12vh;
-    margin-bottom: 5vh;     
+    margin-bottom: 4vh;     
     font-size: 3vw;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -161,6 +161,17 @@
     text-decoration: none;
   }
 
+.instructions {
+
+    font-size: 1.5vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    color: black;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 3vh;
+}
+
   #addStatus{
       /* margin-bottom: 3vh; */
       font-size: 2vw;
@@ -190,6 +201,16 @@
     /* margin-top: -50vh; */
     /* z-index: 100;   */
 } 
+
+#PasswordChangeStatus {
+
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    color: red;
+    background-color: yellow;
+
+}
 
 #addBlockedStatus{
     /* margin-bottom: 3vh; */

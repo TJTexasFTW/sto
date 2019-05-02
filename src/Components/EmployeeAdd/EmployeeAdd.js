@@ -43,13 +43,6 @@ class Employee_Add extends Component {
             password: this.state.password,
             admin: this.state.admin
         }).then(user => {
-            //update redux state with the new user
-            //import the action creator
-            //mapStateToProps
-            //connect
-            //Provider
-            // this.props.updateUser(user.data);
-            this.setState({redirect: true})
             //new employee added - display msg in addStatus and clear the fields
             document.getElementById('addStatus').innerHTML = `${this.state.name} was added`;
             document.getElementById("inputName").value = '';

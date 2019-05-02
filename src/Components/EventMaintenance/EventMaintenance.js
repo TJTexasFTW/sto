@@ -48,7 +48,7 @@ class Event_Maintenance extends Component {
 
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
-                    <Link to='/'><button className = "adminButton">LOG OFF</button></Link>
+                    {/* <Link to='/'><button className = "adminButton">LOG OFF</button></Link> */}
                     <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
                     {/* <button className = "adminButton">DELETE</button> */}
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
