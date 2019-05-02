@@ -2,18 +2,8 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
 
-  // setTimeZone: async (req, res) => {        
-  //   const theTimeZone = await req.app.get('db').set_time_zone().catch( error => alert(error));
-  //   // console.log("Next month:", getDatesNextMonth);
-  //   return res.status(200).send(theTimeZone)
-  // }, 
-
-
   getDatesCurrentMonth: async (req, res) => {        
     const getDates = await req.app.get('db').dates_zero_months_out().catch( error => alert(error));
-    // console.log("We are in getDatesCurrentMonth off the controller");
-    // console.log("From controller getDatesCurrentMonth", getDates);
-    
     // return res.status(200).send(getDates).catch( error => alert(error));
     
     return res.status(200).send(getDates)
@@ -21,7 +11,6 @@ module.exports = {
 
   getDatesNextMonth: async (req, res) => {        
     const getNextMonthDates = await req.app.get('db').dates_one_month_out().catch( error => alert(error));
-    // console.log("Next month:", getDatesNextMonth);
     return res.status(200).send(getNextMonthDates)
   },   
   
@@ -31,22 +20,17 @@ module.exports = {
     return res.status(200).send(getTwoMonthsOutDates)
   },
   
-  // addNewSTO: async (req, res) => {        
-  //   const addNewSTOData = await req.app.get('db').insert_new_STO().catch( error => alert(error));
-  //   return res.status(200).send(addNewSTOData)
-  // }
-
   loginUser: async (req, res) => {
     let db = req.app.get("db");
   
-    console.log("In loginUser function: ", req.body);
+    // console.log("In loginUser function: ", req.body);
     let getUser = await db.employee_login_verify([req.body.name]);
     let user = getUser[0];
     // console.log("User: ", user);
   
     let isAuthenticated = bcrypt.compareSync(req.body.password, user.password);
   
-    console.log("Auth: ", isAuthenticated);
+    // console.log("Auth: ", isAuthenticated);
     // console.log("ReqBody: ", req.body);
     // console.log("User password: ", user.password);
 
@@ -58,15 +42,15 @@ module.exports = {
         admin: user.admin
       };
 
-      console.log("req.session.user: ", req.session.user);
+      // console.log("req.session.user: ", req.session.user);
     }
     res.status(200).json(req.session.user);
   },
 
   logoffUser(req, res) {
-    console.log("You have reached the logoffUser function in the authController")
+    // console.log("You have reached the logoffUser function in the authController")
+    // console.log("This is what is on req.session: ", req.session)
     req.session.destroy();
-    this.props.history.push('/')
   },
 
 addSTO: (req, res) => {
@@ -87,6 +71,26 @@ addSTO: (req, res) => {
 }).catch(err => console.log(err))
 }
   })},
+
+  addBlocked: (req, res) => {
+    // console.log("In authController addBlocked function");
+    let {blocked_date, comment, employee_id} = req.body;
+    // console.log("new blocked event to add req.body", req.body)
+    let db = req.app.get('db');
+    db.blocked_add(blocked_date, comment, employee_id).then(() => {
+      res.status(200).json(blocked_date);
+  }).catch(err => console.log(err))
+  },
+
+  addEvent: (req, res) => {
+    console.log("In authController addEvent function");
+    let {event_date, comment, employee_id} = req.body;
+    console.log("new event date to add req.body", req.body)
+    let db = req.app.get('db');
+    db.event_add(event_date, comment, employee_id).then(() => {
+      res.status(200).json(event_date);
+  }).catch(err => console.log(err))
+  },
 
 addNewEmployee: (req, res) => {
   //get the employee info from the body

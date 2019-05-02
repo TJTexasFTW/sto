@@ -48,7 +48,6 @@ class STO_Adds extends Component {
         return [year, month, day].join('-');
     }
     
-    
     handleSubmit() {
        let today = this.formatDate();
        console.log("Submit STO button clicked: ", this.state.startDate, this.state.endDate, this.state.comment, this.props.id, today);
@@ -89,8 +88,16 @@ class STO_Adds extends Component {
         //clear session and loginUser.user object
         axios.get('/api/logoff')
             .then(results => {this.setState({ username: '' });
-        }).catch( error => alert(error))
+        }).catch( error => alert("This is the handleLogoffClick error: ", error))
+
+        // store.dispatch( logoff({ }) )
+
+        //need to clear user info on state
         this.props.history.push('/')
+        // console.log("STO add handleLogoffClick redirect command executed")
+
+        document.location.reload()
+        // console.log("STO add handleLogoffClick reload command executed")
     }
 
     render() {

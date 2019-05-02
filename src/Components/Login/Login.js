@@ -27,13 +27,13 @@ class Login extends Component {
     }
 
     handleClick = async e => {
-        console.log("In Login module - log in button clicked", this.state.name, this.state.password);
+        // console.log("In Login module - log in button clicked", this.state.name, this.state.password);
         await this.props.loginUser(this.state.name, this.state.password)
-        console.log("Login button pushed and reducer function ran");
+        // console.log("Login button pushed and reducer function ran");
               //redirect the user based on if admin or not
-        console.log("This.props: ", this.props)
+        // console.log("This.props: ", this.props)
               if (this.props.admin === true) {
-                console.log("is an admin")
+                // console.log("is an admin")
                 //send to admin menu
                 this.props.history.push('/admin_menu')
             } else {
