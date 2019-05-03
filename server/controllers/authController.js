@@ -142,6 +142,46 @@ db.employee_password_precheck(name).then(employeeList => {
       }).catch(err => console.log(err))
   }
 }).catch(err => console.log(err));
+}, 
+
+getEmployeeData: (req, res) => {
+
+  console.log("req.body: ", req.body)
+  let name = req.body.currentName;
+  let db = req.app.get('db');
+  console.log("name: ", name)
+
+  db.employee_update_verify(name).then(employeeList => {
+    // should be only ONE match
+    if(employeeList.length !== 1) {
+        res.status(403).json({
+            error: 'NO MATCH TO EMPLOYEE NAME FOUND'
+        })
+    } else {            
+      res.status(200).json({employeeList})
+    }
+  }).catch(err => console.log(err));
+
+},
+
+updateEmployee: (req, res) => {
+  console.log("In authController updateEmployee function");
+  let {currentName, name, initials, admin, inactive} = req.body;
+  console.log("update employee req.body", req.body)
+  let db = req.app.get('db');
+
+db.employee_update_verify(currentName).then(employeeList => {
+  // should be only ONE match
+  if(employeeList.length !== 1) {
+      res.status(403).json({
+          error: 'EMPLOYEE NAME DOES NOT EXIST'
+      })
+  } else {            
+        db.employee_update(name, initials, admin, inactive).then(() => {
+              res.status(200).json(name);
+          }).catch(err => console.log(err))
+  }
+}).catch(err => console.log(err));
 
 }
 

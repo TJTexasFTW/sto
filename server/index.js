@@ -39,4 +39,7 @@ app.post('/api/blocked', authController.addBlocked);
 app.post('/api/event', authController.addEvent);
 // app.put('/api/employee_update', authController.updateEmployee);
 app.put('/api/employee_password_change/:id', authController.updateEmployeePassword);
+app.put('/api/employee_update/:id', authController.updateEmployee);
+app.post('/api/employee_update/:id', authController.getEmployeeData);
+
 app.listen(3060, () => console.log('Listening on Port 3060'))
