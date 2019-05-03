@@ -166,18 +166,21 @@ getEmployeeData: (req, res) => {
 
 updateEmployee: (req, res) => {
   console.log("In authController updateEmployee function");
-  let {currentName, name, initials, admin, inactive} = req.body;
+  let {name, initials, admin, inactive, id} = req.body;
   console.log("update employee req.body", req.body)
   let db = req.app.get('db');
 
-db.employee_update_verify(currentName).then(employeeList => {
+db.employee_update_verify_by_id(id).then(employeeList => {
+// db.employee_update(name, initials, admin, inactive, +id).then(employeeList => {
   // should be only ONE match
+  console.log('database request made', employeeList[0])
+
   if(employeeList.length !== 1) {
       res.status(403).json({
-          error: 'EMPLOYEE NAME DOES NOT EXIST'
+          error: 'There was a problem - employee data did NOT update.'
       })
   } else {            
-        db.employee_update(name, initials, admin, inactive).then(() => {
+        db.employee_update(name, initials, admin, inactive, id).then(() => {
               res.status(200).json(name);
           }).catch(err => console.log(err))
   }

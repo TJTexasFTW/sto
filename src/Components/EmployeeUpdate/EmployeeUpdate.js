@@ -7,6 +7,7 @@ class Employee_Update extends Component {
     constructor() {
         super();
         this.state = {
+            id: 0,
             currentName: '',
             name: '',
             initials: '',
@@ -19,22 +20,27 @@ class Employee_Update extends Component {
     }
 
     handleSubmit = () => {
-        if (this.state.name.length === 0) {
-            this.setState({name: this.state.currentName})
-            }
+        // if (this.state.name.length === 0) {
+        //     this.setState({name: this.state.currentName})
+        //     }
+        console.log("Sent to axios: ", this.state.id, document.getElementById("name").value, document.getElementById("initials").value, document.getElementById("adminChk").checked, document.getElementById("deactiveChk").checked)
 
-        axios.put(`/api/employee_update/${this.state.currentName}`, {
-            currentName: this.state.currentName,
-            name: this.state.name,
-            password: this.state.password1
+
+        axios.put(`/api/employee_update/${this.state.id}`, {
+            id: this.state.id,
+            name: document.getElementById("name").value,
+            initials: document.getElementById("initials").value,
+            admin: document.getElementById("adminChk").checked,
+            inactive: document.getElementById("deactiveChk").checked
         }).then(user => {
-            //new event added - display msg in addStatus and clear the fields
-            document.getElementById('PasswordChangeStatus').innerHTML = `Password for ${this.state.name} was updated.`;
-            document.getElementById("name_password").value = '';
-            document.getElementById("password1").value = '';
-            document.getElementById("password2").value = '';
+            //employee updated - display msg in addStatus and clear the fields
+            document.getElementById("name").value = '';
+            document.getElementById("initials").value = '';
+            document.getElementById("adminChk").value = false;
+            document.getElementById("deactiveChk").value = false;
+            document.getElementById('addEmpUpdateStatus').innerHTML = `${this.state.name} was updated`;
         }).catch(function(error) {
-            document.getElementById('PasswordChangeStatus').innerHTML = 'Houston we have problem - password change denied.'});
+            document.getElementById('addEmpUpdateStatus').innerHTML = 'Houston we have problem - employee update denied.'});
     }
 
     // handleEmployee = (e) => {
@@ -44,13 +50,15 @@ class Employee_Update extends Component {
 
     handleCurrentName = (e) => {
         console.log("e: ", e.target.value)
-        // if (this.state.currentName = '') {
+
+        // if (this.state.currentName === '') {
         // // console.log("handleName function invoked: ", e.target.value)
         //     //this.setState({name: e.target.value});
         //     this.setState({currentName: e.target.value}) }
         // else {
         //     this.setState({name: e.target.value})
         // }
+
         this.setState({currentName: e.target.value})
         this.setState({name: e.target.value})
         console.log('currentName: ', this.state.currentName, 'name: ', this.state.name);
@@ -75,13 +83,18 @@ class Employee_Update extends Component {
             // let {name, initials, admin, inactive} = req.body;
             console.log("user.data: ", user.data)
             let {id, name, initials, admin, inactive} = user.data.employeeList[0];
-            console.log(id, name, initials, admin, inactive)
+            console.log('getEmployeeData success: ', id, name, initials, admin, inactive)
+
+            //set values of state
+            this.setState({id, name, initials, admin, inactive})
+
+            console.log("Get Data - state values: ", name, initials, admin, inactive)
 
             //populate values into input boxes
             document.getElementById("initials").value = initials;
-            document.getElementById("adminChk").value = admin;
-            document.getElementById("deactiveChk").value = inactive;
-
+            document.getElementById("adminChk").checked = admin;
+            document.getElementById("deactiveChk").checked = inactive;
+            document.getElementById('addEmpUpdateStatus').innerHTML = 'Make the updates and click the SUBMIT button';
             //populate input fields with data
             //also set state
 
@@ -119,7 +132,7 @@ class Employee_Update extends Component {
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
                 <h2 className = 'subHeading'>Update / De-activate Employee</h2>
 
-            <p className='inputLabel'>Name to Update:  <input name='name' onChange={this.handleCurrentName} className='inputBox' placeholder = "FLast"/></p>
+            <p className='inputLabel'>Name to Update:  <input id='name' onChange={this.handleCurrentName} className='inputBox' placeholder = "FLast"/></p>
 
             <p id='curInitials' className='inputLabel'>Initials:  <input className='inputBox' placeholder = "Initials" id = 'initials'/></p>
  
