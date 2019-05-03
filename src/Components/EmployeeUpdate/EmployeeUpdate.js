@@ -77,8 +77,10 @@ class Employee_Update extends Component {
             let {id, name, initials, admin, inactive} = user.data.employeeList[0];
             console.log(id, name, initials, admin, inactive)
 
-            
-
+            //populate values into input boxes
+            document.getElementById("initials").value = initials;
+            document.getElementById("adminChk").value = admin;
+            document.getElementById("deactiveChk").value = inactive;
 
             //populate input fields with data
             //also set state
@@ -119,7 +121,7 @@ class Employee_Update extends Component {
 
             <p className='inputLabel'>Name to Update:  <input name='name' onChange={this.handleCurrentName} className='inputBox' placeholder = "FLast"/></p>
 
-            <p id='curInitials' className='inputLabel'>Initials:  <input className='inputBox' placeholder = "Initials"/></p>
+            <p id='curInitials' className='inputLabel'>Initials:  <input className='inputBox' placeholder = "Initials" id = 'initials'/></p>
  
             <div id='chkAdmin' className="Administrative">
                 <label className = 'adminCheckbox' >Administrator: </label>
