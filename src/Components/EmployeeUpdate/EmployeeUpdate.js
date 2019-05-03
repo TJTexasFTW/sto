@@ -74,7 +74,8 @@ class Employee_Update extends Component {
         }).then(user => {
             // let {name, initials, admin, inactive} = req.body;
             console.log("user.data: ", user.data)
-            let {id, name, initials, admin, inactive} = employeeList[0];
+            let {id, name, initials, admin, inactive} = user.data.employeeList[0];
+            console.log(id, name, initials, admin, inactive)
 
             
 
