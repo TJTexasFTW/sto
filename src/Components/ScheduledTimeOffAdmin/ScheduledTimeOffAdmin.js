@@ -18,7 +18,7 @@ class STO_Admin
         return(
             <div>
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
-                <h2 className = 'subHeading'>Admin Add / Update STO</h2>
+                <h2 className = 'subHeading'>Admin Add STO For Blocked Dates</h2>
 
             <p className='inputLabel'>For:  <input className='inputBox' placeholder = "User Name"/></p>
             <p className='inputLabel'>Start Date:  <input className='inputBox' placeholder = "Start Date" type="date"/></p>
@@ -29,7 +29,7 @@ class STO_Admin
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
                     <Link to='/'><button className = "adminButton">LOG OFF</button></Link>
                     <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
-                    <button className = "adminButton">DELETE</button>
+                    {/* <button className = "adminButton">DELETE</button> */}
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
                 </div>

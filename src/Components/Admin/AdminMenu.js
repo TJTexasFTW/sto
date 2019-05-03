@@ -23,7 +23,8 @@ class Admin_Menu extends Component {
                 <Link to='/employee_maintenance'><button className = "big">Employee Maintenance</button></Link>
                 <Link to='/event_maintenance'><button className = "big">Event Maintenance</button></Link>
                 <Link to='/blocked_days'><button className = "big">Blocked Date Maintenance</button></Link>
-                <Link to='/scheduled_time_off_admin'><button className = "big">Edit STO / Add STO for Blocked Date</button></Link>
+                <Link to='/scheduled_time_off_admin'><button className = "big">Add STO for Blocked Date</button></Link>
+                <Link to='/scheduled_time_off_admin'><button className = "big">Delete STO Entries</button></Link>
             </div>
 
             <div className="button_choices">

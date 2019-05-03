@@ -11,6 +11,7 @@ import Login from './Components/Login/Login';
 import Home from './Components/Main/Home';
 import ScheduledTimeOffAdds from './Components/ScheduledTimeOffAdds/ScheduledTimeOffAdds';
 import ScheduledTimeOffAdmin from './Components/ScheduledTimeOffAdmin/ScheduledTimeOffAdmin';
+import STOAdminDelete from './Components/STOAdminDelete/STOAdminDelete';
 
 export default (
     <Switch>
@@ -24,6 +25,7 @@ export default (
         <Route path='/login' component={Login} />
         <Route path='/scheduled_time_off_adds' component={ScheduledTimeOffAdds} />
         <Route path='/scheduled_time_off_admin' component={ScheduledTimeOffAdmin} />
+        <Route path='/STO_admin_delete' component={STOAdminDelete} />
         <Route exact path='/' component={Home} />
     </Switch>
 )
