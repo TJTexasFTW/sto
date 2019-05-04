@@ -115,7 +115,7 @@ handleSTOClick() {
                                 start = info[i].start_date.substring(5,10)
                             }
                                 dateList.push(  
-                                    <p>{start} RESTRICTED</p>);
+                                    <p>{start} Restricted</p>);
                                     break;
         
                     case 'STO': 

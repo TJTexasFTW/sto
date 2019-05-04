@@ -67,7 +67,7 @@ class Login extends Component {
                 <h2 className = 'subHeading'>Login</h2>
 
             <p className='inputLabel'>Name:  <input onChange={this.handleName} className='inputBox' placeholder = "FLast"/></p>
-            <p className='inputLabel'>Password:  <input onChange={this.handlePassword} className='inputBox' placeholder = "Password" /></p>
+            <p className='inputLabel'>Password:  <input onChange={this.handlePassword} className='inputBox' type='password' placeholder = "Password" /></p>
 
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>

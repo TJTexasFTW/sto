@@ -40,7 +40,7 @@ class Event_Maintenance extends Component {
         return(
             <div>
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
-                <h2 className = 'subHeading'>Event Maintenance</h2>
+                <h2 className = 'subHeading'>Add an Event</h2>
 
             <p className='inputLabel'>Date:  <input onChange={this.handleEventDate} id="event_date" className='inputBox' placeholder = "Start Date" type="date"/></p>
             <p className='inputLabel'>Note:  <input onChange={this.handleComment} id="event_comment" className='inputBox' placeholder = "Note"/></p>
