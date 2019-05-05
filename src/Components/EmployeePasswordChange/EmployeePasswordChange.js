@@ -61,10 +61,11 @@ class Employee_Password_Change extends Component {
             <div>
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
                 <h2 className = 'subHeading'>Employee Password Update</h2>
-                <p className='instructions'>Use update/deactivate option on Employee Maint Menu for updating other employee information.</p>
+                <p className='instructions'>Use update/deactivate option on Employee Maint Menu <br />for updating other employee information.</p>
             <p className='inputLabel'>Name:  <input id="name_password" onChange={this.handleName} className='inputBox' placeholder = "FLast"/></p>
-            <p className='inputLabel'>New Password:  <input id='password1' onChange={this.handlePassword1} className='inputBox' placeholder = "Password" type="password"/></p>
-            <p className='inputLabel'>Confirm Pswrd:  <input id='password2' onChange={this.handlePassword2} className='inputBox' placeholder = "Password" type="password"/></p>
+            <p id='passwordInfo'>PASSWORD INFO:</p>
+            <p className='inputLabel'>New:  <input id='password1' onChange={this.handlePassword1} className='inputBox' placeholder = "Password" type="password"/></p>
+            <p className='inputLabel'>Confirm:  <input id='password2' onChange={this.handlePassword2} className='inputBox' placeholder = "Password" type="password"/></p>
             <center><p id='PasswordChangeStatus'></p></center> 
             <div className="button_choices">
                 <Link to='/'><button className = "adminButton">HOME</button></Link>

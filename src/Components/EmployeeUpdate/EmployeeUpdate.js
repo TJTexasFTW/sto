@@ -132,9 +132,9 @@ class Employee_Update extends Component {
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
                 <h2 className = 'subHeading'>Update / De-activate Employee</h2>
 
-            <p className='inputLabel'>Name to Update:  <input id='name' onChange={this.handleCurrentName} className='inputBox' placeholder = "FLast"/></p>
+            <p className='inputLabel'>Name:  <input id='name' onChange={this.handleCurrentName} className='inputBox' placeholder = "FLast" autoComplete='off'/></p>
 
-            <p id='curInitials' className='inputLabel'>Initials:  <input className='inputBox' placeholder = "Initials" id = 'initials'/></p>
+            <p id='curInitials' className='inputLabel'>Initials:  <input className='inputBox' placeholder = "Initials" id = 'initials' autoComplete='off'/></p>
  
             <div id='chkAdmin' className="Administrative">
                 <label className = 'adminCheckbox' >Administrator: </label>
@@ -143,13 +143,13 @@ class Employee_Update extends Component {
             </div>
 
             <div id='chkDeactivate' className="Deactivate">
-                <label className = 'deactiveCheckbox'>Set as Inactive: </label>
+                <label className = 'deactiveCheckbox'>Inactive: </label>
                 <input className = 'deactiveChkClass' type="checkbox" id="deactiveChk"/>
 
             <p className='labelAdminCheck'>Check box to deactivate employee</p>   
             </div>
             <br></br>
-            <center><p id='addEmpUpdateStatus'>Enter FLast and click Get Current Data button.</p></center>    <center><p id='addEmpUpdateNote'>NOTE: Return to EMPLOYEE MAINT MENU to update password.</p></center>       
+            <center><p id='addEmpUpdateStatus'>Enter FLast of employee to update and click Get Current Data button.</p></center>    <center><p id='addEmpUpdateNote'>NOTE: Return to EMPLOYEE MAINT MENU to update password.</p></center>       
 
             
             <div className="button_choices">
