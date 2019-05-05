@@ -37,7 +37,7 @@ app.get('/api/logoff', authController.logoffUser);
 app.post('/api/addSTO', authController.addSTO);
 app.post('/api/blocked', authController.addBlocked);
 app.post('/api/event', authController.addEvent);
-// app.put('/api/employee_update', authController.updateEmployee);
+app.delete('/api/STO/:id', authController.deleteSTO);
 app.put('/api/employee_password_change/:id', authController.updateEmployeePassword);
 app.put('/api/employee_update/:id', authController.updateEmployee);
 app.post('/api/employee_update/:id', authController.getEmployeeData);

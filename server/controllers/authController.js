@@ -72,6 +72,22 @@ addSTO: (req, res) => {
 }
   })},
 
+  deleteSTO: (req, res) => {
+    console.log("authController deleteSTO hit. req.body: ", req.body);
+    console.log('--------------------------');
+    let start_date = req.body.data.startDate;
+    let end_date = req.body.data.endDate;
+    let name = req.body.data.name;
+
+    console.log('destructured: ', start_date, end_date, name);
+    console.log('--------------------------');
+
+    let db = req.app.get('db');
+    db.sto_delete_record(name, start_date, end_date).then(() => {
+      res.status(200).json(name);
+  }).catch(err => console.log(err))
+  },
+
   addBlocked: (req, res) => {
     // console.log("In authController addBlocked function");
     let {blocked_date, comment, employee_id} = req.body;
