@@ -329,3 +329,154 @@
 /* #empUpdateInstructions {
     display: block;
 } */
+
+.months {
+    font-family: Arial, Helvetica, sans-serif;
+      font-size: 2vw;
+      font-weight: bolder;
+      display: flex;
+      justify-content: space-around;
+      padding-left: 5vw;
+      padding-right: 5vw;
+      padding-bottom: 0;
+      margin-top: 13vh;
+      border-bottom: blue;
+      margin-bottom: 0;
+  }
+
+  .restrictedNotice {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 8vh;
+    font-style: italic;
+    padding-bottom: 3vh;
+}
+
+
+body {
+    background-image: url('Water_and_Hut.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+   }
+
+@media screen and (max-width: 700px) {
+
+    .bigButton button {
+        margin-top: 3vh;
+        font-size: 2.5vw;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-content: center;
+        background-color: darkturquoise; 
+        border: black;
+        border-bottom-style: solid;
+        border-radius: 12px;
+        color: white;
+        width: 40vw; 
+        height: 5vh;
+        padding-left: 3vw;
+        margin-left: 30vw;
+        text-decoration: none; 
+    }
+
+    .inputBox {
+        font-size: 2.5vw;
+        font-family: Arial, Helvetica, sans-serif;
+        /* width: 20vw; */
+        align-content: left;
+        margin-bottom: 2vh;
+        margin-left: 3vw;
+        margin-right: 30vw;
+        justify-content: left;
+        border: darkgreen;
+    }
+
+    .inputLabel{
+        font-size: 2.9vw;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        /* margin-left: 30vw; */
+        text-align: right;
+        margin-left: 20vw;
+    }
+
+    .labelAdminCheck {
+        font-size: 2.9vw;
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        text-align: left; 
+        color: black;
+        padding-left: 0;
+        margin-left: 15.5vw;
+        margin-top: 1vh;
+        padding-left: 20vw;
+        vertical-align: text-bottom; 
+    }
+
+    #adminChk {
+        vertical-align: text-top;
+        margin-left: 3.2vw;
+        margin-top: 0vh;
+        transform: scale(1.7);
+        
+    }
+
+    .adminCheckbox {
+        font-size: 2.9vw;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        margin-left: 20vw;
+    }
+
+    .months {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 2.9vw;
+        font-weight: bolder;
+        display: flex;
+        justify-content: space-around;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        padding-bottom: 0;
+        margin-top: 13vh;
+        border-bottom: blue;
+        margin-bottom: 0;
+    }
+
+    .restrictedNotice {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 2.5vw;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 8vh;
+        font-style: italic;
+        padding-bottom: 3vh;
+    }
+
+    .subHeading {
+        margin-top: 4vh;
+        margin-bottom: 4vh;     
+        font-size: 3vw;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        text-decoration: underline;
+    
+    }
+
+    body {
+        /* background-image: url('Beach.jpg'); */
+        /* background-image: url('beachchair.jpg'); */
+        background-image: url('beach-children-footprint-6551.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+       }
+
+       .appHeading {
+        padding-top: 5.5vh;
+    }
+
+  }

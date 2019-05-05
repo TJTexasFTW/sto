@@ -61,9 +61,9 @@ class Employee_Add extends Component {
                 <h2 className = 'subHeading'>Add New Employee</h2>
 
             <div className= 'inputBoxes'>
-            <p className='inputLabel'>Name:  <input onChange={this.handleName} className='inputBox' placeholder = "FLast" id="inputName" autocomplete="off"/></p>
-            <p className='inputLabel'>Initials:  <input onChange={this.handleInitials} className='inputBox' placeholder = "Initials" id="inputInitials" autocomplete="off"/></p>
-            <p className='inputLabel'>Password:  <input  onChange={this.handlePassword} className='inputBox' placeholder = "Password" type="password" id="inputPassword" autocomplete="off"/></p>
+            <p className='inputLabel'>Name:  <input onChange={this.handleName} className='inputBox' placeholder = "FLast" id="inputName" autoComplete="off"/></p>
+            <p className='inputLabel'>Initials:  <input onChange={this.handleInitials} className='inputBox' placeholder = "Initials" id="inputInitials" autoComplete="off"/></p>
+            <p className='inputLabel'>Password:  <input  onChange={this.handlePassword} className='inputBox' placeholder = "Password" type="password" id="inputPassword" autoComplete="off"/></p>
             <div className="Administrative">
                 <label className = 'adminCheckbox'>Administrator: </label>
                 <input onChange={this.handleAdmin} className = 'adminChkClass' type="checkbox" id="adminChk" />

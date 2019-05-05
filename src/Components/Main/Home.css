@@ -1,4 +1,4 @@
-body {
+/* body {
     /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYX6_jJxvMpDeinBiHBPM-AkU_79keJr6AC-a7UdeK5BCn9gXpKg"); */
     /* background-image: url('Beach.jpg'); */
     background-image: url('Water_and_Hut.jpg');
@@ -7,7 +7,7 @@ body {
     /* background-color: ; */
     background-repeat: no-repeat;
     background-size: cover;
-   }
+   /* } */ */
 
 #logoff{
     display: none;
@@ -17,7 +17,7 @@ body {
     display: none;
 }
 
-  .months {
+/* .months {
     font-family: Arial, Helvetica, sans-serif;
       font-size: 2vw;
       font-weight: bolder;
@@ -29,7 +29,7 @@ body {
       margin-top: 13vh;
       border-bottom: blue;
       margin-bottom: 0;
-  }
+  } */
 
 .current_month {
     /* text-decoration-line: underline; */
@@ -94,7 +94,7 @@ body {
     display: block;
   }
 
-.restrictedNotice {
+/* .restrictedNotice {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2vw;
     font-weight: bold;
@@ -102,7 +102,7 @@ body {
     padding-top: 8vh;
     font-style: italic;
     padding-bottom: 3vh;
-}
+} */
 
 .sto_listing {
     font-weight:lighter;
