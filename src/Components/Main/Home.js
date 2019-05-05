@@ -185,24 +185,24 @@ handleSTOClick() {
             <div className="Home">
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
                 <div className="months">
-                    <div className="current_month"><u>CURRENT MONTH</u>
+                    <div className="current_month" id="current_month"><u>CURRENT MONTH</u>
                         <ul className='sto_listing'>
                             {dateList0}
                         </ul> 
                     </div>
-                    <div className="next_month"><u>NEXT MONTH</u>
+                    <div className="next_month" id='next_month'><u>NEXT MONTH</u>
                     <ul className='sto_listing'>
                             {dateList1}
                         </ul> 
                     </div>
                     
-                    <div className="two_months_out"><u>TWO MONTHS OUT</u>
+                    <div className="two_months_out" id='two_months_out'><u>TWO MONTHS OUT</u>
                     <ul className='sto_listing'>
                             {dateList2}
                         </ul>                     
                     </div>
                 </div>
-                <p className = "restrictedNotice">Time off for RESTRICTED dates requires Senior Management Approval.</p>
+                <p className = "restrictedNotice">Time off for Restricted dates requires Senior Management Approval.</p>
                 <div className="button_choices">
                     {/* <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link> */}
                     {/* <button id="logoff" className = "adminButton" >LOG OFF</button> */}

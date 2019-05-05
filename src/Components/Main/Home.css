@@ -64,20 +64,20 @@
     text-decoration: none;
 } */
 
-.addButton {
+/* .addButton {
     background-color: darkturquoise; /* Green */
-    border: none;
+    /* border: none;
     border: teal;
     border-style: solid;
     border-radius: 12px;
     color: white;
-    padding: 1vh 3vw;
-    text-align: center;
+    padding: 1vh 3vw; */
+    /* text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 2vw;
-    margin-bottom: 2vh;
-  }
+    margin-bottom: 2vh; */
+  /* } */ */
 
   /* .adminButton {
     background-color: darkturquoise; /* Green */

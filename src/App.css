@@ -60,7 +60,7 @@
     font-size: 2vw;
     font-family: Arial, Helvetica, sans-serif; 
     text-align: left; 
-    margin-left: 32vw;
+    margin-left: 38vw;
     padding-right: 0; 
     /* width: 5vw; */
 } 
@@ -216,6 +216,17 @@
 
 }
 
+#passwordInfo {
+    margin-left: 38vw;
+    margin-bottom: 1vh;
+    font-size: 2vw;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    text-decoration: underline;
+}
+
+
 #addBlockedStatus{
     /* margin-bottom: 3vh; */
     font-size: 2vw;
@@ -230,6 +241,21 @@
     /* margin-top: -50vh; */
     /* z-index: 100;   */
 } 
+
+.addButton {
+    background-color: darkturquoise; /* Green */
+    border: none;
+    border: teal;
+    border-style: solid;
+    border-radius: 12px;
+    color: white;
+    padding: 1vh 3vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2vw;
+    margin-bottom: 2vh;
+  }
 
 #addEventStatus{
     /* margin-bottom: 3vh; */
@@ -363,13 +389,18 @@ body {
     display: block;
   }
 
+  #current_month p, #next_month p, #two_months_out p{ 
+    font-weight: normal; 
+  }
+
+
    /*==================================*/
 
 @media screen and (max-width: 700px) {
 
     .bigButton button {
         margin-top: 3vh;
-        font-size: 2.5vw;
+        font-size: 2.9vw;
         font-family: Arial, Helvetica, sans-serif;
         display: flex;
         justify-content: space-evenly;
@@ -472,7 +503,7 @@ body {
     .months {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 2.9vw;
-        font-weight: bolder;
+        font-weight: lighter;
         display: flex;
         justify-content: space-around;
         padding-left: 5vw;
@@ -505,11 +536,7 @@ body {
     }
 
     body {
-        /* background-image: url('Beach.jpg'); */
-        /*MountainLakeDock.jpg*/
         background-image: url('MountainLakeDock.jpg');
-        /* background-image: url('beachchairs2.jpg'); */
-        /* background-image: url('beach-children-footprint-6551.jpg'); */
         background-repeat: no-repeat;
         background-size: cover;
        }
@@ -543,7 +570,7 @@ body {
 }
 
 #addEmpUpdateStatus, #addStatus {
-    font-size: 2.6vw;
+    font-size: 2.9vw;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 900;
     color: red;
@@ -566,5 +593,41 @@ body {
     font-style: italic;
     margin-bottom: 3vh;
 }
+
+#current_month, #next_month, #two_months_out{
+    font-weight: bold;
+}
+
+/* p:first-child  */
+#current_month p, #next_month p, #two_months_out p{ 
+    font-weight: normal; 
+  }
+
+  .restrictedNotice {
+    font-size: 2.9vw;
+    color: yellow;
+    padding-top: 4vh;
+    font-style: italic;
+    padding-bottom: 3vh;
+}
+
+#addSTOStatus, #PasswordChangeStatus, #addEventStatus, #addBlockedStatus, #deleteSTOStatus {
+    font-size: 2.6vw;
+} 
+
+.addButton {
+    background-color: darkturquoise; /* Green */
+    border: none;
+    border: teal;
+    border-style: solid;
+    border-radius: 12px;
+    color: white;
+    padding: 1vh 3vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2.6vw;
+    margin-bottom: 2vh;
+  }
 
   }

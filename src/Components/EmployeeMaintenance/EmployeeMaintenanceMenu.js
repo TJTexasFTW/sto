@@ -20,9 +20,9 @@ class Employee_Maintenance_Menu extends Component {
                 <h2 className = 'subHeading'>Employee Maintenance Menu</h2>
 
             <div className = 'bigButton'>
-                <Link to='/employee_add'><button className = "big">Add Employee</button></Link>
-                <Link to='/employee_update'><button className = "big">Update/Deactivate Employee</button></Link>
-                <Link to='/employee_password_change'><button className = "big">Change Employee Password</button></Link>
+                <Link to='/employee_add'><button className = "big">Add</button></Link>
+                <Link to='/employee_update'><button className = "big">Update/Deactivate</button></Link>
+                <Link to='/employee_password_change'><button className = "big">Change Password</button></Link>
             </div>
 
             <div className="button_choices">
