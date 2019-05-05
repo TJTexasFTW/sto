@@ -47,25 +47,17 @@ class STOAdminDelete extends Component {
     // }
 
     deleteSTO() {
-        // /api/STO/:id
         console.log("deleteSTO:", this.state.name, this.state.startDate, this.state.endDate)
-        // let id_to_send = this.state.name + "|" + this.state.startDate + '|' + this.state.endDate
         let data = {name: this.state.name, startDate: this.state.startDate, endDate: this.state.endDate}
-        //axios.delete('/api/users/:id', id).
-        // axios.put(`/api/employee_update/${this.state.id}`, {
-        // axios.delete(url, {data:{username:"user", password:"pass"}, headers:{Authorization: "token"}})
-        // axios.delete('/api/STO/:id', {data: {data}}).then(user => {
-        // axios.delete('/api/STO/:id', {name: this.state.name, startDate: this.state.startDate, endDate: this.state.endDate}).then(user => {
-            //employee updated - display msg in addStatus and clear the fields
+        
         axios.delete('/api/STO/:id', {data: {data}}).then(user => {
             document.getElementById("emp_name_STO").value = '';
             document.getElementById("start_date_delete").value = '';
             document.getElementById("end_date_delete").value = '';
             document.getElementById('deleteSTOStatus').innerHTML = `${this.state.name} STO record was deleted`;
         }).catch(function(error) {
-            document.getElementById('deleteSTOStatus').innerHTML = 'Houston we have problem - STO delete denied.'});
+            document.getElementById('deleteSTOStatus').innerHTML = 'STO delete denied-no match or multiple matches found. See DB admin.'});
     }
-
 
     render() {
 

@@ -118,8 +118,8 @@ class STO_Adds extends Component {
             <center><p id='addSTOStatus'></p></center>
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
-                    <button className = "adminButton" onClick={this.handleLogoffClick}>LOG OFF</button>
-                    <Link to='/'><button className = "adminButton">DELETE</button></Link>                    
+                    {/* <button className = "adminButton" onClick={this.handleLogoffClick}>LOG OFF</button> */}
+                    {/* <Link to='/'><button className = "adminButton">DELETE</button></Link>                     */}
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
                 </div>

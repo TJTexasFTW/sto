@@ -22,25 +22,26 @@ class Home extends Component {
 
         this.handleAdminClick = this.handleAdminClick.bind( this ); 
         this.handleSTOClick = this.handleSTOClick.bind( this ); 
+        this.handleLogoffClick = this.handleLogoffClick.bind(this);
 
     }
 
-    componentDidMount() {
+    async componentDidMount() {
 
         // console.log("Home props: ", this.props);
         // console.log("req.session.user: ", req.session.user)
 
         // document.getElementById('userMsg').innerHTML = `Hello ${this.props.loginUser.user.username}`;
 
-    axios.get('/api/currentMonth')
+    await axios.get('/api/currentMonth')
         .then(results => {this.setState({ thisMonth: results.data });
       }).catch( error => alert(error));
 
-        axios.get('/api/nextMonth')
+    await axios.get('/api/nextMonth')
         .then(results => {this.setState({ nextMonth: results.data });
       }).catch( error => alert(error));
 
-        axios.get('/api/twoMonthsOut')
+    await axios.get('/api/twoMonthsOut')
         .then(results => {this.setState({ twoMonthsOut: results.data });
       }).catch( error => alert(error));
 
@@ -56,7 +57,24 @@ class Home extends Component {
     //     }
     //   }
     
-handleAdminClick() {
+    handleLogoffClick() {
+        //user has requested logoff
+        //clear session and loginUser.user object
+        axios.get('/api/logoff')
+            .then(results => {this.setState({ username: '' });
+        }).catch( error => alert("This is the handleLogoffClick error: ", error))
+
+        // store.dispatch( logoff({ }) )
+
+        //need to clear user info on state
+        this.props.history.push('/')
+        // console.log("STO add handleLogoffClick redirect command executed")
+
+        document.location.reload()
+        // console.log("STO add handleLogoffClick reload command executed")
+    }
+
+    handleAdminClick() {
     if (typeof this.props.loginUser.user.id === 'undefined') {
         //no user logged in
         this.props.history.push('/login')
@@ -187,7 +205,8 @@ handleSTOClick() {
                 <p className = "restrictedNotice">Time off for RESTRICTED dates requires Senior Management Approval.</p>
                 <div className="button_choices">
                     {/* <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link> */}
-                    <button id="logoff" className = "adminButton" >LOG OFF</button>
+                    {/* <button id="logoff" className = "adminButton" >LOG OFF</button> */}
+                    <button className = "adminButton" onClick={this.handleLogoffClick}>LOG OFF</button>
                     <button className = "adminButton" id="admin" onClick = {this.handleAdminClick}>ADMIN MENU</button>
                     <button className="addButton" id="STO" onClick = {this.handleSTOClick}>ADD/UPDATE STO</button>
                     <button className = 'adminButton' id="login">LOG IN</button>

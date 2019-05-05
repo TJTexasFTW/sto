@@ -74,7 +74,7 @@ class Employee_Add extends Component {
             <div className="button_choices">
                 <Link to='/'><button className = "adminButton">HOME</button></Link>
                 <Link to='/employee_maintenance'><button className = "adminButton">EMPLOYEE MAINT MENU</button></Link>
-                <Link to='/'><button className = "adminButton">LOG OFF</button></Link>
+                {/* <Link to='/'><button className = "adminButton">LOG OFF</button></Link> */}
                 <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
                 </div>

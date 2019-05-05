@@ -28,7 +28,7 @@ class Employee_Maintenance_Menu extends Component {
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
                     <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
-                    <Link to='/'><button className = "adminButton">LOG OFF</button></Link>
+                    {/* <Link to='/'><button className = "adminButton">LOG OFF</button></Link> */}
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
             </div>
 
