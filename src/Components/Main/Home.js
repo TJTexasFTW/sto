@@ -111,10 +111,10 @@ handleSTOClick() {
 
     render() {
 
-        console.log("Render what props:", this.props)
+        // console.log("Render what props:", this.props)
 
         function prepareDateList(array) {
-            console.log(array);
+            // console.log(array);
             // array is from state for date column being processed
             // dateList will be the dates after processing
             // for formatting depending on if STO, event or blocked
