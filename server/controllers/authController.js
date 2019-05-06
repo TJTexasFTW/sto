@@ -77,9 +77,11 @@ addSTO: (req, res) => {
     to: "nottodayjose@yahoo.com",
     subject: `STO Added for ${name}`,
     // text: "A new STO has been added",
-   html: `<p><b>Employee</b>: ${name}</p>
+   html: `<h3 style="color: blue;"><u>NEW STO ENTRY</u></h3>
+          <p><b>Employee</b>: ${name}</p>
           <p><b>Start:</b> ${start_date}<p>
           <p><b>End:</b> ${end_date}<p>`
+
     // html: '<h1><b>STO Added</b></h1><p>Testing HTML formatting</p>'
   }
 
