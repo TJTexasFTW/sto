@@ -50,8 +50,10 @@ class STO_Adds extends Component {
     
     handleSubmit() {
        let today = this.formatDate();
-       console.log("Submit STO button clicked: ", this.state.startDate, this.state.endDate, this.state.comment, this.props.id, today);
+       console.log("Submit STO button clicked: ", this.props.username, this.state.startDate, this.state.endDate, this.state.comment, this.props.id, today);
         axios.post('/api/addSTO', {
+            // name: document.getElementById("for").value,
+            name: this.props.username,
             start_date: this.state.startDate,
             end_date: this.state.endDate,
             comment: this.state.comment,
