@@ -27,12 +27,6 @@ class Home extends Component {
     }
 
     async componentDidMount() {
-
-        // console.log("Home props: ", this.props);
-        // console.log("req.session.user: ", req.session.user)
-
-        // document.getElementById('userMsg').innerHTML = `Hello ${this.props.loginUser.user.username}`;
-
     await axios.get('/api/currentMonth')
         .then(results => {this.setState({ thisMonth: results.data });
       }).catch( error => alert(error));
@@ -204,14 +198,10 @@ handleSTOClick() {
                 </div>
                 <p className = "restrictedNotice">Time off for Restricted dates requires Senior Management Approval.</p>
                 <div className="button_choices">
-                    {/* <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link> */}
-                    {/* <button id="logoff" className = "adminButton" >LOG OFF</button> */}
                     <button className = "adminButton" onClick={this.handleLogoffClick}>LOG OFF</button>
                     <button className = "adminButton" id="admin" onClick = {this.handleAdminClick}>ADMIN MENU</button>
                     <button className="addButton" id="STO" onClick = {this.handleSTOClick}>ADD/UPDATE STO</button>
                     <button className = 'adminButton' id="login">LOG IN</button>
-                    {/* <Link to='/login'><button className="addButton">ADD/UPDATE STO</button></Link> */}
-                    
                 </div>
                 <p>User Msg Below This</p>
                 <p id="userMsg"></p>

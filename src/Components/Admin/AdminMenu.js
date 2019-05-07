@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
-// import axios from 'axios';
 
 class Admin_Menu extends Component {
     constructor() {
@@ -29,7 +28,6 @@ class Admin_Menu extends Component {
 
             <div className="button_choices">
                 <Link to='/'><button className = "adminButton">HOME</button></Link>
-                {/* <Link to='/'><button className = "adminButton">LOG OFF</button></Link> */}
             </div>
 
             </div>
