@@ -61,22 +61,15 @@ $font_family: Arial, Helvetica, sans-serif;
 } 
 
 #deactiveChk {
-    font-size: 2vw;
-    font-family: $font_family;
-    text-align: left; 
+    // font-size: 2vw;
+    // font-family: $font_family;
+    // text-align: left; 
+    @extend .adminCheckbox;
     margin-left: 3vw;
     padding-right: 0;
     transform: scale(2.5);
 
 }
-
-.deactiveCheckbox { 
-    font-size: 2vw;
-    font-family: $font_family; 
-    text-align: left; 
-    margin-left: 38vw;
-    padding-right: 0; 
-} 
 
 #adminChk {
     vertical-align: text-top;
@@ -86,6 +79,13 @@ $font_family: Arial, Helvetica, sans-serif;
     
 }
 
+.deactiveCheckbox { 
+    font-size: 2vw;
+    font-family: $font_family; 
+    text-align: left; 
+    margin-left: 38vw;
+    padding-right: 0; 
+} 
 
 .inputBox {
     font-size: 2vw;
@@ -165,19 +165,19 @@ $font_family: Arial, Helvetica, sans-serif;
 
 .months {
     font-family: $font_family;
-      font-size: 2vw;
-      font-weight: bolder;
-      display: flex;
-      justify-content: space-around;
-      padding-left: 5vw;
-      padding-right: 5vw;
-      padding-bottom: 0;
-      margin-top: 13vh;
-      border-bottom: blue;
-      margin-bottom: 0;
-  }
+    font-size: 2vw;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-around;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 0;
+    margin-top: 13vh;
+    border-bottom: blue;
+    margin-bottom: 0;
+}
 
-  .restrictedNotice {
+.restrictedNotice {
     font-family: $font_family;
     font-size: 2vw;
     font-weight: bold;
@@ -191,15 +191,11 @@ body {
     background-image: url('Water_and_Hut.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-   }
+}
 
-  #current_month p, #next_month p, #two_months_out p{ 
+#current_month p, #next_month p, #two_months_out p{ 
     font-weight: normal; 
-  }
-
-  #current_month p, #next_month p, #two_months_out p{ 
-    font-weight: normal; 
-  }
+}
 
 /*================================*/
 /*      STATUS MESSAGES */
@@ -310,7 +306,6 @@ button:hover {
     display: flex; 
     justify-content: space-evenly;
 }
-
 
 /*================================*/
         /* MEDIA */
