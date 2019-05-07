@@ -114,13 +114,13 @@
     /* background-color:cornflowerblue; */
 }  
 
-.button_choices {
+/* .button_choices {
     padding-top: 8vh;
     display: flex; 
     justify-content: space-evenly;
-}
+} */
 
-.bigButton button {
+/* .bigButton button {
     margin-top: 3vh;
     font-size: 2vw;
     font-family: Arial, Helvetica, sans-serif;
@@ -138,7 +138,7 @@
     padding-left: 3vw;
     margin-left: 30vw;
     text-decoration: none; 
-}
+} */
 
 .big:active {
     border-color: green;
@@ -242,9 +242,9 @@
     /* z-index: 100;   */
 } 
 
-.addButton {
+/* .addButton {
     background-color: darkturquoise; /* Green */
-    border: none;
+    /* border: none;
     border: teal;
     border-style: solid;
     border-radius: 12px;
@@ -254,8 +254,8 @@
     text-decoration: none;
     display: inline-block;
     font-size: 2vw;
-    margin-bottom: 2vh;
-  }
+    margin-bottom: 2vh; */
+  /* } */ */
 
 #addEventStatus{
     /* margin-bottom: 3vh; */
@@ -374,9 +374,9 @@ body {
     background-size: cover;
    }
 
-   .adminButton {
+   /* .adminButton {
     background-color: darkturquoise; /* Green */
-    border: teal;
+    /* border: teal;
     border-style: solid;
     border-radius: 12px;
     color: white;
@@ -387,7 +387,7 @@ body {
     font-size: 2vw;
     margin-bottom: 2vh;
     display: block;
-  }
+  } */ */
 
   #current_month p, #next_month p, #two_months_out p{ 
     font-weight: normal; 
@@ -398,7 +398,7 @@ body {
 
 @media screen and (max-width: 700px) {
 
-    .bigButton button {
+    /* .bigButton button {
         margin-top: 3vh;
         font-size: 2.9vw;
         font-family: Arial, Helvetica, sans-serif;
@@ -420,7 +420,7 @@ body {
 
     .adminButton {
         background-color: darkturquoise; /* Green */
-        border: teal;
+        /* border: teal;
         border-style: solid;
         border-radius: 12px;
         color: white;
@@ -431,7 +431,7 @@ body {
         font-size: 2.7vw;
         margin-bottom: 2vh;
         display: block;
-      }
+      } */ */
 
     .inputBox {
         font-size: 2.7vw;
@@ -539,9 +539,9 @@ body {
         background-image: url('MountainLakeDock.jpg');
         background-repeat: no-repeat;
         background-size: cover;
-       }
+        }
 
-       .appHeading {
+    .appHeading {
         padding-top: 5.5vh;
         margin-top: 5vh;
     }
@@ -616,9 +616,9 @@ body {
     font-size: 2.6vw;
 } 
 
-.addButton {
+/* .addButton {
     background-color: darkturquoise; /* Green */
-    border: none;
+    /* border: none;
     border: teal;
     border-style: solid;
     border-radius: 12px;
@@ -629,6 +629,6 @@ body {
     display: inline-block;
     font-size: 2.6vw;
     margin-bottom: 2vh;
-  }
+  } */ 
 
   }

@@ -1,0 +1,74 @@
+$button-color: darkturquoise;
+$button-border: teal;
+
+.bigButton button {
+    background-color: $button-color; 
+    border: $button-border;
+    border-bottom-style: solid;
+    border-radius: 12px;
+    color: white;
+    margin-top: 3vh;
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none; 
+
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-content: center;
+    width: 40vw; 
+    height: 5vh;
+    padding-left: 3vw;
+    margin-left: 30vw;
+    
+}
+
+.addButton {
+    background-color: $button-color;
+    border: $button-border;
+    border-style: solid;
+    border-radius: 12px;
+    color: white;
+    padding: 1vh 3vw;
+    text-align: center;
+    text-decoration: none;
+    font-size: 2vw;
+    margin-bottom: 2vh;
+    display: inline-block;
+}
+
+.adminButton {
+    background-color: $button-color; 
+    border: $button-border;
+    border-style: solid;
+    border-radius: 12px;
+    color: white;
+    padding: 1vh 3vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2vw;
+    margin-bottom: 2vh;
+    display: block;
+}
+
+.button_choices {
+    padding-top: 8vh;
+    display: flex; 
+    justify-content: space-evenly;
+}
+
+
+/*================================*/
+        /* MEDIA */
+/*================================*/
+
+@media screen and (max-width: 700px) {
+    .bigButton button {
+        font-size: 2.9vw;
+    }
+    .adminButton {
+        font-size: 2.7vw;
+    }
+
+}
