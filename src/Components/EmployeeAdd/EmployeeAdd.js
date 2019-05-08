@@ -12,14 +12,16 @@ class Employee_Add extends Component {
             password: '',
             admin: false,
             inactive: false,
-            redirect: false
+            redirect: false,
+            status: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind( this );
     }
 
     handleName = (e) => {
-        this.setState({name: e.target.value})
+        this.setState({name: e.target.value});
+        this.setState({status: ''})
     }
 
     handleInitials = (e) => {
@@ -44,16 +46,30 @@ class Employee_Add extends Component {
             admin: this.state.admin
         }).then(user => {
             //new employee added - display msg in addStatus and clear the fields
-            document.getElementById('addStatus').innerHTML = `${this.state.name} was added`;
+            // document.getElementById('addStatus').innerHTML = `${this.state.name} was added`;
+            this.setState({status: true});
             document.getElementById("inputName").value = '';
             document.getElementById("inputInitials").value = '';
             document.getElementById("inputPassword").value = '';
             document.getElementById("adminChk").checked = false;
-        }).catch(function(error) {
-            document.getElementById('addStatus').innerHTML = 'Employee was NOT added - the employee name or initials already exist.'});
+        }).catch(error => {
+            // document.getElementById('addStatus').innerHTML = 'Employee was NOT added - the employee name or initials already exist.'
+            this.setState({status: false})
+        });
     }
 
     render() {
+
+        let addEmployeeStatus;
+
+        if (this.state.status) {
+          addEmployeeStatus = <p id='addEmployeeStatusMsg'>{this.state.name} was added.</p>;
+        } else if (this.state.status === false) {
+          addEmployeeStatus = <p id='addEmployeeStatusMsg'>Employee was NOT added - the employee name or initials already exist.</p>;
+        } else {
+            addEmployeeStatus = <p id='addEmployeeStatusMsg'></p>;
+        }
+
 
         return(
             <div>
@@ -70,7 +86,9 @@ class Employee_Add extends Component {
             </div>
             </div>
             <p className='labelAdminCheck'>Check box for admin employee</p>
-            <center><p id='addStatus'></p></center> 
+            {/* <center><p id='addStatus'></p></center>  */}
+            {addEmployeeStatus}
+            
             <div className="button_choices">
                 <Link to='/'><button className = "adminButton">HOME</button></Link>
                 <Link to='/employee_maintenance'><button className = "adminButton">EMPLOYEE MAINT MENU</button></Link>

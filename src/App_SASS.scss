@@ -228,36 +228,36 @@ body {
     text-align: center;
 }
 
-#addStatus{
+#updateEmployeeStatusMsg {
     @include statusFormat();
 }
 
 #addSTOStatus{
-    @extend #addStatus;
+    @extend #updateEmployeeStatusMsg;
 } 
 
-#PasswordChangeStatus {
-    @extend #addStatus;
+#changeEmployeePasswordStatusMsg {
+    @extend #updateEmployeeStatusMsg;
 }
 
-#addBlockedStatus{
-    @extend #addStatus;
+#addBlockedStatusMsg{
+    @extend #updateEmployeeStatusMsg;
 } 
 
 #addEventStatus{
-    @extend #addStatus;
+    @extend #updateEmployeeStatusMsg;
 }
 
-#addEmpUpdateStatus {
-    @extend #addStatus;
+#addEmployeeStatusMsg {
+    @extend #updateEmployeeStatusMsg;
 }
 
 #deleteSTOStatus {
-    @extend #addStatus;
+    @extend #updateEmployeeStatusMsg;
 }
 
 #loginStatusMsg {
-    @extend #addStatus;
+    @extend #updateEmployeeStatusMsg;
 }
 
 /*================================*/

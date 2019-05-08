@@ -37,17 +37,17 @@ class Login extends Component {
             console.log("Catch statement of handleClick in Login component");
             // console.log("in catch statement of handleClick of Login component");
             this.setState({loginNotValid: true});
-            return console.log("invalide credentials - handleClick catch of login component")
+            return console.log("invalid credentials - handleClick catch of login component")
             // document.getElementById('loginStatus').innerHTML = 'Invalid login credentials';
         })
         // await this.loginUser(this.state.name, this.state.password)
         // console.log("Login button pushed and reducer function ran");
               //redirect the user based on if admin or not
         // console.log("This.props: ", this.props)
-        console.log("LOGIN after axios call - this.props: ", this.props);
-        console.log("Login after axios call - this.state: ", this.state);
-        console.log("Login after axios user: ", this.user)
-        console.log("Login component after axios - this.state.props values: ", this.state.props)
+        // console.log("LOGIN after axios call - this.props: ", this.props);
+        // console.log("Login after axios call - this.state: ", this.state);
+        // console.log("Login after axios user: ", this.user)
+        // console.log("Login component after axios - this.state.props values: ", this.state.props)
         // console.log("login after axios req.session.user: ", req.session.user)
             if (this.props.username === undefined) {
                 this.setState({loginNotValid: true})

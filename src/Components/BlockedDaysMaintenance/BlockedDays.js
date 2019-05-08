@@ -10,6 +10,7 @@ class Blocked_Days extends Component {
             blocked_date: new Date(),
             comment: '',
             id: 0,
+            status: false
         }
 
         this.handleLogoffClick = this.handleLogoffClick.bind( this ); 
@@ -51,14 +52,28 @@ class Blocked_Days extends Component {
             employee_id: this.props.id
         }).then(user => {
             //new event added - display msg in addStatus and clear the fields
-            document.getElementById('addBlockedStatus').innerHTML = `${this.state.blocked_date} was added`;
+            // document.getElementById('addBlockedStatus').innerHTML = `${this.state.blocked_date} was added`;
+            this.setState({status: true})
             document.getElementById("blocked_date").value = '';
             document.getElementById("blocked_comment").value = '';
         }).catch(function(error) {
-            document.getElementById('addBlockedStatus').innerHTML = 'Houston we have problem - add denied.'});
+            // document.getElementById('addBlockedStatus').innerHTML = 'Houston we have problem - add denied.'
+            this.setState({status: false})
+        });
     }
     
     render() {
+
+        //Status msg to display to user. 
+        //If status is true - blocked date add was successful.
+        let addBlockedStatus;
+
+        if (this.state.status) {
+            addBlockedStatus = <p id='addBlockedStatusMsg'>{this.state.blocked_date} was added</p>;
+        } else {
+            addBlockedStatus = <p id='addBlockedStatusMsg'>There was a problem adding the blocked date. Please check with the system dba.</p>;
+        //   addBlockedStatus = <LoginButton onClick={this.handleLoginClick} />;
+        }
 
         return(
             <div>
@@ -67,8 +82,8 @@ class Blocked_Days extends Component {
 
             <p className='inputLabel'>Date:  <input onChange={this.handleBlockedDate} id='blocked_date' className='inputBox' placeholder = "Start Date" type="date"/></p>
             <p className='inputLabel'>Note:  <input onChange={this.handleComment} id='blocked_comment' className='inputBox' placeholder = "Note"/></p>
-            <center><p id='addBlockedStatus'></p></center>
-
+            {/* <center><p id='addBlockedStatus'></p></center> */}
+            {addBlockedStatus}
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
                     {/* <button onClick={this.handleLogoffClick} className = "adminButton">LOG OFF</button> */}
