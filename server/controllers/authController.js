@@ -25,28 +25,38 @@ module.exports = {
   loginUser: async (req, res) => {
     let db = req.app.get("db");
   
-    // console.log("In loginUser function: ", req.body);
-    let getUser = await db.employee_login_verify([req.body.name]);
-    let user = getUser[0];
-    // console.log("User: ", user);
+    console.log("In loginUser function: ", req.body);
+    let getUser = await db.employee_login_verify([req.body.name]).catch(err => console.log(err));
+    console.log("getUser: ", getUser)
+    console.log(Array.isArray(getUser) && getUser.length === 0);
+    if (getUser.length === 0) {
+      console.log('no user found');
+      return res.sendStatus(500)
+    } else {
+      let user = getUser[0];
+      console.log("After running Login Query value of User: ", user);
+    
+      let isAuthenticated = bcrypt.compareSync(req.body.password, user.password);
+    
+      console.log("Auth: ", isAuthenticated);
+      // console.log("ReqBody: ", req.body);
+      // console.log("User password: ", user.password);
   
-    let isAuthenticated = bcrypt.compareSync(req.body.password, user.password);
+      if (isAuthenticated) {
+        req.session.user = {
+          name: user.name,
+          initials: user.initials,
+          id: user.id,
+          admin: user.admin
+        }} else {
+          console.log("auth else")
+          res.sendStatus(400)
+            // req.session.destroy;
+        };
   
-    // console.log("Auth: ", isAuthenticated);
-    // console.log("ReqBody: ", req.body);
-    // console.log("User password: ", user.password);
-
-    if (isAuthenticated) {
-      req.session.user = {
-        name: user.name,
-        initials: user.initials,
-        id: user.id,
-        admin: user.admin
-      };
-
-      // console.log("req.session.user: ", req.session.user);
+      console.log("req.session.user AFTER IF STATEMENT", req.session.user);
+      res.status(200).json(req.session.user);
     }
-    res.status(200).json(req.session.user);
   },
 
   logoffUser(req, res) {

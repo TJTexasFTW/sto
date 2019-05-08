@@ -171,10 +171,18 @@ $font_family: Arial, Helvetica, sans-serif;
     justify-content: space-around;
     padding-left: 5vw;
     padding-right: 5vw;
-    padding-bottom: 0;
-    margin-top: 13vh;
-    border-bottom: blue;
+    // margin-top: 13vh;
+    width: 70vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
     margin-bottom: 0;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    border-bottom: blue;
+    // background-color: rgba(162, 226, 220, 0.05);
+    background: rgba(255, 255, 255, 0.4);
+    // color:aquamarine
+    border-radius: 25px;
 }
 
 .restrictedNotice {
@@ -182,9 +190,20 @@ $font_family: Arial, Helvetica, sans-serif;
     font-size: 2vw;
     font-weight: bold;
     text-align: center;
-    padding-top: 8vh;
+    // padding-top: 8vh;
+    margin-top: 3vh;
+    margin-left: 10vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    margin-right: 10vw;
+    background: rgba(255, 255, 255, 0.4);
     font-style: italic;
-    padding-bottom: 3vh;
+    width: 70vw;
+    content-align: center;
+    // padding-bottom: 3vh;
+    height: 5vh;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
 }
 
 body {
@@ -206,6 +225,7 @@ body {
     font-weight: 900;
     color: red;
     background-color: yellow;
+    text-align: center;
 }
 
 #addStatus{
@@ -233,6 +253,10 @@ body {
 }
 
 #deleteSTOStatus {
+    @extend #addStatus;
+}
+
+#loginStatusMsg {
     @extend #addStatus;
 }
 
