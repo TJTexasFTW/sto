@@ -15,18 +15,16 @@ class EmployeeLists extends Component {
             inactive: false,
             status: '',
             empList: []
-        }
-        // this.handleSubmit = this.handleSubmit.bind( this );
-        // this.setDisplayProperty = this.setDisplayProperty.bind(this);
-        // this.reset = this.reset.bind(this);
 
     }
+    }
 
-    // componentDidMount() {
-    //     if(!this.props.admin) {
-    //     this.props.history.push('/');
-    //             }
-    //         }        
+    componentDidMount() {
+        if(!this.props.admin) {
+        this.props.history.push('/');
+                }
+        this.getEmployeeListActive();
+            }        
 
 getEmployeeListActive = () => {
     
@@ -65,7 +63,7 @@ getEmployeeListActive = () => {
                 <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
                     <Link to='/employee_maintenance'><button className = "adminButton">EMPLOYEE MAINT MENU</button></Link>
-                    <button id='btnGetEmployeeListActive' onClick={this.getEmployeeListActive} className = "adminButton">GET LIST ACTIVE</button>
+                    {/* <button id='btnGetEmployeeListActive' onClick={this.getEmployeeListActive} className = "adminButton">GET LIST ACTIVE</button> */}
                 </div>
 
             </div>

@@ -30,12 +30,12 @@ class Employee_Maintenance_Menu extends Component {
                 <Link to='/employee_add'><button className = "big">Add</button></Link>
                 <Link to='/employee_update'><button className = "big">Update/Deactivate</button></Link>
                 <Link to='/employee_password_change'><button className = "big">Change Password</button></Link>
+                <Link to='/employee_lists'><button className = "big">Employee List - ACTIVE</button></Link>
             </div>
 
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
                     <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
-                    <Link to='/employee_lists'><button className = "adminButton">EMPLOYEE LIST - ACTIVE</button></Link>
 
             </div>
 
