@@ -10,30 +10,13 @@ class STO_Adds extends Component {
             name: '',
             startDate: new Date(),
             endDate: new Date(),
-            comment: ''
+            comment: '',
+            status: ''
         }
 
     this.handleSubmit = this.handleSubmit.bind( this );    
-    this.handleLogoffClick = this.handleLogoffClick.bind(this);
     this.formatDate = this.formatDate.bind(this);
 
-    }
-
-    componentDidMount() {
-    
-        //
-        // console.log("STO Add this.props.username: ", this.props.username);
-        // console.log("processed compDidMount:", this.state.thisMonth); 
-
-    //     axios.get('/api/nextMonth')
-    //     .then(results => {this.setState({ nextMonth: results.data });
-    //   }).catch( error => alert(error));
-    //     // console.log("processed compDidMount nextMonth:", this.state.nextMonth);
-
-    //     axios.get('/api/twoMonthsOut')
-    //     .then(results => {this.setState({ twoMonthsOut: results.data });
-    //   }).catch( error => alert(error));
-        // console.log("processed compDidMount twoMonthsOut:", this.state.twoMonthsOut);
     }
 
     formatDate() {
@@ -61,12 +44,14 @@ class STO_Adds extends Component {
             added: today
         }).then(user => {
             //new sto added - display msg in addStatus and clear the fields
-            document.getElementById('addSTOStatus').innerHTML = 'Your STO request was added';
+            // document.getElementById('addSTOStatus').innerHTML = 'Your STO request was added';
+            this.setState({status: true})
             document.getElementById("start_date").value = '';
             document.getElementById("end_date").value = '';
             document.getElementById("comment").value = '';
-       }).catch(function(error) {
-            document.getElementById('addSTOStatus').innerHTML = 'STO was NOT added - there is a restriction for the requested timeframe. <br />This will require senior mgmt approval.<br /> Once approved a system admin will need to input the approved STO.'});
+        }).catch(error => {
+            this.setState({status: false})
+        });
     }
 
     handleEmployee = (e) => {
@@ -85,27 +70,17 @@ class STO_Adds extends Component {
         this.setState({comment: e.target.value})
     }
 
-    handleLogoffClick() {
-        //user has requested logoff
-        //clear session and loginUser.user object
-        axios.get('/api/logoff')
-            .then(results => {this.setState({ username: '' });
-        }).catch( error => alert("This is the handleLogoffClick error: ", error))
-
-        // store.dispatch( logoff({ }) )
-
-        //need to clear user info on state
-        this.props.history.push('/')
-        // console.log("STO add handleLogoffClick redirect command executed")
-
-        document.location.reload()
-        // console.log("STO add handleLogoffClick reload command executed")
-    }
-
     render() {
 
-        // console.log("in render of STOAdds - this.props.name: ", this.props.username);
-        // document.getElementById('for').value = this.props.username;
+        let addSTOStatus;
+
+        if (this.state.status === true) {
+            addSTOStatus = <p id='addSTOStatusMsg'>STO was added.</p> ;
+        } else if (this.state.status === '') {
+            addSTOStatus = <p id='addSTOStatusMsg'></p>;
+        } else if (this.state.status === false) {
+            addSTOStatus = <p id='addSTOStatusMsg'>STO was NOT added - there is a restriction for the requested timeframe. This will require senior mgmt approval. Once approved a system admin will need to input the approved STO.</p> ;
+        }
 
         return(
             <div>
@@ -118,10 +93,10 @@ class STO_Adds extends Component {
             <p className='inputLabel'>End Date:  <input id='end_date' onChange={this.handleEndDate} className='inputBox' placeholder = "End Date" type="date" autoComplete="off"/></p>
             <p className='inputLabel'>Note:  <input id='comment' onChange={this.handleComment} className='inputBox' placeholder = "Note" autoComplete="off"/></p>
             <center><p id='addSTOStatus'></p></center>
+            {addSTOStatus}
+
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
-                    {/* <button className = "adminButton" onClick={this.handleLogoffClick}>LOG OFF</button> */}
-                    {/* <Link to='/'><button className = "adminButton">DELETE</button></Link>                     */}
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
                 </div>

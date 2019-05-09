@@ -17,6 +17,7 @@ class Employee_Update extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind( this );
         this.setDisplayProperty = this.setDisplayProperty.bind(this);
+        this.reset = this.reset.bind(this);
 
     }
 
@@ -30,40 +31,44 @@ class Employee_Update extends Component {
             admin: document.getElementById("adminChk").checked,
             inactive: document.getElementById("deactiveChk").checked
         }).then(user => {
-            //employee updated - display msg in addStatus and clear the fields
-            document.getElementById("name").value = '';
-            document.getElementById("initials").value = '';
-            document.getElementById("adminChk").value = false;
-            document.getElementById("deactiveChk").value = false;
-            // document.getElementById('addEmpUpdateStatus').innerHTML = `${this.state.name} was updated`;
+            // //employee updated - display msg in addStatus and clear the fields
+            this.reset();
             this.setState({status: true})
-            
-            //Need to reset form for another update
-            document.getElementById("curInitials").style.display = 'none';
-            document.getElementById("submitButton").style.display = 'none';
-            document.getElementById("chkDeactivate").style.display = 'none';
-            document.getElementById("chkAdmin").style.display = 'none';
-            document.getElementById("btnGetCurrentData").style.display = 'flex';
-
-            //Also need to clear state
-            this.setState({id: 0, currentName: '', name: '', initials: '', admin: false, inactive: false})
 
         }).catch(error => {
-            // document.getElementById('addEmpUpdateStatus').innerHTML = 'Houston we have problem - employee update denied.'});
             this.setState({status: false})
         });
     }
+
+    reset() {
+        document.getElementById("name").value = '';
+        document.getElementById("initials").value = '';
+        document.getElementById("adminChk").value = false;
+        document.getElementById("deactiveChk").value = false;
+
+        //Need to reset form for another update
+        document.getElementById("curInitials").style.display = 'none';
+        document.getElementById("submitButton").style.display = 'none';
+        document.getElementById("chkDeactivate").style.display = 'none';
+        document.getElementById("chkAdmin").style.display = 'none';
+        document.getElementById("btnGetCurrentData").style.display = 'flex';
+
+        //Also need to clear state
+        this.setState({id: 0, currentName: '', initials: '', admin: false, inactive: false})
+    }
+
 
     handleCurrentName = (e) => {
         // console.log("e: ", e.target.value)
         this.setState({status: ''})
         this.setState({currentName: e.target.value})
         this.setState({name: e.target.value})
-        console.log('currentName: ', this.state.currentName, 'name: ', this.state.name);
+        // console.log('currentName: ', this.state.currentName, 'name: ', this.state.name);
     }
 
     getEmployeeData = () => {
         console.log("GET EMPLOYEE DATA function: ", this.state.currentName)
+        console.log("GET EMPLOYEE DATA status: ", this.state.status)
         //Get current employee values from database
         //populate input boxes
         axios.post(`/api/employee_update/${this.state.currentName}`, {
@@ -76,7 +81,7 @@ class Employee_Update extends Component {
             //set values of state
             this.setState({id, name, initials, admin, inactive});
             this.setState({status: "getEmployeeData"})
-
+        
             console.log("Get Data - state values: ", name, initials, admin, inactive)
 
             //populate values into input boxes
@@ -87,7 +92,8 @@ class Employee_Update extends Component {
 
         }).catch(error => {
             // document.getElementById('addEmpUpdateStatus').innerHTML = 'Houston we have problem - get data request denied.'
-            this.setState({status: false})
+            this.setState({status: 'getEmployeeDatafalse'})
+            this.reset();
         });        
     }
 
@@ -118,13 +124,16 @@ class Employee_Update extends Component {
 
         let updateEmployeeStatus;
 
-        if (this.state.status) {
+        if (this.state.status === true) {
             updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>{this.state.name} was updated.</p>;
           } else if (this.state.status === false) {
             updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>Update NOT made - the employee name may not exist.</p>;
           } else if (this.state.status === 'getEmployeeData') {
               updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>Make desired changes and click SUBMIT button.</p>
-          } else {
+        } else if (this.state.status === 'getEmployeeDatafalse') {
+            updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>No employee matched the requested name.</p>          } 
+
+        else {
               updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>Enter FLast of employee to update and click Get Current Data button.</p>;
           }
 
