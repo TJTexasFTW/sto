@@ -191,8 +191,9 @@ $font_family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-align: center;
     // padding-top: 8vh;
-    margin-top: 3vh;
+    margin-top: 4vh;
     margin-left: 10vw;
+    padding-top: 1.5vh;
     padding-left: 5vw;
     padding-right: 5vw;
     margin-right: 10vw;
@@ -224,7 +225,7 @@ body {
     font-family: $font_family;
     font-weight: 900;
     color: red;
-    background-color: gold;
+    background-color: rgb(189, 222, 243);
     text-align: center;
 }
 
@@ -453,7 +454,7 @@ font-weight: normal;
 
 .restrictedNotice {
     font-size: 2.9vw;
-    color: yellow;
+    color: black;
     padding-top: 4vh;
 }
 

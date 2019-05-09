@@ -35,7 +35,6 @@ class STO_Adds extends Component {
        let today = this.formatDate();
        console.log("Submit STO button clicked: ", this.props.username, this.state.startDate, this.state.endDate, this.state.comment, this.props.id, today);
         axios.post('/api/addSTO', {
-            // name: document.getElementById("for").value,
             name: this.props.username,
             start_date: this.state.startDate,
             end_date: this.state.endDate,
@@ -44,7 +43,6 @@ class STO_Adds extends Component {
             added: today
         }).then(user => {
             //new sto added - display msg in addStatus and clear the fields
-            // document.getElementById('addSTOStatus').innerHTML = 'Your STO request was added';
             this.setState({status: true})
             document.getElementById("start_date").value = '';
             document.getElementById("end_date").value = '';
@@ -88,7 +86,6 @@ class STO_Adds extends Component {
                 <h2 className = 'subHeading'>Add / Update STO</h2>
 
             <p className='inputLabel'>For:  <input id='for' onChange={this.handleEmployee} className='inputBox' placeholder = {this.props.username} readOnly/></p>
-            {/* <p className='inputLabel' id="for_name">For: <input placeholder = {this.props.username}/></p> */}
             <p className='inputLabel'>Start Date:  <input id='start_date' onChange={this.handleStartDate} className='inputBox' placeholder = "Start Date" type="date" autoComplete="off"/></p>
             <p className='inputLabel'>End Date:  <input id='end_date' onChange={this.handleEndDate} className='inputBox' placeholder = "End Date" type="date" autoComplete="off"/></p>
             <p className='inputLabel'>Note:  <input id='comment' onChange={this.handleComment} className='inputBox' placeholder = "Note" autoComplete="off"/></p>
@@ -101,19 +98,11 @@ class STO_Adds extends Component {
                     
                 </div>
                 <p>Props: {this.props.id}</p>
-                {/* //this.props.admin === true */}
             </div>
         )
     }
 }
 
-// const mapStateToProps = state => {
-//     return 
-//         username: state.loginUser.user.name,
-//         initials: state.loginUser.user.initials,
-//         admin: state.loginUser.user.admin,
-//         id: state.loginUser.user.id
-// }
 function mapStateToProps(state) {
     return {
         username: state.loginUser.user.name,
@@ -123,5 +112,4 @@ function mapStateToProps(state) {
     }
 }
 
-// export default connect(mapStateToProps, { loginUser })(Login);
 export default connect(mapStateToProps)(STO_Adds);

@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-// import {Link} from 'react-router-dom'
 import axios from 'axios';
 import './Home.css';
 import {connect} from 'react-redux';
-// import {loginUser} from '../../Redux/reducer';  
 
 class Home extends Component {
     constructor() {
@@ -17,7 +15,6 @@ class Home extends Component {
             twoMonthsOut: [{}],
             list: '',
             menuRequest: ''
-            // name: this.props.loginUser.user.name
         }
 
         this.handleAdminClick = this.handleAdminClick.bind( this ); 
@@ -45,12 +42,6 @@ class Home extends Component {
 
     }
 
-    //   componentDidUpdate(prevProps) {
-    //     if (prevProps !== this.props) {
-    //       this.setState({ thisMonth: {} });
-    //     }
-    //   }
-    
     handleLogoffClick() {
         //user has requested logoff
         //clear session and loginUser.user object
@@ -58,14 +49,9 @@ class Home extends Component {
             .then(results => {this.setState({ username: '' });
         }).catch( error => alert("This is the handleLogoffClick error: ", error))
 
-        // store.dispatch( logoff({ }) )
-
-        //need to clear user info on state
         this.props.history.push('/')
-        // console.log("STO add handleLogoffClick redirect command executed")
 
         document.location.reload()
-        // console.log("STO add handleLogoffClick reload command executed")
     }
 
     handleAdminClick() {
@@ -86,22 +72,12 @@ class Home extends Component {
 
 handleSTOClick() {
     if (typeof this.props.loginUser.user.id === 'undefined') {
-    // if (req.session.loginUser.length > 0) {
-    // if (this.name.length = '') {
-        //user is already logged in - send to STO add screen
-        // console.log("handleSTOClicl first branch of if")
         this.props.history.push('/login')
-        // return <Redirect to='/scheduled_time_off_adds'/>
     } else {
         //send to login screen
-        
         this.props.history.push('/scheduled_time_off_adds')
-        // return <Redirect to='/login'/>
     }
-    // document.getElementById('userMsg').innerHTML = `Hello ${this.props.loginUser.user.name}`;
 }
-
-
 
     render() {
 
@@ -118,7 +94,6 @@ handleSTOClick() {
             let end = '';
                     
             for (let i = 0; i < info.length; i++) {
-                // console.log("value of i: ", i)
                 switch(info[i].from_table) {
                     case 'BLOCKED': 
                         if (String(info[i].start_date.substring(5,5)) === 0) {
@@ -150,7 +125,7 @@ handleSTOClick() {
                             } else {
                               //end date is different - concantenate start & end
                                 dateList.push(  
-                                    <p>{start} thru {end} {info[i].initials}</p>);
+                                    <p>{start} - {end} {info[i].initials}</p>);
                             }
                                 break;
         

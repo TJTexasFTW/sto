@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 class Event_Maintenance extends Component {
     constructor() {
@@ -13,6 +14,12 @@ class Event_Maintenance extends Component {
         }
     }
 
+    componentDidMount() {
+        if(!this.props.admin) {
+            this.props.history.push('/');
+        }
+    }
+
     handleEventDate = (e) => {
         this.setState({event_date: e.target.value})
     }
@@ -22,7 +29,6 @@ class Event_Maintenance extends Component {
     }
 
     handleSubmit = () => {
-        // console.log("Submit button in Event Add clicked: ", this.state.event_date, this.state.comment, this.props.id)
         if (this.state.event_date === new Date() || this.state.event_date === '') {
             this.setState({status: false});
             return ""
@@ -35,7 +41,6 @@ class Event_Maintenance extends Component {
         }).then(user => {
             //new event added - display msg in addStatus and clear the fields
             this.setState({status: true})
-            // this.setState({event_date: ''})
             document.getElementById("event_date").value = '';
             document.getElementById("event_comment").value = '';
         }).catch(error => {
@@ -68,7 +73,6 @@ class Event_Maintenance extends Component {
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
                     <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
-                    {/* <button className = "adminButton">DELETE</button> */}
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
                 </div>
@@ -77,4 +81,14 @@ class Event_Maintenance extends Component {
         )
     }
 }
-export default Event_Maintenance
+
+function mapStateToProps(state) {
+    console.log("Login component mapState value of state: ", state)
+    return {
+        username: state.loginUser.user.name,
+        initials: state.loginUser.user.initials,
+        admin: state.loginUser.user.admin,
+        id: state.loginUser.user.id
+}}
+
+export default connect(mapStateToProps)(Event_Maintenance);

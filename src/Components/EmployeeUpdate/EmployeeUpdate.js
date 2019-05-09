@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
-
+import {connect} from 'react-redux';
 
 class Employee_Update extends Component {
     constructor() {
@@ -20,6 +20,12 @@ class Employee_Update extends Component {
         this.reset = this.reset.bind(this);
 
     }
+
+    componentDidMount() {
+        if(!this.props.admin) {
+        this.props.history.push('/');
+                }
+            }        
 
     handleSubmit = () => {
         console.log("Sent to axios: ", this.state.id, document.getElementById("name").value, document.getElementById("initials").value, document.getElementById("adminChk").checked, document.getElementById("deactiveChk").checked)
@@ -59,11 +65,9 @@ class Employee_Update extends Component {
 
 
     handleCurrentName = (e) => {
-        // console.log("e: ", e.target.value)
         this.setState({status: ''})
         this.setState({currentName: e.target.value})
         this.setState({name: e.target.value})
-        // console.log('currentName: ', this.state.currentName, 'name: ', this.state.name);
     }
 
     getEmployeeData = () => {
@@ -88,10 +92,8 @@ class Employee_Update extends Component {
             document.getElementById("initials").value = initials;
             document.getElementById("adminChk").checked = admin;
             document.getElementById("deactiveChk").checked = inactive;
-            // document.getElementById('addEmpUpdateStatus').innerHTML = 'Make the updates and click the SUBMIT button';
 
         }).catch(error => {
-            // document.getElementById('addEmpUpdateStatus').innerHTML = 'Houston we have problem - get data request denied.'
             this.setState({status: 'getEmployeeDatafalse'})
             this.reset();
         });        
@@ -104,7 +106,6 @@ class Employee_Update extends Component {
         console.log("Name: ", this.state.name);
         this.getEmployeeData();
         this.setState({status: 'getEmployeeData'})
-        // document.getElementById('addEmpUpdateStatus').innerHTML = 'Make desired changes and click SUBMIT button.';
 
         for (let i=0; i<arrToggleElements.length; i++) {
             elem = document.getElementById(arrToggleElements[i]);
@@ -112,7 +113,6 @@ class Employee_Update extends Component {
             if (displaySetting === 'none') {
                 elem.style.display = 'block';
             } else {
-                // console.log("in else statement");
                 elem.style.display = 'none';
             }
       }
@@ -160,14 +160,12 @@ class Employee_Update extends Component {
             </div>
             <br></br>
             {updateEmployeeStatus}
-            {/* <center><p id='addEmpUpdateStatus'>Enter FLast of employee to update and click Get Current Data button.</p></center>     */}
             <center><p id='addEmpUpdateNote'>NOTE: Return to EMPLOYEE MAINT MENU to update password.</p></center>       
 
             
             <div className="button_choices">
                 <Link to='/'><button className = "adminButton">HOME</button></Link>
                 <Link to='/employee_maintenance'><button className = "adminButton">EMPLOYEE MAINT MENU</button></Link>
-                {/* <Link to='/'><button className = "adminButton">LOG OFF</button></Link> */}
                 <button onClick={this.handleSubmit} className="adminButton" id='submitButton'>SUBMIT</button>
                 <button id='btnGetCurrentData' onClick={this.setDisplayProperty} className = "adminButton">GET CURRENT DATA</button>
                     
@@ -177,4 +175,14 @@ class Employee_Update extends Component {
         )
     }
 }
-export default Employee_Update
+
+function mapStateToProps(state) {
+    console.log("Login component mapState value of state: ", state)
+    return {
+        username: state.loginUser.user.name,
+        initials: state.loginUser.user.initials,
+        admin: state.loginUser.user.admin,
+        id: state.loginUser.user.id
+}}
+
+export default connect(mapStateToProps)(Employee_Update);
