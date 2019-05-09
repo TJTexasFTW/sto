@@ -359,6 +359,13 @@ button:hover {
         font-size: 2.7vw;
     }
 
+#empActive{
+    font-size: 2.7vw;
+    background: rgba(255, 255, 255, 0.4);
+    // color:aquamarine
+    border-radius: 25px;
+    }
+
 #addSTOStatus, #PasswordChangeStatus, #addEventStatus, #addBlockedStatus, #deleteSTOStatus {
     font-size: 2.6vw;
 }
