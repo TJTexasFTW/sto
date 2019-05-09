@@ -6,8 +6,6 @@ module.exports = {
 
   getDatesCurrentMonth: async (req, res) => {        
     const getDates = await req.app.get('db').dates_zero_months_out().catch( error => alert(error));
-    // return res.status(200).send(getDates).catch( error => alert(error));
-    
     return res.status(200).send(getDates)
   },   
 
@@ -232,7 +230,12 @@ getEmployeeData: (req, res) => {
       res.status(200).json({employeeList})
     }
   }).catch(err => console.log(err));
+},
 
+getEmployeeLists: async (req, res) => {
+  const empListActive = await req.app.get('db').employee_list_active().catch( error => alert(error))
+  console.log('getEmployeeLists: ', empListActive);
+  return res.status(200).send(empListActive)
 },
 
 updateEmployee: (req, res) => {

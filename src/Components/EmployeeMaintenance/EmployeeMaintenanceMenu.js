@@ -35,6 +35,7 @@ class Employee_Maintenance_Menu extends Component {
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
                     <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
+                    <Link to='/employee_lists'><button className = "adminButton">EMPLOYEE LIST - ACTIVE</button></Link>
 
             </div>
 

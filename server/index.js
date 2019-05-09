@@ -41,5 +41,6 @@ app.delete('/api/STO/:id', authController.deleteSTO);
 app.put('/api/employee_password_change/:id', authController.updateEmployeePassword);
 app.put('/api/employee_update/:id', authController.updateEmployee);
 app.post('/api/employee_update/:id', authController.getEmployeeData);
+app.get('/api/employeelists', authController.getEmployeeLists);
 
 app.listen(3060, () => console.log('Listening on Port 3060'))
