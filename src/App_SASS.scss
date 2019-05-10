@@ -1,5 +1,25 @@
 $font_family: Arial, Helvetica, sans-serif;
 
+.chart-container {
+    height: 30vh;
+    width: 60vw;
+    background: rgba(255, 255, 255, 0.4);
+    // color:aquamarine
+    border-radius: 5px;
+    // position: absolute;
+    margin: auto;
+    canvas {
+        height: 60vh;
+        width: 60vw;
+        display: block;
+    }
+}
+
+.chart {
+    // background-color: black;
+    // responsive: true;
+}
+
 #empActive {
     font-family: $font_family;
     font-size: 1.3vw;
