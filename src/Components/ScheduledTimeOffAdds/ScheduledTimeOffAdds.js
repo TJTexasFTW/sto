@@ -85,7 +85,7 @@ class STO_Adds extends Component {
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
                 <h2 className = 'subHeading'>Add / Update STO</h2>
 
-            <p className='inputLabel'>For:  <input id='for' onChange={this.handleEmployee} className='inputBox' placeholder = {this.props.username} readOnly/></p>
+            <p className='inputLabel'>For:  <input autoComplete="off" id='for' onChange={this.handleEmployee} className='inputBox' placeholder = {this.props.username} readOnly/></p>
             <p className='inputLabel'>Start Date:  <input id='start_date' onChange={this.handleStartDate} className='inputBox' placeholder = "Start Date" type="date" autoComplete="off"/></p>
             <p className='inputLabel'>End Date:  <input id='end_date' onChange={this.handleEndDate} className='inputBox' placeholder = "End Date" type="date" autoComplete="off"/></p>
             <p className='inputLabel'>Note:  <input id='comment' onChange={this.handleComment} className='inputBox' placeholder = "Note" autoComplete="off"/></p>
