@@ -238,6 +238,13 @@ getEmployeeLists: async (req, res) => {
   return res.status(200).send(empListActive)
 },
 
+////chart_last_365_days_STO_by_emp
+getSTO_365_byEmp: async (req, res) => {
+  console.log('getSTO_365_byEmp: ');
+  const chartSTO365DaybyEmp = await req.app.get('db').chart_last_365_days_STO_by_emp().catch( error => alert(error))
+  return res.status(200).send(chartSTO365DaybyEmp)
+},
+
 updateEmployee: (req, res) => {
   console.log("In authController updateEmployee function");
   let {name, initials, admin, inactive, id} = req.body;

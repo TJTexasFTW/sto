@@ -39,7 +39,7 @@ class Admin_Menu extends Component {
                 <Link to='/blocked_days'><button className = "big">Add Blocked Date</button></Link>
                 <Link to='/scheduled_time_off_admin'><button className = "big">Add STO for Blocked Date</button></Link>
                 <Link to='/STO_admin_delete'><button className = "big">Delete STO Entries</button></Link>
-                <Link to='/charts'><button className = "big">Charts</button></Link>
+                <Link to='/charts'><button className = "big">Charting</button></Link>
             </div>
 
             <div className="button_choices">

@@ -1,21 +1,38 @@
 $font_family: Arial, Helvetica, sans-serif;
 
 .chart-container {
-    height: 30vh;
+    // height: 20vh;
     width: 60vw;
     background: rgba(255, 255, 255, 0.4);
+    display: block;
     // color:aquamarine
     border-radius: 5px;
     // position: absolute;
     margin: auto;
     canvas {
-        height: 60vh;
+        height: 20vh;
         width: 60vw;
         display: block;
+        visibility: none;
+        // parentNode.style.width = '128px';
+        
     }
 }
 
+#myChart1 {
+    canvas {
+        // width: 2vw;
+        // height: 10vh;
+        // background-color: orange;
+        // z-index: -10;
+    }
+}
+// <canvas id="chart" width="800" height="450"></canvas>
+// chart.canvas.parentNode.style.height = '128px';
+// chart.canvas.parentNode.style.width = '128px';
+
 .chart {
+    // canvas.
     // background-color: black;
     // responsive: true;
 }
@@ -33,7 +50,6 @@ $font_family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-decoration: underline;
     text-align: left;
-
 }
 
 .appHeading {
