@@ -96,7 +96,7 @@ class Employee_Add extends Component {
                 <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
                 </div>
-
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockMedium" />
             </div>
         )
     }

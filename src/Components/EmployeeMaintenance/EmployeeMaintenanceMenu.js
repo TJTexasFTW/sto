@@ -31,6 +31,7 @@ class Employee_Maintenance_Menu extends Component {
                 <Link to='/employee_update'><button className = "big">Update/Deactivate</button></Link>
                 <Link to='/employee_password_change'><button className = "big">Change Password</button></Link>
                 <Link to='/employee_lists'><button className = "big">Employee List - ACTIVE</button></Link>
+                <Link to='/employee_lists'><button className = "big">Employee List - INACTIVE</button></Link>
             </div>
 
             <div className="button_choices">
@@ -38,7 +39,7 @@ class Employee_Maintenance_Menu extends Component {
                     <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
 
             </div>
-
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockSub" />
             </div>
         )
     }

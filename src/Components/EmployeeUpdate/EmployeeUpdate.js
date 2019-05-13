@@ -134,7 +134,7 @@ class Employee_Update extends Component {
             updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>No employee matched the requested name.</p>          } 
 
         else {
-              updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>Enter FLast of employee to update and click Get Current Data button.</p>;
+              updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>Enter FLast of employee to update<br/>and click Get Current Data button.</p>;
           }
 
         return(
@@ -160,7 +160,7 @@ class Employee_Update extends Component {
             </div>
             <br></br>
             {updateEmployeeStatus}
-            <center><p id='addEmpUpdateNote'>NOTE: Return to EMPLOYEE MAINT MENU to update password.</p></center>       
+            <center><p className='addEmpUpdateNote'>NOTE: Return to EMPLOYEE MAINT MENU to update password.</p></center>       
 
             
             <div className="button_choices">
@@ -170,7 +170,7 @@ class Employee_Update extends Component {
                 <button id='btnGetCurrentData' onClick={this.setDisplayProperty} className = "adminButton">GET CURRENT DATA</button>
                     
                 </div>
-
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockSmall" />
             </div>
         )
     }

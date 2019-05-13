@@ -79,7 +79,8 @@ class Employee_Password_Change extends Component {
             <div>
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
                 <h2 className = 'subHeading'>Employee Password Update</h2>
-                <p className='instructions'>Use update/deactivate option on Employee Maint Menu <br />for updating other employee information.</p>
+                <p className='instructions'></p> 
+                <p className='instructions'>Use update/deactivate option on<br/>Employee Maint Menu <br />for updating other employee information.</p>
             <p className='inputLabel'>Name:  <input id="name_password" onChange={this.handleName} className='inputBox' placeholder = "FLast"/></p>
             <p id='passwordInfo'>PASSWORD INFO:</p>
             <p className='inputLabel'>New:  <input id='password1' onChange={this.handlePassword1} className='inputBox' placeholder = "Password" type="password"/></p>
@@ -91,6 +92,7 @@ class Employee_Password_Change extends Component {
                 <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
             </div>
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockSub" />
 
             </div>
         )

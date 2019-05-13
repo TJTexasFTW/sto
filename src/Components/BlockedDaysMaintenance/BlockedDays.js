@@ -77,7 +77,7 @@ class Blocked_Days extends Component {
                     <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
             </div>
-
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockSmall" />
             </div>
         )
     }

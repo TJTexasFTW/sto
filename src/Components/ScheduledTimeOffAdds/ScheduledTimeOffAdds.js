@@ -95,9 +95,10 @@ class STO_Adds extends Component {
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
-                    
                 </div>
+
                 {/* <p>Props: {this.props.id}</p> */}
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockMedium" />
             </div>
         )
     }
