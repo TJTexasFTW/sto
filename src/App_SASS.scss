@@ -113,14 +113,10 @@ $font_family: Arial, Helvetica, sans-serif;
 } 
 
 #deactiveChk {
-    // font-size: 2vw;
-    // font-family: $font_family;
-    // text-align: left; 
     @extend .adminCheckbox;
     margin-left: 3vw;
     padding-right: 0;
     transform: scale(2.5);
-
 }
 
 #adminChk {
@@ -441,9 +437,15 @@ button:hover {
         font-size: 2.9vw;
         margin: auto;
         margin-bottom: 1.5vh;
+        background-color: rgb(44, 91, 178);
     }
     .adminButton {
         font-size: 2.7vw;
+        background-color: rgb(44, 91, 178);
+    }
+
+    .addButton {
+        background-color: rgb(44, 91, 178);
     }
 
 #empActive{
@@ -551,7 +553,7 @@ font-weight: 900;
 font-style: italic;
 margin-top: 1vh;
 color: black;
-background-color: darkturquoise;
+background-color: skyblue;
 }
 
 #passwordInfo {
