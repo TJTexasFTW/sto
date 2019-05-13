@@ -438,13 +438,16 @@ button:hover {
 @media screen and (max-width: 700px) {
     .bigButton button {
         font-size: 2.9vw;
+        margin: auto;
+        margin-bottom: 1.5vh;
     }
     .adminButton {
         font-size: 2.7vw;
     }
 
 #empActive{
-    font-size: 2.7vw;
+    font-size: 2.8vw;
+    margin: auto;
     background: rgba(255, 255, 255, 0.4);
     // color:aquamarine
     border-radius: 25px;
@@ -502,6 +505,22 @@ button:hover {
 .months {
     font-size: 2.9vw;
     font-weight: lighter;
+    padding-left: 0vw;
+    margin-left: 8vw;
+    width: 80vw;
+}
+
+.restrictedNotice {
+    font-size: 2.6vw;
+    font-weight: normal;
+    color: black;
+    padding-top: 1.6vh;
+    padding-bottom: -1vh;
+    margin-left: 8vw;
+    padding-left: 0vw;
+    padding-right: 0vw;
+    width: 80vw;
+    height: 3.5vh;
 }
 
 body {
@@ -552,16 +571,16 @@ margin-bottom: 3vh;
 
 #current_month, #next_month, #two_months_out{
 font-weight: bold;
+padding-left: 0;
 }
 
 #current_month p, #next_month p, #two_months_out p{ 
 font-weight: normal; 
 }
 
-.restrictedNotice {
-    font-size: 2.9vw;
-    color: black;
-    padding-top: 4vh;
+
+.dockSmall, .dockMedium, .dockSub, .dock {
+    display: none;
 }
 
 }
