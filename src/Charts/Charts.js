@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
+import ChartJS from "chart.js";
 import {Bar, Line, Pie} from 'react-chartjs-2';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+
+ChartJS.defaults.global.defaultFontFamily = "PT Sans', sans-serif"
+ChartJS.defaults.global.legend.display = false;
+ChartJS.defaults.global.fontSize = 20;
 
 class Chart extends Component{
   constructor(props){
@@ -73,23 +78,18 @@ let chartData = {
         labels: this.state.chartSTO_labels,
         datasets:[
           {
-            label:'',
+            // label:'',
             data: this.state.chartSTO_data,
             backgroundColor: this.state.chartSTO_colors,
             options: {
               legend: {
-                display: false
+                display: false,
+                labels: {
+                  fontSize:20
+                }
               },
-                // layout: {
-                //     padding: {
-                //         left: 0,
-                //         right: 0,
-                //         top: 0,
-                //         bottom: 0
-                    // }
-                // },
-                responsive: false,
-                maintainAspectRatio: false,
+                responsive: true,
+                maintainAspectRatio: false
             }
           }
         ]
@@ -98,27 +98,23 @@ let chartData = {
       // chartData.canvas.parentNode.style.height = '128px';
       // chartData.canvas.parentNode.style.width = '128px';
 
+      // let chartData = {labels: this.state.chartSTO_labels,
+      //   datasets: [{
+      //     label:"Employee STO Last 365 Days",
+      //     data: this.state.chartSTO_data,
+      //   }]
+      // }
+
     return (
         <div>
           <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
-          <h2 className = 'subHeading'>STO Days in Last Year by Employee</h2>
+          <h2 className = 'subHeading'>STO Days Last 365 Days by Employee</h2>
  
             <div className='chart-container' id="chart">
-              <Bar id='myChart1' className='chart-container' data={chartData}
-                options={{
-                  legend: {
-                    display: false
-                  }
-                  // title:{
-                  //   display:'My Title',
-                  //   text:'',
-                  //   fontSize: 0
-                  // }
-                }}
-              />
+              <Bar id='myChart1' className='chart-container' data={chartData}/>
       </div>
 
-    <div class="chart-container">
+    <div className="chart-container">
       <canvas id="chart"></canvas>
     </div>
 

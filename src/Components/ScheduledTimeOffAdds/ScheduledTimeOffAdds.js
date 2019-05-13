@@ -97,7 +97,7 @@ class STO_Adds extends Component {
                     <button onClick={this.handleSubmit} className="adminButton">SUBMIT</button>
                     
                 </div>
-                <p>Props: {this.props.id}</p>
+                {/* <p>Props: {this.props.id}</p> */}
             </div>
         )
     }

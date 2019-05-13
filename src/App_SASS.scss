@@ -1,21 +1,22 @@
 $font_family: Arial, Helvetica, sans-serif;
 
 .chart-container {
-    // height: 20vh;
-    width: 60vw;
+    height: 20vh;
+    width: 40vw;
     background: rgba(255, 255, 255, 0.4);
     display: block;
     // color:aquamarine
-    border-radius: 5px;
+    // border-radius: 5px;
     // position: absolute;
     margin: auto;
+    // margin-left: 1vw;
+    // margin-right: 20vw;
     canvas {
-        height: 20vh;
-        width: 60vw;
+        // margin-left: 50vw;
+        // height: 5vh;
+        // width: 20vw;
         display: block;
         visibility: none;
-        // parentNode.style.width = '128px';
-        
     }
 }
 
@@ -214,6 +215,16 @@ $font_family: Arial, Helvetica, sans-serif;
     display: none;
 }
 
+#dock {
+    width: 20%;
+    height: 50%;
+    position: absolute;
+    top: 15%;
+    left: 2%;
+    border-radius: 15px;
+    opacity: .8;
+}
+
 .months {
     font-family: $font_family;
     font-size: 2vw;
@@ -223,8 +234,8 @@ $font_family: Arial, Helvetica, sans-serif;
     padding-left: 5vw;
     padding-right: 5vw;
     // margin-top: 13vh;
-    width: 70vw;
-    margin-left: 10vw;
+    width: 60vw;
+    margin-left: 25vw;
     margin-right: 10vw;
     margin-bottom: 0;
     padding-top: 5vh;
@@ -238,19 +249,19 @@ $font_family: Arial, Helvetica, sans-serif;
 
 .restrictedNotice {
     font-family: $font_family;
-    font-size: 2vw;
+    font-size: 1.5vw;
     font-weight: bold;
     text-align: center;
     // padding-top: 8vh;
     margin-top: 4vh;
-    margin-left: 10vw;
+    margin-left: 25vw;
     padding-top: 1.5vh;
     padding-left: 5vw;
     padding-right: 5vw;
     margin-right: 10vw;
     background: rgba(255, 255, 255, 0.4);
     font-style: italic;
-    width: 70vw;
+    width: 60vw;
     content-align: center;
     // padding-bottom: 3vh;
     height: 5vh;
@@ -259,9 +270,11 @@ $font_family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-image: url('Water_and_Hut.jpg');
+    // background-image: url('Water_and_Hut.jpg');
+    // background-image: url('297639.svg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: skyblue;
 }
 
 #current_month p, #next_month p, #two_months_out p{ 
@@ -315,8 +328,8 @@ body {
 /*================================*/
 /* BUTTON FORMATTING */
 /*================================*/
-$button-color: darkturquoise;
-$button-border: teal;
+$button-color: black;
+$button-border:  white;
 
 @mixin buttonFormat() {
     background-color: $button-color; 
@@ -349,7 +362,7 @@ $button-border: teal;
 }
 
 button:hover {
-    color:green;
+    color:skyblue;
     background-color: white;
     text-decoration: none;
 }
