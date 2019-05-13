@@ -84,11 +84,19 @@ handleSTOClick() {
 
         // console.log("Render what props:", this.props)
 
+        
         function prepareDateList(array) {
             // console.log(array);
             // array is from state for date column being processed
             // dateList will be the dates after processing
             // for formatting depending on if STO, event or blocked
+            var styles = {
+                color: 'blue',
+                fontWeight: 'lighter',
+                // fontSize: '1.7vw',
+                fontStyle: 'italic'
+            }
+
             let info = [...array]; 
             let dateList = [];
             let start = '';
@@ -103,7 +111,8 @@ handleSTOClick() {
                                 start = info[i].start_date.substring(5,10)
                             }
                                 dateList.push(  
-                                    <p>{start} Restricted</p>);
+                                    // <p style={{ color: 'red'}}>{start} Restricted</p>);
+                                    <p style={styles}>{start} Restricted</p>);
                                     break;
         
                     case 'STO': 

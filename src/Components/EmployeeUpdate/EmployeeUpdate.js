@@ -160,7 +160,7 @@ class Employee_Update extends Component {
             </div>
             <br></br>
             {updateEmployeeStatus}
-            <center><p className='addEmpUpdateNote'>NOTE: Return to EMPLOYEE MAINT MENU to update password.</p></center>       
+            <center><p className='addEmpUpdateNote'>NOTE: Return to EMPLOYEE MAINT MENU <br /> to update password.</p></center>       
 
             
             <div className="button_choices">

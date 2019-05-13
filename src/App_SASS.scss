@@ -147,7 +147,7 @@ $font_family: Arial, Helvetica, sans-serif;
     margin-left: 3vw;
     margin-right: 30vw;
     justify-content: left;
-    border: darkgreen;
+    border: darkblue;
 }
 
   a {
@@ -371,7 +371,7 @@ $button-border:  white;
     border-bottom-style: solid;
     border-radius: 12px;
     color: white;
-    font-size: 2vw;
+    font-size: 1.7vw;
     font-family: $font_family;
     text-decoration: none;
 }
@@ -390,8 +390,9 @@ $button-border:  white;
 }
 
 .big:active {
-    border-color: green;
-    background: green;
+    border-color: darkblue;
+    background: white;
+    color: skyblue;
     text-decoration: none;
 }
 
