@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
-// import axios from 'axios';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Admin_Menu extends Component {
     constructor() {
@@ -12,7 +12,21 @@ class Admin_Menu extends Component {
         }
     }
 
+    componentDidMount() {
+        console.log("Admin_Menu component did mount. Admin value: ", this.props.admin)
+        if(!this.props.admin) {
+            // this.setState({redirect: true});
+            this.props.history.push('/');
+        }
+    }
+
     render() {
+
+        if(this.props.redirect) {
+            console.log('AdminMenu what is redirect:', this.props.redirect, this.props.admin)
+            // return <Redirect to='/' />
+            this.props.history.push('/')
+        }
 
         return(
             <div>
@@ -25,15 +39,29 @@ class Admin_Menu extends Component {
                 <Link to='/blocked_days'><button className = "big">Add Blocked Date</button></Link>
                 <Link to='/scheduled_time_off_admin'><button className = "big">Add STO for Blocked Date</button></Link>
                 <Link to='/STO_admin_delete'><button className = "big">Delete STO Entries</button></Link>
+                <Link to='/charts'><button className = "big">Charting</button></Link>
             </div>
+
 
             <div className="button_choices">
+            {/* <Link to='/'><button className = "adminButton">MOVE</button></Link> */}
                 <Link to='/'><button className = "adminButton">HOME</button></Link>
-                {/* <Link to='/'><button className = "adminButton">LOG OFF</button></Link> */}
             </div>
-
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockSub" />
             </div>
         )
     }
 }
-export default Admin_Menu
+
+function mapStateToProps(state) {
+    console.log("Login component mapState value of state: ", state)
+    return {
+        username: state.loginUser.user.name,
+        initials: state.loginUser.user.initials,
+        admin: state.loginUser.user.admin,
+        id: state.loginUser.user.id
+}}
+
+// export default connect(mapStateToProps, { requestUserData })(Login);
+export default connect(mapStateToProps)(Admin_Menu);
+// export default Admin_Menu

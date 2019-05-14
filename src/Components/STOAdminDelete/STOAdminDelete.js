@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
-// import { defaultCipherList } from 'constants';
 import axios from 'axios';
-// import './STOAdminDelete.css';
+import {connect} from 'react-redux';
 
 class STOAdminDelete extends Component {
     constructor() {
@@ -10,11 +9,18 @@ class STOAdminDelete extends Component {
         this.state = {
             name: '',
             startDate: new Date(),
-            endDate: new Date()
+            endDate: new Date(),
+            status: ''
         }
         this.deleteSTO = this.deleteSTO.bind( this );
         this.formatDate = this.formatDate.bind(this);
     }
+
+    componentDidMount() {
+        if(!this.props.admin) {
+        this.props.history.push('/');
+                }
+            }        
 
     formatDate(dateToProcess) {
         var d = dateToProcess,
@@ -29,22 +35,17 @@ class STOAdminDelete extends Component {
     }
 
     handleEmployee = (e) => {
+        this.setState({status: ''})
         this.setState({name: e.target.value})
     }
 
     handleStartDate = (e) => {
-        // let formattedStartDate = this.formatDate(e.target.value); 
         this.setState({startDate: e.target.value})
     }
 
     handleEndDate = (e) => {
-        // let formattedEndDate = this.formatDate(e.target.value); 
         this.setState({endDate: e.target.value})
     }
-
-    // handleGetID = (e) => {
-    //     this.setState({id: e.target.value})
-    // }
 
     deleteSTO() {
         console.log("deleteSTO:", this.state.name, this.state.startDate, this.state.endDate)
@@ -54,12 +55,24 @@ class STOAdminDelete extends Component {
             document.getElementById("emp_name_STO").value = '';
             document.getElementById("start_date_delete").value = '';
             document.getElementById("end_date_delete").value = '';
-            document.getElementById('deleteSTOStatus').innerHTML = `${this.state.name} STO record was deleted`;
-        }).catch(function(error) {
-            document.getElementById('deleteSTOStatus').innerHTML = 'STO delete denied-no match or multiple matches found. See DB admin.'});
+            this.setState({status: true})
+        }).catch(error => {
+            this.setState({status: false})
+        });
     }
 
     render() {
+
+        let deleteSTOStatus;
+
+        if (this.state.status === true) {
+            deleteSTOStatus = <p id='deleteSTOStatusMsg'>STO was deleted.</p> ;
+        } else if (this.state.status === '') {
+            deleteSTOStatus = <p id='deleteSTOStatusMsg'></p>;
+        } else if (this.state.status === false) {
+            deleteSTOStatus = <p id='deleteSTOStatusMsg'>STO delete denied-no match or multiple matches found. See DB admin.</p> ;
+        }
+
 
         return(
             <div>
@@ -73,21 +86,29 @@ class STOAdminDelete extends Component {
             <p className='inputLabel'>End Date:  <input id='end_date_delete' onChange={this.handleEndDate} className='inputBox' placeholder = "End Date" type="date" autoComplete="off"/></p>
 
             </div>
-            <center><p id='deleteSTOStatus'>Enter Employee FName, Start and End Dates. Then click the DELETE button.</p></center> 
+            {deleteSTOStatus}
        
 
             
             <div className="button_choices">
                 <Link to='/'><button className = "adminButton">HOME</button></Link>
                 <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link>
-
-                {/* <button onClick={this.handleGETID} className="adminButton" id='empListButton'>EMP ID LIST</button> */}
                 <button id='btnDeleteSTO' onClick={this.deleteSTO} className = "adminButton">DELETE</button>
                     
                 </div>
-
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockSmall" />
             </div>
         )
     }
 }
-export default STOAdminDelete
+
+function mapStateToProps(state) {
+    console.log("Login component mapState value of state: ", state)
+    return {
+        username: state.loginUser.user.name,
+        initials: state.loginUser.user.initials,
+        admin: state.loginUser.user.admin,
+        id: state.loginUser.user.id
+}}
+
+export default connect(mapStateToProps)(STOAdminDelete);

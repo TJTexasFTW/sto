@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-// import {Link} from 'react-router-dom'
 import axios from 'axios';
 import './Home.css';
 import {connect} from 'react-redux';
-// import {loginUser} from '../../Redux/reducer';  
+import '../../App_SASS.scss'
 
 class Home extends Component {
     constructor() {
@@ -17,7 +16,6 @@ class Home extends Component {
             twoMonthsOut: [{}],
             list: '',
             menuRequest: ''
-            // name: this.props.loginUser.user.name
         }
 
         this.handleAdminClick = this.handleAdminClick.bind( this ); 
@@ -26,22 +24,16 @@ class Home extends Component {
 
     }
 
-    async componentDidMount() {
-
-        // console.log("Home props: ", this.props);
-        // console.log("req.session.user: ", req.session.user)
-
-        // document.getElementById('userMsg').innerHTML = `Hello ${this.props.loginUser.user.username}`;
-
-    await axios.get('/api/currentMonth')
+    componentDidMount() {
+    axios.get('/api/currentMonth')
         .then(results => {this.setState({ thisMonth: results.data });
       }).catch( error => alert(error));
 
-    await axios.get('/api/nextMonth')
+    axios.get('/api/nextMonth')
         .then(results => {this.setState({ nextMonth: results.data });
       }).catch( error => alert(error));
 
-    await axios.get('/api/twoMonthsOut')
+    axios.get('/api/twoMonthsOut')
         .then(results => {this.setState({ twoMonthsOut: results.data });
       }).catch( error => alert(error));
 
@@ -51,12 +43,6 @@ class Home extends Component {
 
     }
 
-    //   componentDidUpdate(prevProps) {
-    //     if (prevProps !== this.props) {
-    //       this.setState({ thisMonth: {} });
-    //     }
-    //   }
-    
     handleLogoffClick() {
         //user has requested logoff
         //clear session and loginUser.user object
@@ -64,14 +50,9 @@ class Home extends Component {
             .then(results => {this.setState({ username: '' });
         }).catch( error => alert("This is the handleLogoffClick error: ", error))
 
-        // store.dispatch( logoff({ }) )
-
-        //need to clear user info on state
         this.props.history.push('/')
-        // console.log("STO add handleLogoffClick redirect command executed")
 
         document.location.reload()
-        // console.log("STO add handleLogoffClick reload command executed")
     }
 
     handleAdminClick() {
@@ -92,39 +73,43 @@ class Home extends Component {
 
 handleSTOClick() {
     if (typeof this.props.loginUser.user.id === 'undefined') {
-    // if (req.session.loginUser.length > 0) {
-    // if (this.name.length = '') {
-        //user is already logged in - send to STO add screen
-        // console.log("handleSTOClicl first branch of if")
         this.props.history.push('/login')
-        // return <Redirect to='/scheduled_time_off_adds'/>
     } else {
         //send to login screen
-        
         this.props.history.push('/scheduled_time_off_adds')
-        // return <Redirect to='/login'/>
     }
-    // document.getElementById('userMsg').innerHTML = `Hello ${this.props.loginUser.user.name}`;
 }
-
-
 
     render() {
 
         // console.log("Render what props:", this.props)
 
+        
         function prepareDateList(array) {
             // console.log(array);
             // array is from state for date column being processed
             // dateList will be the dates after processing
             // for formatting depending on if STO, event or blocked
+            var styles = {
+                color: 'blue',
+                fontWeight: 'lighter',
+                // fontSize: '1.7vw',
+                fontStyle: 'italic'
+            }
+
+            var styles2 = {
+                color: 'green',
+                fontWeight: 'lighter',
+                // fontSize: '1.7vw',
+                fontStyle: 'italic'
+            }
+
             let info = [...array]; 
             let dateList = [];
             let start = '';
             let end = '';
                     
             for (let i = 0; i < info.length; i++) {
-                // console.log("value of i: ", i)
                 switch(info[i].from_table) {
                     case 'BLOCKED': 
                         if (String(info[i].start_date.substring(5,5)) === 0) {
@@ -133,7 +118,8 @@ handleSTOClick() {
                                 start = info[i].start_date.substring(5,10)
                             }
                                 dateList.push(  
-                                    <p>{start} Restricted</p>);
+                                    // <p style={{ color: 'red'}}>{start} Restricted</p>);
+                                    <p style={styles}>{start} Restricted</p>);
                                     break;
         
                     case 'STO': 
@@ -156,7 +142,7 @@ handleSTOClick() {
                             } else {
                               //end date is different - concantenate start & end
                                 dateList.push(  
-                                    <p>{start} thru {end} {info[i].initials}</p>);
+                                    <p>{start} - {end} {info[i].initials}</p>);
                             }
                                 break;
         
@@ -167,7 +153,7 @@ handleSTOClick() {
                                 start = info[i].start_date.substring(5,10)
                             }
                                 dateList.push(  
-                                    <p>{start} {info[i].initials}</p>);
+                                    <p style={styles2}>{start} {info[i].initials}</p>);
                                     break;
                         default: 
                             console.log("There was an issue in the prepareDateList function.")
@@ -204,18 +190,12 @@ handleSTOClick() {
                 </div>
                 <p className = "restrictedNotice">Time off for Restricted dates requires Senior Management Approval.</p>
                 <div className="button_choices">
-                    {/* <Link to='/admin_menu'><button className = "adminButton">ADMIN MENU</button></Link> */}
-                    {/* <button id="logoff" className = "adminButton" >LOG OFF</button> */}
                     <button className = "adminButton" onClick={this.handleLogoffClick}>LOG OFF</button>
                     <button className = "adminButton" id="admin" onClick = {this.handleAdminClick}>ADMIN MENU</button>
                     <button className="addButton" id="STO" onClick = {this.handleSTOClick}>ADD/UPDATE STO</button>
                     <button className = 'adminButton' id="login">LOG IN</button>
-                    {/* <Link to='/login'><button className="addButton">ADD/UPDATE STO</button></Link> */}
-                    
                 </div>
-                <p>User Msg Below This</p>
-                <p id="userMsg"></p>
-                <p>Props: {this.props.loginUser.user.id}</p>
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dock" />
             </div>
         )
     }

@@ -3,6 +3,7 @@ const massive = require('massive');
 const express = require('express');
 const session = require('express-session');
 const authController = require('./controllers/authController');
+const path = require('path'); // Usually moved to the start of file
 
 const app = express();
 app.use((req, res, next) => {
@@ -10,6 +11,7 @@ app.use((req, res, next) => {
     next();
 })
 app.use(express.json());
+app.use( express.static( `${__dirname}/../build` ) );
 
 massive(process.env.CONNECTION_STRING)
 .then(db => {
@@ -28,18 +30,25 @@ app.use(session({
     }
 }))
 
-app.post('/api/employee', authController.addNewEmployee);
-app.get("/api/currentMonth", authController.getDatesCurrentMonth);
-app.get("/api/nextMonth", authController.getDatesNextMonth);
-app.get("/api/twoMonthsOut", authController.getTwoMonthsOut);
-app.post('/api/login', authController.loginUser);
-app.get('/api/logoff', authController.logoffUser);
+//chart_last_365_days_STO_by_emp
 app.post('/api/addSTO', authController.addSTO);
 app.post('/api/blocked', authController.addBlocked);
-app.post('/api/event', authController.addEvent);
-app.delete('/api/STO/:id', authController.deleteSTO);
+app.get('/api/charts/STO_365_byEmp', authController.getSTO_365_byEmp);
+app.get("/api/currentMonth", authController.getDatesCurrentMonth);
+app.post('/api/employee', authController.addNewEmployee);
+app.get('/api/employeelists', authController.getEmployeeLists);
 app.put('/api/employee_password_change/:id', authController.updateEmployeePassword);
 app.put('/api/employee_update/:id', authController.updateEmployee);
 app.post('/api/employee_update/:id', authController.getEmployeeData);
+app.post('/api/event', authController.addEvent);
+app.post('/api/login', authController.loginUser);
+app.get('/api/logoff', authController.logoffUser);
+app.get("/api/nextMonth", authController.getDatesNextMonth);
+app.delete('/api/STO/:id', authController.deleteSTO);
+app.get("/api/twoMonthsOut", authController.getTwoMonthsOut);
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(3060, () => console.log('Listening on Port 3060'))

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
-
+import {connect} from 'react-redux';
 
 class Employee_Update extends Component {
     constructor() {
@@ -12,19 +12,23 @@ class Employee_Update extends Component {
             name: '',
             initials: '',
             admin: false,
-            inactive: false
+            inactive: false,
+            status: ''
         }
         this.handleSubmit = this.handleSubmit.bind( this );
         this.setDisplayProperty = this.setDisplayProperty.bind(this);
+        this.reset = this.reset.bind(this);
 
     }
 
-    handleSubmit = () => {
-        // if (this.state.name.length === 0) {
-        //     this.setState({name: this.state.currentName})
-        //     }
-        console.log("Sent to axios: ", this.state.id, document.getElementById("name").value, document.getElementById("initials").value, document.getElementById("adminChk").checked, document.getElementById("deactiveChk").checked)
+    componentDidMount() {
+        if(!this.props.admin) {
+        this.props.history.push('/');
+                }
+            }        
 
+    handleSubmit = () => {
+        console.log("Sent to axios: ", this.state.id, document.getElementById("name").value, document.getElementById("initials").value, document.getElementById("adminChk").checked, document.getElementById("deactiveChk").checked)
 
         axios.put(`/api/employee_update/${this.state.id}`, {
             id: this.state.id,
@@ -33,73 +37,66 @@ class Employee_Update extends Component {
             admin: document.getElementById("adminChk").checked,
             inactive: document.getElementById("deactiveChk").checked
         }).then(user => {
-            //employee updated - display msg in addStatus and clear the fields
-            document.getElementById("name").value = '';
-            document.getElementById("initials").value = '';
-            document.getElementById("adminChk").value = false;
-            document.getElementById("deactiveChk").value = false;
-            document.getElementById('addEmpUpdateStatus').innerHTML = `${this.state.name} was updated`;
-        }).catch(function(error) {
-            document.getElementById('addEmpUpdateStatus').innerHTML = 'Houston we have problem - employee update denied.'});
+            // //employee updated - display msg in addStatus and clear the fields
+            this.reset();
+            this.setState({status: true})
+
+        }).catch(error => {
+            this.setState({status: false})
+        });
     }
 
-    // handleEmployee = (e) => {
-    //     this.setState({name: e.target.value})
-    // }
+    reset() {
+        document.getElementById("name").value = '';
+        document.getElementById("initials").value = '';
+        document.getElementById("adminChk").value = false;
+        document.getElementById("deactiveChk").value = false;
+
+        //Need to reset form for another update
+        document.getElementById("curInitials").style.display = 'none';
+        document.getElementById("submitButton").style.display = 'none';
+        document.getElementById("chkDeactivate").style.display = 'none';
+        document.getElementById("chkAdmin").style.display = 'none';
+        document.getElementById("btnGetCurrentData").style.display = 'flex';
+
+        //Also need to clear state
+        this.setState({id: 0, currentName: '', initials: '', admin: false, inactive: false})
+    }
 
 
     handleCurrentName = (e) => {
-        console.log("e: ", e.target.value)
-
-        // if (this.state.currentName === '') {
-        // // console.log("handleName function invoked: ", e.target.value)
-        //     //this.setState({name: e.target.value});
-        //     this.setState({currentName: e.target.value}) }
-        // else {
-        //     this.setState({name: e.target.value})
-        // }
-
+        this.setState({status: ''})
         this.setState({currentName: e.target.value})
         this.setState({name: e.target.value})
-        console.log('currentName: ', this.state.currentName, 'name: ', this.state.name);
     }
 
     getEmployeeData = () => {
         console.log("GET EMPLOYEE DATA function: ", this.state.currentName)
-
-
-    //     axios.get('/api/currentMonth')
-    //     .then(results => {this.setState({ thisMonth: results.data });
-    //   }).catch( error => alert(error));
-
-
+        console.log("GET EMPLOYEE DATA status: ", this.state.status)
         //Get current employee values from database
         //populate input boxes
-        //app.post('/api/employee_update/:id', authController.getEmployeeData);
-        //axios.put(`/api/employee_password_change/${this.state.name}`, {
         axios.post(`/api/employee_update/${this.state.currentName}`, {
             currentName: this.state.currentName
         }).then(user => {
-            // let {name, initials, admin, inactive} = req.body;
             console.log("user.data: ", user.data)
             let {id, name, initials, admin, inactive} = user.data.employeeList[0];
             console.log('getEmployeeData success: ', id, name, initials, admin, inactive)
 
             //set values of state
-            this.setState({id, name, initials, admin, inactive})
-
+            this.setState({id, name, initials, admin, inactive});
+            this.setState({status: "getEmployeeData"})
+        
             console.log("Get Data - state values: ", name, initials, admin, inactive)
 
             //populate values into input boxes
             document.getElementById("initials").value = initials;
             document.getElementById("adminChk").checked = admin;
             document.getElementById("deactiveChk").checked = inactive;
-            document.getElementById('addEmpUpdateStatus').innerHTML = 'Make the updates and click the SUBMIT button';
-            //populate input fields with data
-            //also set state
 
-        }).catch(function(error) {
-            document.getElementById('addEmpUpdateStatus').innerHTML = 'Houston we have problem - get data request denied.'});        
+        }).catch(error => {
+            this.setState({status: 'getEmployeeDatafalse'})
+            this.reset();
+        });        
     }
 
     setDisplayProperty() {
@@ -108,8 +105,7 @@ class Employee_Update extends Component {
         let displaySetting = '';
         console.log("Name: ", this.state.name);
         this.getEmployeeData();
-
-        document.getElementById('addEmpUpdateStatus').innerHTML = 'Make desired changes and click SUBMIT button.';
+        this.setState({status: 'getEmployeeData'})
 
         for (let i=0; i<arrToggleElements.length; i++) {
             elem = document.getElementById(arrToggleElements[i]);
@@ -117,7 +113,6 @@ class Employee_Update extends Component {
             if (displaySetting === 'none') {
                 elem.style.display = 'block';
             } else {
-                // console.log("in else statement");
                 elem.style.display = 'none';
             }
       }
@@ -126,6 +121,21 @@ class Employee_Update extends Component {
 
 
     render() {
+
+        let updateEmployeeStatus;
+
+        if (this.state.status === true) {
+            updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>{this.state.name} was updated.</p>;
+          } else if (this.state.status === false) {
+            updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>Update NOT made - the employee name may not exist.</p>;
+          } else if (this.state.status === 'getEmployeeData') {
+              updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>Make desired changes and click SUBMIT button.</p>
+        } else if (this.state.status === 'getEmployeeDatafalse') {
+            updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>No employee matched the requested name.</p>          } 
+
+        else {
+              updateEmployeeStatus = <p id='updateEmployeeStatusMsg'>Enter FLast of employee to update<br/>and click Get Current Data button.</p>;
+          }
 
         return(
             <div>
@@ -137,32 +147,42 @@ class Employee_Update extends Component {
             <p id='curInitials' className='inputLabel'>Initials:  <input className='inputBox' placeholder = "Initials" id = 'initials' autoComplete='off'/></p>
  
             <div id='chkAdmin' className="Administrative">
-                <label className = 'adminCheckbox' >Administrator: </label>
+                <label className = 'adminCheckbox' id="lblAdmin">Administrator: </label>
                 <input className = 'adminChkClass' type="checkbox" id="adminChk"/>
-                <p className='labelAdminCheck'>Check box for admin employee</p>
+                <p className='labelAdminCheck' id='lblAdminCheckNote'>Check box for admin employee</p>
             </div>
 
             <div id='chkDeactivate' className="Deactivate">
-                <label className = 'deactiveCheckbox'>Inactive: </label>
+                <label className = 'deactiveCheckbox' id='lblInactive'>Inactive: </label>
                 <input className = 'deactiveChkClass' type="checkbox" id="deactiveChk"/>
 
-            <p className='labelAdminCheck'>Check box to deactivate employee</p>   
+            <p className='labelAdminCheck' id='lblInactiveNote'>Check box to deactivate employee</p>   
             </div>
             <br></br>
-            <center><p id='addEmpUpdateStatus'>Enter FLast of employee to update and click Get Current Data button.</p></center>    <center><p id='addEmpUpdateNote'>NOTE: Return to EMPLOYEE MAINT MENU to update password.</p></center>       
+            {updateEmployeeStatus}
+            <center><p className='addEmpUpdateNote'>NOTE: Return to EMPLOYEE MAINT MENU <br /> to update password.</p></center>       
 
             
             <div className="button_choices">
                 <Link to='/'><button className = "adminButton">HOME</button></Link>
                 <Link to='/employee_maintenance'><button className = "adminButton">EMPLOYEE MAINT MENU</button></Link>
-                {/* <Link to='/'><button className = "adminButton">LOG OFF</button></Link> */}
                 <button onClick={this.handleSubmit} className="adminButton" id='submitButton'>SUBMIT</button>
                 <button id='btnGetCurrentData' onClick={this.setDisplayProperty} className = "adminButton">GET CURRENT DATA</button>
                     
                 </div>
-
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockSmall" />
             </div>
         )
     }
 }
-export default Employee_Update
+
+function mapStateToProps(state) {
+    console.log("Login component mapState value of state: ", state)
+    return {
+        username: state.loginUser.user.name,
+        initials: state.loginUser.user.initials,
+        admin: state.loginUser.user.admin,
+        id: state.loginUser.user.id
+}}
+
+export default connect(mapStateToProps)(Employee_Update);

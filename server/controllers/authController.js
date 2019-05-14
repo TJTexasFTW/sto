@@ -1,11 +1,11 @@
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 module.exports = {
 
   getDatesCurrentMonth: async (req, res) => {        
     const getDates = await req.app.get('db').dates_zero_months_out().catch( error => alert(error));
-    // return res.status(200).send(getDates).catch( error => alert(error));
-    
     return res.status(200).send(getDates)
   },   
 
@@ -23,28 +23,38 @@ module.exports = {
   loginUser: async (req, res) => {
     let db = req.app.get("db");
   
-    // console.log("In loginUser function: ", req.body);
-    let getUser = await db.employee_login_verify([req.body.name]);
-    let user = getUser[0];
-    // console.log("User: ", user);
+    console.log("In loginUser function: ", req.body);
+    let getUser = await db.employee_login_verify([req.body.name]).catch(err => console.log(err));
+    console.log("getUser: ", getUser)
+    console.log(Array.isArray(getUser) && getUser.length === 0);
+    if (getUser.length === 0) {
+      console.log('no user found');
+      return res.sendStatus(500)
+    } else {
+      let user = getUser[0];
+      console.log("After running Login Query value of User: ", user);
+    
+      let isAuthenticated = bcrypt.compareSync(req.body.password, user.password);
+    
+      console.log("Auth: ", isAuthenticated);
+      // console.log("ReqBody: ", req.body);
+      // console.log("User password: ", user.password);
   
-    let isAuthenticated = bcrypt.compareSync(req.body.password, user.password);
+      if (isAuthenticated) {
+        req.session.user = {
+          name: user.name,
+          initials: user.initials,
+          id: user.id,
+          admin: user.admin
+        }} else {
+          console.log("auth else")
+          res.sendStatus(400)
+            // req.session.destroy;
+        };
   
-    // console.log("Auth: ", isAuthenticated);
-    // console.log("ReqBody: ", req.body);
-    // console.log("User password: ", user.password);
-
-    if (isAuthenticated) {
-      req.session.user = {
-        name: user.name,
-        initials: user.initials,
-        id: user.id,
-        admin: user.admin
-      };
-
-      // console.log("req.session.user: ", req.session.user);
+      console.log("req.session.user AFTER IF STATEMENT", req.session.user);
+      res.status(200).json(req.session.user);
     }
-    res.status(200).json(req.session.user);
   },
 
   logoffUser(req, res) {
@@ -55,8 +65,42 @@ module.exports = {
 
 addSTO: (req, res) => {
   console.log("In authController addSTO function");
-  let {start_date, end_date, comment, employee_id, added} = req.body;
+  let {name, start_date, end_date, comment, employee_id, added} = req.body;
   console.log("new STO to add req.body", req.body)
+
+  //setting up email capabilities
+  let transporter = nodemailer.createTransport({
+    // service: 'gmail',
+    host: 'smtp.googlemail.com',
+    port: 465,
+    // secure: false,   would not send emails with secure line
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
+    }
+  });
+
+  mailOptions = {
+    from: "STO Activity",
+    to: "nottodayjose@yahoo.com",
+    subject: `STO Added for ${name}`,
+    // text: "A new STO has been added",
+   html: `<h3 style="color: blue;"><u>NEW STO ENTRY</u></h3>
+          <p><b>Employee</b>: ${name}</p>
+          <p><b>Start:</b> ${start_date}<p>
+          <p><b>End:</b> ${end_date}<p>`
+
+    // html: '<h1><b>STO Added</b></h1><p>Testing HTML formatting</p>'
+  }
+
+  transporter.sendMail(mailOptions, function(err, res){
+    if (err) {
+      console.log("Error", err);
+    } else {
+      null;
+    }
+  });
+
 
   //check if there are dates blocked for the timeframe of the STO
   let db = req.app.get('db');
@@ -104,7 +148,6 @@ addNewEmployee: (req, res) => {
           res.status(403).json({
               error: 'USERNAME_OR_INITIALS_ALREADY_TAKEN'
           })
-          // windows.alert("Username or Initials Already Exist . . .");
       } else {            
         console.log("bcrypt: ", password);
           bcrypt.hash(password, 12).then(newPassword => {
@@ -115,10 +158,6 @@ addNewEmployee: (req, res) => {
           }).catch(err => console.log(err))
       }
   }).catch(err => console.log(err));
-  //hash the password
-  //put in database
-  //add user to session
-  //send the user
 },
 
 updateEmployeePassword: (req, res) => {
@@ -191,7 +230,19 @@ getEmployeeData: (req, res) => {
       res.status(200).json({employeeList})
     }
   }).catch(err => console.log(err));
+},
 
+getEmployeeLists: async (req, res) => {
+  const empListActive = await req.app.get('db').employee_list_active().catch( error => alert(error))
+  console.log('getEmployeeLists: ', empListActive);
+  return res.status(200).send(empListActive)
+},
+
+////chart_last_365_days_STO_by_emp
+getSTO_365_byEmp: async (req, res) => {
+  console.log('getSTO_365_byEmp: ');
+  const chartSTO365DaybyEmp = await req.app.get('db').chart_last_365_days_STO_by_emp().catch( error => alert(error))
+  return res.status(200).send(chartSTO365DaybyEmp)
 },
 
 updateEmployee: (req, res) => {
@@ -217,33 +268,5 @@ db.employee_update_verify_by_id(id).then(employeeList => {
 }).catch(err => console.log(err));
 
 }
-
-// updateEmployee: (req, res) => {
-  // console.log("In authController updateEmployee function");
-//   let {name, initials, password, admin, inactive, id} = req.body;
-//   console.log("Update employee req.body", req.body)
-  
-//   db.employee_update_verify(name, initials, id).then(employeeList => {
-//     // console.log("Username or initials already exist: ", employeeList)
-//     if(employeeList.length > 0) {
-//         res.status(403).json({
-//             error: 'USERNAME_OR_INITIALS_ALREADY_TAKEN'
-//         })
-//     } else {            
-//       console.log("bcrypt: ", password);
-//         bcrypt.hash(password, 12).then(newPassword => {
-//             // console.log("newPassword after add:", newPassword, newPassword.length);
-//             db.employee_update(name, initials, newPassword, admin, inactive).then(() => {
-//                 res.status(200).json(req.session.user);
-//             }).catch(err => console.log(err))
-//         }).catch(err => console.log(err))
-//     }
-  
-//   //OK to update employee
-//   let db = req.app.get('db');
-//   db.employee_update(name, initials, password, admin, inactive, id).then(() => {
-//     res.status(200).json(name);
-// }).catch(err => console.log(err))
-// }
 
 }

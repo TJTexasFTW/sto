@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router-dom'
 import AdminMenu from './Components/Admin/AdminMenu';
 import BlockedDays from './Components/BlockedDaysMaintenance/BlockedDays';
 import EmployeeAdd from './Components/EmployeeAdd/EmployeeAdd';
+import EmployeeLists from './Components/EmployeeLists/EmployeeLists'
 import EmployeeMaintenance from './Components/EmployeeMaintenance/EmployeeMaintenanceMenu';
 import EmployeeUpdate from './Components/EmployeeUpdate/EmployeeUpdate';
 import EmployeePasswordChange from './Components/EmployeePasswordChange/EmployeePasswordChange';
@@ -12,12 +13,15 @@ import Home from './Components/Main/Home';
 import ScheduledTimeOffAdds from './Components/ScheduledTimeOffAdds/ScheduledTimeOffAdds';
 import ScheduledTimeOffAdmin from './Components/ScheduledTimeOffAdmin/ScheduledTimeOffAdmin';
 import STOAdminDelete from './Components/STOAdminDelete/STOAdminDelete';
+import Charts from './Charts/Charts';
 
 export default (
     <Switch>
         <Route path='/admin_menu' component={AdminMenu} />
         <Route path='/blocked_days' component={BlockedDays} />
+        <Route path='/charts' component={Charts} />
         <Route path='/employee_add' component={EmployeeAdd} />
+        <Route path='/employee_lists' component={EmployeeLists} />
         <Route path='/employee_maintenance' component={EmployeeMaintenance} />
         <Route path='/employee_update' component={EmployeeUpdate} />
         <Route path='/employee_password_change' component={EmployeePasswordChange} />
