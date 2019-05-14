@@ -193,7 +193,7 @@ handleSTOClick() {
                     <button className = "adminButton" onClick={this.handleLogoffClick}>LOG OFF</button>
                     <button className = "adminButton" id="admin" onClick = {this.handleAdminClick}>ADMIN MENU</button>
                     <button className="addButton" id="STO" onClick = {this.handleSTOClick}>ADD/UPDATE STO</button>
-                    <button className = 'adminButton' id="login">LOG IN</button>
+                    {/* <button className = 'adminButton' id="login">LOG IN</button> */}
                 </div>
                 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dock" />
             </div>
