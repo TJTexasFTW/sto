@@ -42,7 +42,9 @@ class Admin_Menu extends Component {
                 <Link to='/charts'><button className = "big">Charting</button></Link>
             </div>
 
+
             <div className="button_choices">
+            {/* <Link to='/'><button className = "adminButton">MOVE</button></Link> */}
                 <Link to='/'><button className = "adminButton">HOME</button></Link>
             </div>
             <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockSub" />

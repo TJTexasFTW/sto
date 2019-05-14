@@ -43,6 +43,7 @@ class STO_Adds extends Component {
             added: today
         }).then(user => {
             //new sto added - display msg in addStatus and clear the fields
+            console.log('axios returned OK: ', this.state.status)
             this.setState({status: true})
             document.getElementById("start_date").value = '';
             document.getElementById("end_date").value = '';
@@ -78,6 +79,8 @@ class STO_Adds extends Component {
             addSTOStatus = <p id='addSTOStatusMsg'></p>;
         } else if (this.state.status === false) {
             addSTOStatus = <p id='addSTOStatusMsg'>STO was NOT added - there is a restriction for the requested timeframe. This will require senior mgmt approval. Once approved a system admin will need to input the approved STO.</p> ;
+        } else {
+            addSTOStatus = <p id='addSTOStatusMsg'></p>;
         }
 
         return(
