@@ -65,7 +65,7 @@ getEmployeeListActive = () => {
                     <Link to='/employee_maintenance'><button className = "adminButton">EMPLOYEE MAINT MENU</button></Link>
                     {/* <button id='btnGetEmployeeListActive' onClick={this.getEmployeeListActive} className = "adminButton">GET LIST ACTIVE</button> */}
                 </div>
-
+                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dockSub" />
             </div>
         )
     }

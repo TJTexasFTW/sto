@@ -24,16 +24,16 @@ class Home extends Component {
 
     }
 
-    async componentDidMount() {
-    await axios.get('/api/currentMonth')
+    componentDidMount() {
+    axios.get('/api/currentMonth')
         .then(results => {this.setState({ thisMonth: results.data });
       }).catch( error => alert(error));
 
-    await axios.get('/api/nextMonth')
+    axios.get('/api/nextMonth')
         .then(results => {this.setState({ nextMonth: results.data });
       }).catch( error => alert(error));
 
-    await axios.get('/api/twoMonthsOut')
+    axios.get('/api/twoMonthsOut')
         .then(results => {this.setState({ twoMonthsOut: results.data });
       }).catch( error => alert(error));
 
@@ -97,6 +97,13 @@ handleSTOClick() {
                 fontStyle: 'italic'
             }
 
+            var styles2 = {
+                color: 'green',
+                fontWeight: 'lighter',
+                // fontSize: '1.7vw',
+                fontStyle: 'italic'
+            }
+
             let info = [...array]; 
             let dateList = [];
             let start = '';
@@ -146,7 +153,7 @@ handleSTOClick() {
                                 start = info[i].start_date.substring(5,10)
                             }
                                 dateList.push(  
-                                    <p>{start} {info[i].initials}</p>);
+                                    <p style={styles2}>{start} {info[i].initials}</p>);
                                     break;
                         default: 
                             console.log("There was an issue in the prepareDateList function.")
