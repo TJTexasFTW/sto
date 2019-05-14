@@ -23,7 +23,7 @@ class STO_Admin
             <p className='inputLabel'>For:  <input className='inputBox' placeholder = "User Name"/></p>
             <p className='inputLabel'>Start Date:  <input className='inputBox' placeholder = "Start Date" type="date"/></p>
             <p className='inputLabel'>End Date:  <input className='inputBox' placeholder = "End Date" type="date"/></p>
-            {/* <p className='inputLabel'>Note:  <input className='inputBox' placeholder = "Note"/></p> */}
+            <p className='inputLabel'>Note:  <input className='inputBox' placeholder = "Note"/></p>
 
             <div className="button_choices">
                     <Link to='/'><button className = "adminButton">HOME</button></Link>

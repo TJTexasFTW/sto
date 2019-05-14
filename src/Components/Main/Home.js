@@ -195,13 +195,7 @@ handleSTOClick() {
                     <button className="addButton" id="STO" onClick = {this.handleSTOClick}>ADD/UPDATE STO</button>
                     <button className = 'adminButton' id="login">LOG IN</button>
                 </div>
-                {/* <p>User Msg Below This</p> */}
-                {/* <p id="userMsg"></p> */}
-                {/* <p>Props: {this.props.loginUser.user.id}</p> */}
-                {/* <img id='palm' src='297639.svg' alt="Palm Tree"/> */}
-                {/* <img src='https://live.staticflickr.com/685/20769963314_ab68ab22ed_b.jpg' alt="Lake Dock" id="dock" /> */}
                 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dock" />
-                {/* //https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw */}
             </div>
         )
     }
