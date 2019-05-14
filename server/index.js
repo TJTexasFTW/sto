@@ -3,6 +3,7 @@ const massive = require('massive');
 const express = require('express');
 const session = require('express-session');
 const authController = require('./controllers/authController');
+const path = require('path'); // Usually moved to the start of file
 
 const app = express();
 app.use((req, res, next) => {
@@ -10,6 +11,7 @@ app.use((req, res, next) => {
     next();
 })
 app.use(express.json());
+app.use( express.static( `${__dirname}/../build` ) );
 
 massive(process.env.CONNECTION_STRING)
 .then(db => {
@@ -44,5 +46,9 @@ app.get('/api/logoff', authController.logoffUser);
 app.get("/api/nextMonth", authController.getDatesNextMonth);
 app.delete('/api/STO/:id', authController.deleteSTO);
 app.get("/api/twoMonthsOut", authController.getTwoMonthsOut);
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(3060, () => console.log('Listening on Port 3060'))
