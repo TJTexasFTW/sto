@@ -48,7 +48,7 @@ class Home extends Component {
         //clear session and loginUser.user object
         axios.get('/api/logoff')
             .then(results => {this.setState({ username: '' });
-        }).catch( error => alert("This is the handleLogoffClick error: ", error))
+        }).catch( error => alert("No user was logged in . . .", error))
 
         this.props.history.push('/')
 
