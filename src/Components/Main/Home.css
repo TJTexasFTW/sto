@@ -1,13 +1,18 @@
 /* body {
     /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYX6_jJxvMpDeinBiHBPM-AkU_79keJr6AC-a7UdeK5BCn9gXpKg"); */
     /* background-image: url('Beach.jpg'); */
-    background-image: url('Water_and_Hut.jpg');
+    /* background-image: url('vicko-mozara-324955-unsplash.jpg'); */
     /* background-image: url('beach-children-footprint-6551.jpg'); */
     /* opacity: 0.2; */
     /* background-color: ; */
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-repeat: no-repeat;
+    background-size: cover; */
    /* } */ */
+
+/* #pinkFlamingo {
+    height: 30vh;
+    width: 30vw;
+} */
 
 #logoff{
     display: none;

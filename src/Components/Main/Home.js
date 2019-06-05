@@ -3,6 +3,10 @@ import axios from 'axios';
 import './Home.css';
 import {connect} from 'react-redux';
 import '../../App_SASS.scss'
+import flamingo from "../../images/mohamed-ajufaan-678502-unsplash.jpg";
+
+// import './vicko-mozara-324955-unsplash.jpg'
+
 
 class Home extends Component {
     constructor() {
@@ -166,9 +170,12 @@ handleSTOClick() {
             let dateList0 = prepareDateList(this.state.thisMonth);
             let dateList1 = prepareDateList(this.state.nextMonth);
             let dateList2 = prepareDateList(this.state.twoMonthsOut);
-
-        return(
-            <div className="Home">
+            
+            return(
+                <div className="Home">
+                    <div className = 'pink'>
+                        <img src={flamingo} alt="Palm Trees on Beach" className="dock" id='pinkFlamingo'/>
+                    </div>
                 <h1 className = 'appHeading'>SCHEDULED TIME OFF (STO)</h1>
                 <div className="months">
                     <div className="current_month" id="current_month"><u>CURRENT MONTH</u>
@@ -188,6 +195,7 @@ handleSTOClick() {
                         </ul>                     
                     </div>
                 </div>
+                        <p id='photo_credit'>Photo by Mohamed Ajufaan on Unsplash</p>
                 <p className = "restrictedNotice">Time off for Restricted dates requires Senior Management Approval.</p>
                 <div className="button_choices">
                     <button className = "adminButton" onClick={this.handleLogoffClick}>LOG OFF</button>
@@ -195,7 +203,6 @@ handleSTOClick() {
                     <button className="addButton" id="STO" onClick = {this.handleSTOClick}>ADD/UPDATE STO</button>
                     {/* <button className = 'adminButton' id="login">LOG IN</button> */}
                 </div>
-                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSvn0a_2sBp-FiE8pTRAh0TVqUMjIpWyofXsCYwUxu4kuQcCHkw' alt="Lake Dock" className="dock" />
             </div>
         )
     }
